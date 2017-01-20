@@ -22,13 +22,13 @@
 <meta property="og:url" content="https://keisuke-yanagisawa.github.io//research-ja/" />
 <meta property="og:site_name" content="Keisuke Yanagisawa" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2017-01-19T16:20:59+09:00" />
+<meta property="article:published_time" content="2017-01-20T15:49:45+09:00" />
 <script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "Article",
     "headline": "研究内容",
-    "datePublished": "2017-01-19T16:20:59+09:00",
+    "datePublished": "2017-01-20T15:49:45+09:00",
     "description": "開発したツールSpresso (http://www.bi.cs.titech.ac.jp/spresso/)タンパク質の3次元構造に基づいたバーチャルスクリーニングにおいて、ドッキング計算を行う前の化合物のプレスクリーニングを行います。",
     "logo": "https://keisuke-yanagisawa.github.io//siteicon.png",
     "url": "https://keisuke-yanagisawa.github.io//research-ja/"
@@ -120,14 +120,15 @@
 
 <h1 id="研究内容">研究内容</h1>
 
-<h2 id="フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発</h2>
-<p>//創薬の初期段階において、計算機を用いて化合物を選別するバーチャルスクリーニング (Virtual screening, VS) という手法が近年用いられています。このうち、タンパク質の3次元構造を用いたバーチャルスクリーニング (Structure-based virtual screening, <strong>SBVS</strong>) では、タンパク質-化合物 ドッキング計算などの手法が利用されています。この手法は計算時間を要するものの、タンパク質と化合物との間の物理化学的なエネルギーを推定するため、バーチャルスクリーニングにおいて必要不可欠なものとされています。</p>
-
+<h3 id="フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発</h3>
+<!--- comment
+創薬の初期段階において、計算機を用いて化合物を選別するバーチャルスクリーニング (Virtual screening, VS) という手法が近年用いられています。このうち、タンパク質の3次元構造を用いたバーチャルスクリーニング (Structure-based virtual screening, **SBVS**) では、タンパク質-化合物 ドッキング計算などの手法が利用されています。この手法は計算時間を要するものの、タンパク質と化合物との間の物理化学的なエネルギーを推定するため、バーチャルスクリーニングにおいて必要不可欠なものとされています。
+--->
 <p>タンパク質の3次元構造を用いたバーチャルスクリーニング (Structure-based virtual screening, SBVS)の計算量を抑えるため、化合物群をあらかじめ削減すること（プレスクリーニング）が多く行われています。これについて、タンパク質の3次元構造に基づきつつも高速に化合物を評価するプレスクリーニング手法<a href="http://www.bi.cs.titech.ac.jp/spresso/"><strong>Spresso</strong></a>を開発しています。</p>
 
 <p><img src="../images/research/spresso.png" alt="Spresso" /></p>
 
-<h2 id="半教師付き学習を用いた薬物クリアランス経路予測">半教師付き学習を用いた薬物クリアランス経路予測</h2>
+<h3 id="半教師付き学習を用いた薬物クリアランス経路予測">半教師付き学習を用いた薬物クリアランス経路予測</h3>
 
 <p>薬物化合物の分子量 (MW)、分配係数 (logD)、血漿中タンパク質非結合率 (fup)などを計算し、これらの値を利用してヒト体内のどのような代謝・排泄経路（クリアランス経路）を通過するかを予測します。</p>
 
