@@ -859,7 +859,7 @@ body {
       bottom: 0; }
   body::before {
     content: "";
-    background-color: #fafafa;
+    background-color: #fff;
     position: fixed;
     top: 0;
     right: 0;
@@ -886,7 +886,7 @@ body {
       body::before {
         left: 300px;
         right: 0;
-        background-color: #fafafa; } }
+        background-color: #fff; } }
 
 .main {
   margin-top: 80px; }
@@ -1149,7 +1149,7 @@ blockquote {
   padding: 10px 15px;
   margin-left: -15px;
   margin-right: -10px;
-  background-color: #e6eef6;
+  background-color: #ebf3fb;
   border-color: #3583d6; }
   blockquote p:last-child, blockquote .settings-panel-example:last-child {
     margin-bottom: 0; }
