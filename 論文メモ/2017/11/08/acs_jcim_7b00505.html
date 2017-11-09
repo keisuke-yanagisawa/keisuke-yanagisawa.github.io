@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>論文メモ - Benchmarking Commercial Conformer Ensemble Generators</title>
+    
+    <meta name="author" content="Keisuke Yanagisawa">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/cerulean/bootstrap.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <!--<link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+	  
+	  <a class="navbar-brand" href="toppage-ja">トップページ</a>
+	  
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+	    
+	    
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+        
+      
+    
+  
+    
+      
+        
+      	  
+      	  <li><a href="/profile-ja">プロフィール</a></li>
+      	  
+        
+      
+    
+  
+    
+      
+        
+      
+    
+  
+    
+      
+        
+      	  
+      	  <li><a href="/publications-ja">研究成果</a></li>
+      	  
+        
+      
+    
+  
+    
+      
+        
+      
+    
+  
+    
+      
+        
+      	  
+      	  <li><a href="/research-ja">研究内容</a></li>
+      	  
+        
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+
+
+
+          </ul>
+	  <ul class="nav navbar-nav navbar-right">
+	    
+	    <li><a href="blog_top-ja">ブログ</a></li>
+	      
+	    
+	  </ul>
+	  <!--
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+	  -->
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>論文メモ - Benchmarking Commercial Conformer Ensemble Generators <small>論文メモ</small></h1>
+  <div class="date">
+    <span class="">08 November 2017</span>
+  </div>
+</div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="content">
+      
+<p>せっかく自分のホームページ綺麗にしたし、なんかしらしたくなったので論文メモをここに書いていくことにする。どのくらい続くかは不明。</p>
+
+<hr />
+
+<h2 id="benchmarking-commercial-conformer-ensemble-generators">Benchmarking Commercial Conformer Ensemble Generators</h2>
+
+<ul>
+  <li>N-O Friedrich, CB Kops, F Flachsenberg, K Sommer, M Rarey, J Kirchmair</li>
+  <li>Journal of Chemical Information and Modeling (in press)</li>
+</ul>
+
+<p>そうそうたるメンバーだなって感じ。RareyとKirchmairは少なくとも聞いたことある。</p>
+
+<h3 id="abstract">Abstract</h3>
+
+<ul>
+  <li>無料ツールの比較論文は最近出ている (PCD Hawkins, JCIM, 2017) 。</li>
+  <li>ConfGen, ConfGenX, cxcalc, iCon, MOE LowModeMD, MOE Stochastic, MOE Conformation Import, OMEGAの8種類の商用ツールの比較を行った。RDKit （無料で利用可能）も比較に含めた。</li>
+  <li>商用ツールの強みは99%の化合物についてちゃんと構造を出力できた、という安定性にある。</li>
+  <li>RDKitのdistance geometry algorithm (with minimization enabled) は比較的良い成果を残している。</li>
+</ul>
+
+<p>ちなみにPCD HawkinsはOMEGAの開発関係者。この論文も気になりますなあ。</p>
+
+<h3 id="introduction">Introduction</h3>
+
+<ul>
+  <li>ドッキング計算とかファーマコフォアで化合物の立体配座は重要。これをうまく生成できるツールを作ろうと多くの研究者が努力を重ねている。</li>
+  <li>ベンチマークのデータセットもこれまでいろいろ作られてきて、最近では我々がPDB構造から選択された4626件の化合物立体配座からなるPlatinum Datasetというものを作った。 (N-O Friedrich et al., JCIM, 2017)</li>
+  <li>この論文の中では数種類の無料で利用できるツールの比較を行い、RDKitのDGとETKDGが最も良いという結果を得た。これらは、80%以上の化合物について、タンパク質と結合している立体配座とRMSD 1 Å以下の構造を生成することに成功していた。</li>
+  <li>この比較は無料で利用できるツールのみにしていたが、この論文では商用ツールの比較を行う。</li>
+</ul>
+
+<p>それがこの論文の理由かー！ってなった。</p>
+
+<h3 id="results">Results</h3>
+
+<h4 id="benchmarking-dataset-platinum-benchmarking-dataset">Benchmarking Dataset (Platinum benchmarking dataset)</h4>
+
+<ul>
+  <li>(N-O Friedrich et al., JCIM, 2017) で作成した化合物セットは2016/2/12のPDBに基づいていたが、これを2017/2/16のPDBに基づいたものに更新した。これにより、立体配座数は4548件に変化している（減った理由も書かれている）。</li>
+  <li>最大配座発生数を50、250にした場合の評価を行った。実際の発生数はこれにより少ないことがある。</li>
+  <li>表2に最良RMSDについてデータセット全体の平均値と中央値が記載されている。それによれば、OMEGAが最も高性能だが、ConfGenXも同程度に良い。</li>
+  <li>実行速度についても、図1や表5にある通りOMEGAが最も高速である。ConfGenXはこの点OMEGAに劣っている。</li>
+  <li>すべてのツールは99%以上の化合物について立体配座を生成することができた。</li>
+  <li>出力結果について、結合次数などを間違えた化合物を出すことも非常に少なかった。ConfGen, ConfGenX, cxcalc, MOEがたまに結合長を間違えた程度。iConとOMEGAはエラー発生させなかった。</li>
+</ul>
+
+<p>要するにOMEGAが最強。</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<ul>
+  <li>商用ソフトはエラーの発生件数が少ない。これは無料で利用できるツールと大きく異なる。</li>
+  <li>OMEGAが最も良い性能をだした。OMEGAは250配座を出力することを許しても中央値で74配座しか発生させないが、それで非常に良い構造を出力する。</li>
+  <li>MOE Import, cxcalc, RDKit DGは250配座を出力するので、配座数が重要な場合にはこれらを使うのが良い。</li>
+  <li>RDKit DGは商用ツールの中でもそれなりに健闘した。</li>
+  <li>Platinum Datasetは配座発生ツールの比較に使えるよ。</li>
+</ul>
+
+<p>最後はちゃんと宣伝で締められていた。</p>
+
+<h3 id="感想">感想</h3>
+
+<p>OMEGAを使おう、以外の感情がなかった。</p>
+
+    </div>
+
+<!--
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#論文メモ-ref">
+    		論文メモ <span>1</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#cheminformatics-ref">cheminformatics <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#conformation generator-ref">conformation generator <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+-->  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev disabled"><a>&larr; 前の記事</a></li>
+    
+      <li><a href="/blog_top-ja.html">ブログトップへ</a></li>
+    
+      <li class="next disabled"><a>次の記事 &rarr;</a>
+    
+    </ul>
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Keisuke Yanagisawa
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+
+    
+
+
+
+
+
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
