@@ -1,4 +1,0 @@
-- Information Processing Society of Japan (IPSJ, FY2014-)
-  - Special Interest Group on Bioinformatics (SIGBIO)
-- Chem-Bio Informatics Society (CBI, FY2016-)
-- The Biophysical Society of Japan (BSJ, FY2019-)

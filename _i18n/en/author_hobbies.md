@@ -1,2 +1,0 @@
-- Playing the cello (chamber music / orchestra)
-- Photography

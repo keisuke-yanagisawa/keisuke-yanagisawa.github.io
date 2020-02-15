@@ -1,5 +1,0 @@
-- **柳澤 渓甫**: "情報工学から考える創薬", *2nd Tokyo Bioinformatics Meeting*, 2018/08.（口頭発表）
-- **柳澤 渓甫**: "Spresso - 高速なタンパク質立体構造ベース創薬を目指して", *1st Tokyo Bioinformatics Meeting*, 2017/08.（口頭発表）
-- **柳澤 渓甫**, 小峰 駿汰, 鈴木 翔吾, 大上 雅史, 石田 貴士, 秋山 泰. "フラグメント分割による超高速化合物プレスクリーニング手法 ESPRESSO", *第56回 生物物理若手の会 夏の学校*, 2016/09.（ポスター発表）
-- **Keisuke Yanagisawa**, Shunta Komine, Masahito Ohue, Takashi Ishida, Yutaka Akiyama. "Fast pre-docking method based on compound structure fragmentation", *ACLS International Summer School 2015*, 2015/09.（ポスター発表）
-- **Keisuke Yanagisawa**, Takashi Ishida, Yutaka Akiyama. "Drug clearance pathway prediction using semi-supervised learning", *ACLS International Summer School 2014*, 2014/08.（ポスター発表）

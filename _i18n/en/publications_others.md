@@ -1,5 +1,0 @@
-- **Keisuke Yanagisawa**: "情報工学から考える創薬", *2nd Tokyo Bioinformatics Meeting*, 2018/08. (Oral presentation, in Japanese)
-- **Keisuke Yanagisawa**: "Spresso - 高速なタンパク質立体構造ベース創薬を目指して", *1st Tokyo Bioinformatics Meeting*, 2017/08. (Oral presentation, in Japanese)
-- **Keisuke Yanagisawa**, Shunta Komine, Shogo D. Suzuki, Masahito Ohue, Takashi Ishida, Yutaka Akiyama. "フラグメント分割による超高速化合物プレスクリーニング手法 ESPRESSO", *第56回 生物物理若手の会 夏の学校*, 2016/09. (poster session, in Japanese)
-- **Keisuke Yanagisawa**, Shunta Komine, Masahito Ohue, Takashi Ishida, Yutaka Akiyama. "Fast pre-docking method based on compound structure fragmentation", *ACLS International Summer School 2015*, 2015/09. (poster session)
-- **Keisuke Yanagisawa**, Takashi Ishida, Yutaka Akiyama. "Drug clearance pathway prediction using semi-supervised learning", *ACLS International Summer School 2014*, 2014/08. (poster session)

@@ -1,6 +1,0 @@
-- 2017.12 Grand Prize (Schrödinger K.K. Prize), 4th Computer-Aided Drug Discovery Contest
-- 2015.7 Student Encouragement Prize, 2nd Computer-Aided Drug Discovery Contest
-- 2015.3 2014 SIGBIO Best Student Presentation Award, IPSJ SIGBIO
-- 2014.7 Student Encouragement Prize, 1st Computer-Aided Drug Discovery Contest
-- 2014.3 2013 Tokyo Institute of Technology Academic Excellence Awards, Tokyo Institute of Technology
-- 2009.8 Bronze Prize, 2009 High School Chemistry Grand Prix
