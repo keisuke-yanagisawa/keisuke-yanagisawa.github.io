@@ -1,0 +1,9 @@
+- [第4回IT創薬コンテスト「コンピュータで薬のタネを創る4」](http://www.ipab.org/eventschedule/contest/contest4) グランプリ（Schrödinger K.K.賞） (2017/12)
+  - グループ名「創薬フレンズ」（松山 祐輔, 林 孝紀, 伊井 良太, 種部 俊孝, 多治見 隆志, 佐藤 倫, 池田 光, **柳澤 渓甫**）: "ストラクチャーベース手法とリガンドベース手法の融合による化合物ヴァーチャルスクリーニング"
+- [第2回IPABコンテスト「コンピュータで薬のタネを創る2」](http://www.ipab.org/eventschedule/contest/contest2) 学生奨励賞 (2015/07) [\[link\]](http://www.ipab.org/eventschedule/contest/conetst2results)
+  - グループ名「DEDENNE」（鈴木 翔吾, **柳澤 渓甫**）: "深層学習を用いたヒト c-Yes キナーゼ阻害化合物の予測 DEDENNE: Druggability Estimator by Deep Neural Network"
+- 2014年SIGBIO学生奨励賞 (2015/03) [\[link\]](http://www.ipsj.or.jp/award/bio-award1.html)
+  - **Keisuke Yanagisawa**, Takashi Ishida, Yuichi Sugiyama, Yutaka Akiyama. "Drug clearance pathway prediction based on semi-supervised learning", IPSJ SIG Technical Report, 2014-BIO-41(11), 1-6, 2015/03.
+- [IPABコンテスト「コンピュータで薬のタネを創る」](http://www.ipab.org/eventschedule/contest/contest) 審査員特別賞 学生奨励賞 (2014/07) [\[link\]](http://www.ipab.org/eventschedule/contest/contest1)
+  - 東工大 TSUBAMEグループ（安尾 信明, 吉野 龍ノ介, **柳澤 渓甫**, 伴 兼弘）: "拘束付きDockingによる化合物探索"
+- 東京工業大学 情報工学科 優秀学生賞（首席卒業） (2014/03)

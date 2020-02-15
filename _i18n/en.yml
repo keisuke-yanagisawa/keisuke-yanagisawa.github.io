@@ -1,0 +1,58 @@
+# home / profile
+name: Keisuke Yanagisawa
+affiliation: Research fellow (PD), The University of Tokyo
+location: Tokyo, Japan
+
+# home
+preface: About
+recent_news: Recent news
+tools: Tools
+tool_details:
+  - tool_title: Spresso
+    tool_info: 
+    tool_description: An ultrafast pre-screening method based on compound decomposition
+    tool_url: https://www.bi.cs.titech.ac.jp/spresso
+    tool_thumbnail: spresso.png
+    visibility: true
+
+# profile
+research_interest: Research Interests
+work_experience: Work Experience
+work_experience_details:
+  - company_name: Tokyo Institute of Technology
+    company_logo: tokyotech.png
+    company_url: https://www.titech.ac.jp
+    designation: Part-time Lecturer
+    description: Fundamentals of Data Science and Fundamentals of Artificial Intelligence
+    years: 2019.11-present
+    visibility: true
+  - company_name: The University of Tokyo
+    company_logo: utokyo.png
+    company_url: http://www.bi.a.u-tokyo.ac.jp
+    designation: Research Fellow (PD)
+    description: Bioinformation Engineering Lab., Dept. Biotech.
+    years: 2019.04-present
+    visibility: true
+education: Education
+education_details:
+  - college_logo: tokyotech.png
+    college_name: Tokyo Institute of Technology
+    college_url: https://www.bi.cs.titech.ac.jp
+    college_degree: Doctor of Engineering
+    years: 2010.04-2019.03
+    description: Akiyama Lab., Dept. CS
+    visibility: true
+awards: Awards
+society: Society
+hobby: Hobbies
+
+# publications
+publications_peerreviewed_journal: Peer-reviewed Journal Papers
+publications_peerreviewed_international_conference: Peer-reviewed International Conferences
+publications_international_conference: International Conferences (without peer review)
+publications_domestic_conference: Domestic Conferences (without peer review)
+publications_others: Others
+publications_awards: Award
+publications_grant: Grants
+publications_grant_resource: Computation resources, etc.
+publications_thesis: Thesis

@@ -1,0 +1,1 @@
+- **Keisuke Yanagisawa**, "Construction of the optimal cosolvents sets for cosolvent MD (CMD) with the large-scale computation", Initiative on Promotion of Supercomputing for Young or Women Researchers, Information Technology Center, The University of Tokyo, $950, 2019/10-2020/03.

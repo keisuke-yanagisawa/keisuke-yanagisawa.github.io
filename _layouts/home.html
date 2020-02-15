@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<div class="row ">
+  
+  <div class="col-lg-4 offset-md-1">
+    {% include side_profile.html %}
+  </div>
+  
+  <div class="col-lg-7">
+    
+    <div class="card">
+      {% translate_file home_preface.md %}
+    </div>
+    
+    <div class="card">
+      {% translate_file home_news.md %}
+    </div>
+    
+    {% if site.show_author_tool_details == true %}
+    <div id="author_tools" class="card">
+      <h2 class="card-title">{% t tools %}</h2>
+      <br />
+      {% for tool in site.translations[site.lang]["tool_details"] %}
+      {% if tool.visibility == true %}
+      <div class="row" id="tool-card">
+        <div class="col-md-6">
+          <img src="{{site.url}}{{site.baseurl}}/assets/img/{{tool.tool_thumbnail}}" class="tool-img" />
+        </div>
+        <div class="col-md-4 center">
+          <h4 class="experience-title"> {{ tool.tool_title }}</h4>
+          <h6 class="experience-info"> {{ tool.tool_info}}</h6>
+          <p class="experience-desc"> {{ tool.tool_description }} </p>
+          <p><a class="tool-link" href="{{tool.tool_url}}">{{ tool.tool_url}}</a></p>
+        </div>
+      </div>
+      {% endif %}
+      
+      {% endfor %}
+    </div>
+    {% endif %}
+    
+  </div>
+</div>

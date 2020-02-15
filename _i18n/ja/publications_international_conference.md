@@ -1,0 +1,8 @@
+#### 口頭発表
+- **Keisuke Yanagisawa**, Yoshitaka Moriwaki, Tohru Terada, Kentaro Shimizu. "Systematic construction of the cosolvents sets for cosolvent MD (CMD) with the large-scale simulation", *AHeDD2019/IPAB2019 Joint Symposium*, 2019/11.
+
+#### ポスター発表
+- Masahito Ohue, Takanori Hayashi, Yuri Matsuzaki, **Keisuke Yanagisawa**, Yutaka Akiyama. "Megadock-Web: An Integrated Database of High-Throughput Structure-Based Protein-Protein Interaction Predictions", *Biophysical Society 63rd Annual Meeting*, 2792-Pos, 2019/03.
+- **Keisuke Yanagisawa**, Shunta Komine, Shogo D. Suzuki, Masahito Ohue, Takashi Ishida, Yutaka Akiyama. "Spresso: An ultrafast compound pre-screening method based on compound fragmentation", *Biophysical Society 62nd Annual Meeting*, 2018/02.
+- Rikuto Kubota, **Keisuke Yanagisawa**, Masahito Ohue, Yutaka Akiyama. "Toward efficient protein-ligand docking for virtual screening by reuse of fragments", *The 16th Asia Pacific Bioinformatics Conference (APBC2018)*, Poster C5, 2018/01.
+- **Keisuke Yanagisawa**, Shunta Komine, Masahito Ohue, Takashi Ishida, Yutaka Akiyama. "Fast pre-filtering for virtual screening based on compound fragmentation", *3rd IIT Madras – Tokyo Tech Joint Symposium on Algorithms and Applications of Bioinformatics*, P34, 2015/11.

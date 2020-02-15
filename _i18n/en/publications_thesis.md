@@ -1,0 +1,3 @@
+- "Fast structure-based virtual screening with commonality of compound substructure", Department of Computer Science, School of Computing, Tokyo Institute of Technology, D.Eng. (2019/03)
+- "フラグメント分割に基づく高速な化合物プレドッキング手法の開発", Department of Computer Science, Graduate School of Information Science and Engineering, Tokyo Institute of Technology, M.Eng. (2016/03)
+- "半教師付き学習を用いた薬物クリアランス経路予測", Department of Computer Science, Faculty of Engineering, Tokyo Institute of Technology, B.Eng. (2014/03)

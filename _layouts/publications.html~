@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<div class="row ">
+  <div class="col-lg-8">
+    
+    <div class="card">
+      <h2 class="card-title"> {% t publications_peerreviewed_journal %} </h2>
+      {% tf publications_peerreviewed_journal.md %}
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title"> {% t publications_peerreviewed_international_conference %} </h2>
+      {% tf publications_peerreviewed_international_conference.md %}
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title"> {% t publications_international_conference %} </h2>
+      {% tf publications_international_conference.md %}
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title"> {% t publications_domestic_conference %} </h2>
+      {% tf publications_domestic_conference.md %}
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title"> {% t publications_others %} </h2>
+      {% tf publications_others.md %}
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title"> {% t publications_awards %} </h2>
+      {% tf publications_awards.md %}
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title"> {% t publications_grant %} </h2>
+      {% tf publications_grant.md %}
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title"> {% t publications_grant_resource %} </h2>
+      {% tf publications_grant_resource.md %}
+    </div>
+    
+    <div class="card">
+      <h2 class="card-title"> {% t publications_thesis %} </h2>
+      {% tf publications_thesis.md %}
+    </div>
+    
+  </div>
+</div>
