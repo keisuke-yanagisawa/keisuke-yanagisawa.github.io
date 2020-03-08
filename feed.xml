@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2020-03-07T11:16:47+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><subtitle>Keisuke Yanagisawa is a researcher at The University of Tokyo, Tokyo, Japan</subtitle><author><name>Keisuke Yanagisawa</name></author><entry><title type="html">出だしが肝心</title><link href="https://keisuke-yanagisawa.github.io/others/2020/03/07/the_start_is_the_most_important/" rel="alternate" type="text/html" title="出だしが肝心" /><published>2020-03-07T10:22:00+09:00</published><updated>2020-03-07T10:22:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/others/2020/03/07/the_start_is_the_most_important</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/others/2020/03/07/the_start_is_the_most_important/">&lt;p&gt;面白いもので、モラルや信頼、なんでもかんでも、人間は本質的に悪くする（しかし短期的に労が少なかったり、利己的だったりする）方を選ぶ力が働くらしい。積み上げたり維持したりするのはとても大変なわりに、崩れるのは比較的簡単なものだ。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2020-03-09T03:36:17+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><subtitle>Keisuke Yanagisawa is a researcher at The University of Tokyo, Tokyo, Japan</subtitle><author><name>Keisuke Yanagisawa</name></author><entry><title type="html">電子的に作業ログを取る</title><link href="https://keisuke-yanagisawa.github.io/performance%20improvement/2020/03/09/electronic_memo/" rel="alternate" type="text/html" title="電子的に作業ログを取る" /><published>2020-03-09T03:12:00+09:00</published><updated>2020-03-09T03:12:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/performance%20improvement/2020/03/09/electronic_memo</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/performance%20improvement/2020/03/09/electronic_memo/">&lt;h3 id=&quot;はじめに過去メモから未来メモへ&quot;&gt;はじめに：「過去メモから未来メモへ」&lt;/h3&gt;
+
+&lt;p&gt;研究に限らず、なんらかの作業をするときにメモを取るのは重要だと思う。ただ、取った&lt;strong&gt;メモを未来に活用できなければ意味がない&lt;/strong&gt;。このことを、パルコの広告なども手掛けてきたコピーライターの小西 利行さんは著書『仕事のスピード・質が劇的に上がる すごいメモ。』の中で、「&lt;strong&gt;過去メモから未来メモへ&lt;/strong&gt;」と表現している。&lt;/p&gt;
+
+&lt;h3 id=&quot;電子的なメモの特色検索&quot;&gt;電子的なメモの特色：検索&lt;/h3&gt;
+
+&lt;p&gt;未来の自分が活用できるメモの取り方は、&lt;strong&gt;紙の場合と電子的な場合で大きく異なる&lt;/strong&gt;と考えている。紙の場合は1秒1ページで、さらさらと眺めながら、「お、これは」と思えることもあるだろう。そのような場合には1秒1ページで理解できるようなグラフィカルな表現が効果を発揮する。一方で、&lt;strong&gt;電子的なメモは「検索」という大きな武器&lt;/strong&gt;がある。たとえ1000ページあったところで、機械に任せるだけで、&lt;strong&gt;必要な情報を、しかも網羅的に、見つける&lt;/strong&gt;ことができる。&lt;/p&gt;
+
+&lt;h3 id=&quot;電子的には沢山のメモを取り検索する&quot;&gt;電子的には沢山のメモを取り、検索する&lt;/h3&gt;
+
+&lt;p&gt;そんな&lt;strong&gt;検索に特化した電子的なメモの取り方&lt;/strong&gt;では、&lt;strong&gt;なるべく沢山のメモをとっておく&lt;/strong&gt;ことが重要だ。例えば、私の場合だと、以下のように「どういうことをやったのか」がなるべく再現できるようにコマンドを含めて残すようにしている。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2019/MM/DD HH:MM
+そしたら、aug-cc-pVDZ-PPを使ったヨウ素込みの構造最適化を行ってみる。
+
+ssh ********
+cd workspace/****/****
+emacs tmp.smi
+  iodobenzeneを作る
+obabel -ismi tmp.smi -ogjf -Oiodobenzene.gjf --gen3D
+emacs iodobenzene.gjf
+  gaussianを走らせるための設定を記述。
+  #p opt=(tight) b3lyp/aug-cc-pVDZ-PP scf=(qc,tight)
+g16 &amp;lt; iodobenzene.gjf &amp;gt; iodobenzene.log
+  んー、なんかうまくいかない？
+  どうやら、aug-cc-pVDZ-PPなんてものはないらしい。ちゃんと細かく指定しろと。うーん。なるほど。
+  （以下略）
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;こんな記述の状態なので、1時間の作業で50行を超えることもしばしばである。お世辞にも見やすいとは言えない代物だが、こんな状態だからこそ、検索という機能はちゃんと見つけてくれる。&lt;/p&gt;
+
+&lt;p&gt;例えば、どういう検索をするだろうか。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;aug-cc-pVDZ-PPを使ったGaussianによる構造最適化の設定はどうやるんだっけ？&lt;/li&gt;
+  &lt;li&gt;久しぶりにGaussianを使うのだが、どうやってファイルを準備して、どうやって入出力すればいいのだろうか？&lt;/li&gt;
+  &lt;li&gt;半年前ってどういう作業をしていただろうか？&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;どんな場合でも、やることは&lt;strong&gt;検索ただ1つ&lt;/strong&gt;だ。「aug-cc-pVDZ-PP」という検索ワードを使えば試行錯誤と、試行錯誤の結果が出てくるだろうし、少なくともディレクトリはわかるだろう。あるいは、Gaussianの使い方がわからなければ、「Gaussian」という単語で検索してみたり、「g16」という実行コマンドを検索してみたりすれば、それっぽいものはヒットする。半年前は？と思うなら、例えば「2019/09」という検索ワードで検索すれば、日付も記載しているので2019年9月ごろにやった作業内容がすべてヒットする仕組みだ。&lt;/p&gt;
+
+&lt;h3 id=&quot;質より量が大切&quot;&gt;質より量が大切&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;検索システムは、表示によって全く左右されない&lt;/strong&gt;。だから、見た目は二の次だ。どうせこんなメモは自分以外ほとんど読まない。フォントサイズやセクションのレベルを考えるくらいなら、もっと沢山の物事を記録し続ける方が良い。沢山の文章を書けば、検索でヒットする可能性が高まる。「&lt;strong&gt;質より量&lt;/strong&gt;」なのである。&lt;/p&gt;
+
+&lt;h3 id=&quot;終わりにアレがないの労力を無くすために&quot;&gt;終わりに：「アレがない！」の労力を無くすために&lt;/h3&gt;
+
+&lt;p&gt;1年前の自分の作業など、何も覚えていないのが当然。そういうことになった時に「どの作業ディレクトリでやったんだ…」と思い、立ち尽くし、作業ディレクトリ全体をgrepにかけて、ようやくそれらしい作業ディレクトリを見つけたこともある。そんな労力を少しでも減らし、最終的にはゼロにするためにも、こういうメモの努力は必要だと考えている。&lt;/p&gt;</content><author><name>Keisuke Yanagisawa</name></author><category term="Performance Improvement" /><summary type="html">はじめに：「過去メモから未来メモへ」</summary></entry><entry><title type="html">出だしが肝心</title><link href="https://keisuke-yanagisawa.github.io/others/2020/03/07/the_start_is_the_most_important/" rel="alternate" type="text/html" title="出だしが肝心" /><published>2020-03-07T10:22:00+09:00</published><updated>2020-03-07T10:22:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/others/2020/03/07/the_start_is_the_most_important</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/others/2020/03/07/the_start_is_the_most_important/">&lt;p&gt;面白いもので、モラルや信頼、なんでもかんでも、人間は本質的に悪くする（しかし短期的に労が少なかったり、利己的だったりする）方を選ぶ力が働くらしい。積み上げたり維持したりするのはとても大変なわりに、崩れるのは比較的簡単なものだ。
 でも1つ例外があって、それが「&lt;strong&gt;出だし&lt;/strong&gt;」。最初の頃の印象は結構残るものだし、組織の雰囲気も最初に感じたものが重要で、後から締め直したところで人間の行動はなかなか変わるものではない。&lt;/p&gt;
 
 &lt;p&gt;過去にこんな経験をしたことがある（登場人物は全体で見て尊敬しているので、かなりボカします）。元々リーダーが内務が得意な、メンバーに目を行き届かすタイプの人間で、良いグループが構築されていた。議論や助言も活発で、もちろん遊ぶときは遊ぶ、そんな感じだった。しかしリーダーが外務が得意な方に変わってから、内務が相対的に悪くなり、まず議論が減った。議論が減ると、時間の限られた能力のある人が（利益が少ないと感じたのか）来る頻度が減り、助言が減った。これが2,3年で起きた。その状態から、またもとの状態に戻すのが大変なのは、まぁ想像がつくのではないだろうか。&lt;/p&gt;
