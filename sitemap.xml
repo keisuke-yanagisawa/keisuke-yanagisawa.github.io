@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://keisuke-yanagisawa.github.io/article%20memo/2017/11/08/acs_jcim_7b00505/</loc>
-<lastmod>2017-11-08T15:35:23+09:00</lastmod>
-</url>
-<url>
-<loc>https://keisuke-yanagisawa.github.io/others/2020/02/16/newer_website/</loc>
-<lastmod>2020-02-16T01:13:00+09:00</lastmod>
-</url>
-<url>
-<loc>https://keisuke-yanagisawa.github.io/others/2020/03/07/the_start_is_the_most_important/</loc>
-<lastmod>2020-03-07T10:22:00+09:00</lastmod>
-</url>
-<url>
-<loc>https://keisuke-yanagisawa.github.io/performance%20improvement/2020/03/09/electronic_memo/</loc>
-<lastmod>2020-03-09T03:12:00+09:00</lastmod>
-</url>
-<url>
 <loc>https://keisuke-yanagisawa.github.io/404/</loc>
 </url>
 <url>
@@ -24,12 +8,6 @@
 </url>
 <url>
 <loc>https://keisuke-yanagisawa.github.io/blog/tags/</loc>
-</url>
-<url>
-<loc>https://keisuke-yanagisawa.github.io/blog/categories/</loc>
-</url>
-<url>
-<loc>https://keisuke-yanagisawa.github.io/blog/categories/guides</loc>
 </url>
 <url>
 <loc>https://keisuke-yanagisawa.github.io/blog/</loc>
