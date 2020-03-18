@@ -1,0 +1,8 @@
+#!/bin/sh
+
+bundle exec jekyll b
+cd build
+git add --all
+git commit -m "update"
+git push
+cd ..
