@@ -58,7 +58,7 @@ header { background-color: var(--main-background-color); box-shadow: #000 0px 0p
 
 #profile-card .nav-link { font-size: 15px !important; color: var(--main-text-color); font-weight: 600; }
 
-#author_tools .tool-img { width: 300px; height: 200px; }
+#author_tools .tool-img { max-width: 300px; max-height: 200px; }
 
 #author_tools #tool-card { margin-top: 30px; }
 

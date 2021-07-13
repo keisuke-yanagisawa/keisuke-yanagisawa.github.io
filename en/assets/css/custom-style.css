@@ -11,3 +11,10 @@ blockquote {
 ul {
     padding-inline-start: 30px;
 }
+.v-center {
+    display: flex;
+    align-items: center;
+}
+.h-center {
+    display: flex;
+    justify-content: center;
