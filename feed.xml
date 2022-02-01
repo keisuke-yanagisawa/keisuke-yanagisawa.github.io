@@ -1,4 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-01-31T12:25:19+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">因子分析と主成分分析</title><link href="https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/factor-analysis-and-principal-component-analysis/" rel="alternate" type="text/html" title="因子分析と主成分分析" /><published>2022-01-30T09:00:00+09:00</published><updated>2022-01-30T09:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/factor-analysis-and-principal-component-analysis</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/factor-analysis-and-principal-component-analysis/"><![CDATA[<p>因子分析と主成分分析は似通った手法のように見える。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-02T08:49:55+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">内挿と外挿</title><link href="https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/interpolation_and_extrapolation/" rel="alternate" type="text/html" title="内挿と外挿" /><published>2022-02-02T00:00:00+09:00</published><updated>2022-02-02T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/interpolation_and_extrapolation</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/interpolation_and_extrapolation/"><![CDATA[<p>機械学習モデルを構築する上で、
+本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、
+その部分の予測精度は落ちてしまう。これについて少し触れてみたい。</p>
+
+<h2 id="データの疎密と誤差の大小">データの疎密と誤差の大小</h2>
+
+<p>とりあえず実験してみよう。ここでは、\(x\) が \([-5,5]\) の範囲における \(\cos x\) を使ってモデルを構築し、
+\(x\) が \([-10,10]\) の範囲の予測を行ってみている。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># データセット作成
+</span><span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">train_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">test_X</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">test_y</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">test_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># 予測モデルの構築
+</span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="n">svr</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">()</span>
+<span class="n">svr</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+
+<span class="c1"># テストデータに対する予測結果の描画
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"train dataset"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"green"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"true"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">svr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">"predicted"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">"lower right"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>以下に示したような図が作成されたはずだ。
+この図からわかるように、訓練データ（緑点）がある区間は予測誤差は小さい一方、
+訓練データが無い区間（両端）は予測誤差が大きくなっている。</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-02_01.png" alt="予測結果" /></p>
+
+<p>冒頭に述べたように、<strong>訓練データに存在していない領域の予測精度は低下してしまう</strong>ことがわかる。</p>
+
+<h2 id="内挿と外挿">内挿と外挿</h2>
+
+<p>上記で示した例は外挿、すなわち、訓練データの外側（すなわち外挿 extrapolation）の予測を行った。
+一方で、学習データの内側に穴があいてしまうこともあるかもしれない。これに対する予測は「内挿 interpolation」と言える。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># データセット作成
+</span><span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">(</span> 
+  <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span> 
+<span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">train_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">test_X</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">test_y</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">test_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># 予測モデルの構築
+</span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="n">svr</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="p">.</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">svr</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+
+<span class="c1"># テストデータに対する予測結果の描画
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"train dataset"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"green"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"true"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">svr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">"predicted"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">"upper right"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>この結果を見てみると、データが中抜けしている（内挿領域である） \([-1, 1]\) の領域の予測精度はそこまで悪くなく、
+一方で外挿領域である \((-\infty, -2]\) や \([2, \infty)\) では予測が大幅に間違っている。</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-02_02.png" alt="予測結果" /></p>
+
+<p>この結果は人間の感覚と合致している。訓練データの並びを見たとき、内挿区間をなめらかにつなごうとすれば自然と山を作る。
+一方外挿区間は、この訓練データの並びが \(\cos x\) から来ているのか \(ax^2 + bx + c\) から来ているのかわからないので、
+人によって異なる曲線を描くだろう。</p>
+
+<p>なんにせよ、<strong>外挿は内挿に比べて、さらに予測精度が悪化する</strong>事があるので注意したい。</p>
+
+<!-- ##### 参考文献
+- 江崎貴裕『分析者のためのデータ解釈学入門　データの本質をとらえる技術』（ソシム、2020年） -->]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="データサイエンス・機械学習" /><category term="教師あり学習" /><category term="予測誤差" /><summary type="html"><![CDATA[機械学習モデルを構築する上で、 本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、 その部分の予測精度は落ちてしまう。これについて少し触れてみたい。]]></summary></entry><entry><title type="html">因子分析と主成分分析</title><link href="https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/factor-analysis-and-principal-component-analysis/" rel="alternate" type="text/html" title="因子分析と主成分分析" /><published>2022-01-30T09:00:00+09:00</published><updated>2022-01-30T09:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/factor-analysis-and-principal-component-analysis</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/factor-analysis-and-principal-component-analysis/"><![CDATA[<p>因子分析と主成分分析は似通った手法のように見える。
 しかし、実際には大きく異なる点がある。</p>
 
 <ul>

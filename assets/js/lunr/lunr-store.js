@@ -4,4 +4,10 @@ var store = [{
         "tags": ["因子分析","主成分分析","教師なし学習"],
         "url": "/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/factor-analysis-and-principal-component-analysis/",
         "teaser": null
+      },{
+        "title": "内挿と外挿",
+        "excerpt":"機械学習モデルを構築する上で、 本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、 その部分の予測精度は落ちてしまう。これについて少し触れてみたい。 データの疎密と誤差の大小 とりあえず実験してみよう。ここでは、\\(x\\) が \\([-5,5]\\) の範囲における \\(\\cos x\\) を使ってモデルを構築し、 \\(x\\) が \\([-10,10]\\) の範囲の予測を行ってみている。 import numpy as np import matplotlib.pyplot as plt # データセット作成 train_X = np.arange(-5, 5, 0.2)[:, np.newaxis] train_y = np.cos(train_X[:,0]) test_X = np.arange(-10, 10, 0.2)[:, np.newaxis] test_y = np.cos(test_X[:,0]) # 予測モデルの構築 from sklearn.svm import SVR svr...","categories": ["データサイエンス・機械学習"],
+        "tags": ["教師あり学習","予測誤差"],
+        "url": "/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/interpolation_and_extrapolation/",
+        "teaser": null
       }]
