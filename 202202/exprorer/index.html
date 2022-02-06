@@ -9,28 +9,32 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>柳澤 渓甫 | Keisuke Yanagisawa</title>
-<meta name="description" content="An assistant professor in Tokyo Tech.">
+<!-- begin _includes/seo.html --><title>            共溶媒分子動力学 (MSMD) 法 EXPRORER - 柳澤 渓甫      Keisuke Yanagisawa      </title>
+<meta name="description" content="2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。">
 
 
   <meta name="author" content="Keisuke Yanagisawa">
   
+  <meta property="article:author" content="Keisuke Yanagisawa">
+  
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:site_name" content="柳澤 渓甫 | Keisuke Yanagisawa">
-<meta property="og:title" content="            柳澤 渓甫      Keisuke Yanagisawa      ">
-<meta property="og:url" content="https://keisuke-yanagisawa.github.io/tags/">
+<meta property="og:title" content="共溶媒分子動力学 (MSMD) 法 EXPRORER">
+<meta property="og:url" content="https://keisuke-yanagisawa.github.io/202202/exprorer/">
 
 
-  <meta property="og:description" content="An assistant professor in Tokyo Tech.">
-
-
-
+  <meta property="og:description" content="2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。">
 
 
 
+
+
+
+
+  <meta property="article:published_time" content="2022-02-06T00:00:00+09:00">
 
 
 
@@ -41,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://keisuke-yanagisawa.github.io/tags/">
+<link rel="canonical" href="https://keisuke-yanagisawa.github.io/202202/exprorer/">
 
 
 
@@ -98,7 +102,7 @@
 
   </head>
 
-  <body class="layout--tags">
+  <body class="layout--single">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -272,16 +276,34 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    
-    
+    <meta itemprop="headline" content="共溶媒分子動力学 (MSMD) 法 EXPRORER">
+    <meta itemprop="description" content="2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。">
+    <meta itemprop="datePublished" content="2022-02-06T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://keisuke-yanagisawa.github.io/202202/exprorer/" class="u-url" itemprop="url">共溶媒分子動力学 (MSMD) 法 EXPRORER
+</a>
+          </h1>
           
-          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-02-06T00:00:00+09:00">February 6, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
 
 
         </header>
@@ -290,6 +312,12 @@
       <section class="page__content e-content" itemprop="text">
         
           <aside class="sidebar__right ">
+            
+              <nav class="toc">
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目次</h4></header>
+                <ul class="toc__menu"><li><a href="#研究背景">研究背景</a></li><li><a href="#研究成果">研究成果</a></li></ul>
+
+              </nav>
             
             
             <h3> 
@@ -391,413 +419,39 @@
             
           </aside>
         
-        
+        <p>2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。</p>
 
+<h2 id="研究背景">研究背景</h2>
 
+<p>共溶媒分子動力学 (mixed-solvent molecular dynamics; MSMD) 法は、
+タンパク質を溶質、水分子と共溶媒分子を溶媒とした分子動力学 (molecular dynamics; MD) 法である。
+共溶媒（プローブ分子）として、芳香環や疎水基、正負に帯電している分子などを用いることで、
+水分子では観測できないタンパク質表面のホットスポットの発見や、
+低分子結合部位の検出、低分子結合親和性の予測など、
+薬剤開発の様々なステップで活用することが出来る。</p>
 
+<p>既存の MSMD 手法である MixMD, SILCS, MDmix などは、結合親和性の評価精度改善に注力する一方、
+どのような共溶媒を用いるか、のコンセンサスが取れていない。
+また、分子構造は極めて多様であるが、その多様性に比べると余りにも少ないのが現状である。</p>
 
-<!-- <ul class="taxonomy__index">
-  
-    
-      
-        <li>
-          <a href="#因子分析">
-            <strong>因子分析</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
-      
-    
-      
-        <li>
-          <a href="#主成分分析">
-            <strong>主成分分析</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
-      
-    
-      
-        <li>
-          <a href="#教師なし学習">
-            <strong>教師なし学習</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
-      
-    
-      
-        <li>
-          <a href="#教師あり学習">
-            <strong>教師あり学習</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
-      
-    
-      
-        <li>
-          <a href="#予測誤差">
-            <strong>予測誤差</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
-      
-    
-      
-        <li>
-          <a href="#共溶媒分子動力学法">
-            <strong>共溶媒分子動力学法</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
-      
-    
-      
-        <li>
-          <a href="#分子動力学法">
-            <strong>分子動力学法</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
-      
-    
-  
-</ul> -->
+<h2 id="研究成果">研究成果</h2>
 
+<p>このような問題に対して、薬剤分子に頻出する部分構造を共溶媒として切り出し、
+これに対するMSMDシミュレーションを行うことで、
+<strong>「網羅的」な共溶媒セットの構築を行う EXPRORER を開発した</strong><sup id="fnref:EXPRORER" role="doc-noteref"><a href="#fn:EXPRORER" class="footnote" rel="footnote">1</a></sup>。</p>
 
+<p>前述のように、この手法は「セットの構築」が主要な目的ではあるが、
+他方、MSMDシミュレーションのためのシミュレーション空間の構築や
+MSMDシミュレーションの実施をフリーソフトウェアのみで完結する
+仕組みを<a href="https://github.com/keisuke-yanagisawa/exprorer">github上で公開</a>している。</p>
 
-  
-    
-      <section id="因子分析" class="taxonomy__section">
-        <h2 class="archive__subtitle">因子分析</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/202201/factor-analysis-and-principal-component-analysis/" rel="permalink">因子分析と主成分分析
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2022-01-30T09:00:00+09:00">January 30, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">因子分析と主成分分析は似通った手法のように見える。
-しかし、実際には大きく異なる点がある。
-</p>
-  </article>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:EXPRORER" role="doc-endnote">
+      <p><strong>Keisuke Yanagisawa</strong>, Yoshitaka Moriwaki, Tohru Terada, Kentaro Shimizu. “EXPRORER: Rational Cosolvent Set Construction Method for Cosolvent Molecular Dynamics Using Large-Scale Computation”, <em>Journal of Chemical Information and Modeling</em>, <strong>61</strong>: 2744-2753, 2021/06. DOI: <a href="https://doi.org/10.1021/acs.jcim.1c00134">10.1021/acs.jcim.1c00134</a> <a href="#fnref:EXPRORER" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
 </div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="主成分分析" class="taxonomy__section">
-        <h2 class="archive__subtitle">主成分分析</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/202201/factor-analysis-and-principal-component-analysis/" rel="permalink">因子分析と主成分分析
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2022-01-30T09:00:00+09:00">January 30, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">因子分析と主成分分析は似通った手法のように見える。
-しかし、実際には大きく異なる点がある。
-</p>
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="教師なし学習" class="taxonomy__section">
-        <h2 class="archive__subtitle">教師なし学習</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/202201/factor-analysis-and-principal-component-analysis/" rel="permalink">因子分析と主成分分析
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2022-01-30T09:00:00+09:00">January 30, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">因子分析と主成分分析は似通った手法のように見える。
-しかし、実際には大きく異なる点がある。
-</p>
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="教師あり学習" class="taxonomy__section">
-        <h2 class="archive__subtitle">教師あり学習</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/202202/interpolation_and_extrapolation/" rel="permalink">内挿と外挿
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2022-02-02T00:00:00+09:00">February 2, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">機械学習モデルを構築する上で、
-本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、
-その部分の予測精度は落ちてしまう。これについて少し触れてみたい。
-</p>
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="予測誤差" class="taxonomy__section">
-        <h2 class="archive__subtitle">予測誤差</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/202202/interpolation_and_extrapolation/" rel="permalink">内挿と外挿
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2022-02-02T00:00:00+09:00">February 2, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">機械学習モデルを構築する上で、
-本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、
-その部分の予測精度は落ちてしまう。これについて少し触れてみたい。
-</p>
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="共溶媒分子動力学法" class="taxonomy__section">
-        <h2 class="archive__subtitle">共溶媒分子動力学法</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/202202/exprorer/" rel="permalink">共溶媒分子動力学 (MSMD) 法 EXPRORER
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2022-02-06T00:00:00+09:00">February 6, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。
-</p>
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="分子動力学法" class="taxonomy__section">
-        <h2 class="archive__subtitle">分子動力学法</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/202202/exprorer/" rel="permalink">共溶媒分子動力学 (MSMD) 法 EXPRORER
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2022-02-06T00:00:00+09:00">February 6, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。
-</p>
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-
 
         
       </section>
@@ -805,20 +459,149 @@
       <footer class="page__meta">
         
         
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> タグ: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#%E5%85%B1%E6%BA%B6%E5%AA%92%E5%88%86%E5%AD%90%E5%8B%95%E5%8A%9B%E5%AD%A6%E6%B3%95" class="page__taxonomy-item p-category" rel="tag">共溶媒分子動力学法</a><span class="sep">, </span>
+    
+      <a href="/tags/#%E5%88%86%E5%AD%90%E5%8B%95%E5%8A%9B%E5%AD%A6%E6%B3%95" class="page__taxonomy-item p-category" rel="tag">分子動力学法</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> カテゴリー: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%E7%A0%94%E7%A9%B6%E6%88%90%E6%9E%9C" class="page__taxonomy-item p-category" rel="tag">研究成果</a>
+    
+    </span>
+  </p>
 
 
         
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新日時:</strong> <time class="dt-published" datetime="2022-02-06T00:00:00+09:00">February 6, 2022</time></p>
 
       </footer>
 
       
 
       
+  <nav class="pagination">
+    
+      <a href="/202202/interpolation_and_extrapolation/" class="pagination--pager" title="内挿と外挿
+">前へ</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">次へ</a>
+    
+  </nav>
+
     </div>
 
     
   </article>
 
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">関連記事</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/202202/interpolation_and_extrapolation/" rel="permalink">内挿と外挿
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-02-02T00:00:00+09:00">February 2, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">機械学習モデルを構築する上で、
+本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、
+その部分の予測精度は落ちてしまう。これについて少し触れてみたい。
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/202201/factor-analysis-and-principal-component-analysis/" rel="permalink">因子分析と主成分分析
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-01-30T09:00:00+09:00">January 30, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">因子分析と主成分分析は似通った手法のように見える。
+しかし、実際には大きく異なる点がある。
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
   
   
 </div>

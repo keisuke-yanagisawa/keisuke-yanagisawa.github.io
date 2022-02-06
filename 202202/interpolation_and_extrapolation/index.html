@@ -1,0 +1,738 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ja" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>            内挿と外挿 - 柳澤 渓甫      Keisuke Yanagisawa      </title>
+<meta name="description" content="機械学習モデルを構築する上で、 本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、 その部分の予測精度は落ちてしまう。これについて少し触れてみたい。">
+
+
+  <meta name="author" content="Keisuke Yanagisawa">
+  
+  <meta property="article:author" content="Keisuke Yanagisawa">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="柳澤 渓甫 | Keisuke Yanagisawa">
+<meta property="og:title" content="内挿と外挿">
+<meta property="og:url" content="https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation/">
+
+
+  <meta property="og:description" content="機械学習モデルを構築する上で、 本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、 その部分の予測精度は落ちてしまう。これについて少し触れてみたい。">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-02-02T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Keisuke Yanagisawa",
+      "url": "https://keisuke-yanagisawa.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="柳澤 渓甫 | Keisuke Yanagisawa Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/user_define.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"/></noscript>
+
+<!-- for MathJax -->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> 
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="https://keisuke-yanagisawa.github.io">
+          柳澤 渓甫 | Keisuke Yanagisawa
+          
+        </a>
+        <ul class="visible-links">
+              
+                <li class="masthead__menu-item">
+                  <a href="https://keisuke-yanagisawa.github.io/profile">Profile</a>
+                </li>
+              
+            
+              
+                <li class="masthead__menu-item">
+                  <a href="https://keisuke-yanagisawa.github.io/research">Research</a>
+                </li>
+              
+            
+              
+                <li class="masthead__menu-item">
+                  <a href="https://keisuke-yanagisawa.github.io/publications">Publications</a>
+                </li>
+              
+            
+              
+                <li class="masthead__menu-item" style="color: gray"> | </li>
+              
+            
+              
+                <li class="masthead__menu-item">
+                  <a href="https://keisuke-yanagisawa.github.io/links">Links</a>
+                </li>
+              
+            
+              
+                <li class="masthead__menu-item">
+                  <a href="https://keisuke-yanagisawa.github.io/blog">Blog</a>
+                </li>
+              
+            
+              
+                <li class="masthead__menu-item" style="color: gray"> | </li>
+              
+            
+              
+                <li class="masthead__menu-item">
+                  <a href="https://keisuke-yanagisawa.github.io/en">  EN</a>
+                </li>
+              
+            </ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">メニュー</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://keisuke-yanagisawa.github.io/">
+        <img src="/assets/img/profile.png" alt="Keisuke Yanagisawa" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://keisuke-yanagisawa.github.io/" itemprop="url">柳澤 渓甫</a>
+    </h3>
+    <div class="author__bio p-note" itemprop="description">
+      <p>
+        東京工業大学 情報理工学院 助教
+      </p>
+    </div>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <ul class="author__urls social-icons">
+      
+      
+      
+        
+          
+            <li><a href="/assets/CurriculumVitae.pdf" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-file-pdf" aria-hidden="true"></i><span class="label">Curriculum Vitae</span></a></li>
+          
+        
+          
+            <li><a href="https://orcid.org/0000-0003-0224-0035" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-orcid" aria-hidden="true"></i><span class="label">ORCID</span></a></li>
+          
+        
+          
+            <li><a href="https://www.researchgate.net/profile/Keisuke-Yanagisawa" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-researchgate" aria-hidden="true"></i><span class="label">ResearchGate</span></a></li>
+          
+        
+          
+            <li><a href="https://scholar.google.co.jp/citations?user=d-5VVzAAAAAJ" rel="nofollow noopener noreferrer me"><i class="ai fa-fw ai-google-scholar-square" aria-hidden="true"></i><span class="label">Google Scholar</span></a></li>
+          
+        
+          
+            <li><a href="http://github.com/keisuke-yanagisawa" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="mailto:yanagisawa@c.titech.ac.jp" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="内挿と外挿">
+    <meta itemprop="description" content="機械学習モデルを構築する上で、本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、その部分の予測精度は落ちてしまう。これについて少し触れてみたい。">
+    <meta itemprop="datePublished" content="2022-02-02T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation/" class="u-url" itemprop="url">内挿と外挿
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-02-02T00:00:00+09:00">February 2, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            
+              <nav class="toc">
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目次</h4></header>
+                <ul class="toc__menu"><li><a href="#データの疎密と誤差の大小">データの疎密と誤差の大小</a></li><li><a href="#内挿と外挿">内挿と外挿</a></li></ul>
+
+              </nav>
+            
+            
+            <h3> 
+              <a href="https://keisuke-yanagisawa.github.io/tags">Tags</a> 
+            </h3>
+              <ul class="taxonomy__index", style="grid-template-columns: repeat(1, 1fr);">
+                
+                  
+                    
+                      <li>
+                        <a href="https://keisuke-yanagisawa.github.io/tags#因子分析">
+                          <strong>因子分析</strong> <span class="taxonomy__count">1</span>
+                        </a>
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        <a href="https://keisuke-yanagisawa.github.io/tags#主成分分析">
+                          <strong>主成分分析</strong> <span class="taxonomy__count">1</span>
+                        </a>
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        <a href="https://keisuke-yanagisawa.github.io/tags#教師なし学習">
+                          <strong>教師なし学習</strong> <span class="taxonomy__count">1</span>
+                        </a>
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        <a href="https://keisuke-yanagisawa.github.io/tags#教師あり学習">
+                          <strong>教師あり学習</strong> <span class="taxonomy__count">1</span>
+                        </a>
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        <a href="https://keisuke-yanagisawa.github.io/tags#予測誤差">
+                          <strong>予測誤差</strong> <span class="taxonomy__count">1</span>
+                        </a>
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        <a href="https://keisuke-yanagisawa.github.io/tags#共溶媒分子動力学法">
+                          <strong>共溶媒分子動力学法</strong> <span class="taxonomy__count">1</span>
+                        </a>
+                      </li>
+                    
+                  
+                    
+                      <li>
+                        <a href="https://keisuke-yanagisawa.github.io/tags#分子動力学法">
+                          <strong>分子動力学法</strong> <span class="taxonomy__count">1</span>
+                        </a>
+                      </li>
+                    
+                  
+                
+              </ul>
+            
+            
+              <h3> 
+                <a href="https://keisuke-yanagisawa.github.io/categories">Categories</a> 
+              </h3>
+              <ul class="taxonomy__index", style="grid-template-columns: repeat(1, 1fr);">
+                
+                  
+                    
+                      <li>
+                        <a href="https://keisuke-yanagisawa.github.io/categories#データサイエンス-機械学習">
+                          <strong>データサイエンス・機械学習</strong> <span class="taxonomy__count">2</span>
+                        </a>
+                      </li>
+                    
+                  
+                    
+                  
+                
+                  
+                    
+                  
+                    
+                      <li>
+                        <a href="https://keisuke-yanagisawa.github.io/categories#研究成果">
+                          <strong>研究成果</strong> <span class="taxonomy__count">1</span>
+                        </a>
+                      </li>
+                    
+                  
+                
+              </ul>              
+            
+          </aside>
+        
+        <p>機械学習モデルを構築する上で、
+本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、
+その部分の予測精度は落ちてしまう。これについて少し触れてみたい。</p>
+
+<h2 id="データの疎密と誤差の大小">データの疎密と誤差の大小</h2>
+
+<p>とりあえず実験してみよう。ここでは、\(x\) が \([-5,5]\) の範囲における \(\cos x\) を使ってモデルを構築し、
+\(x\) が \([-10,10]\) の範囲の予測を行ってみている。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># データセット作成
+</span><span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">train_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">test_X</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">test_y</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">test_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># 予測モデルの構築
+</span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="n">svr</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">()</span>
+<span class="n">svr</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+
+<span class="c1"># テストデータに対する予測結果の描画
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"train dataset"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"green"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"true"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">svr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">"predicted"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">"lower right"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>以下に示したような図が作成されたはずだ。
+この図からわかるように、訓練データ（緑点）がある区間は予測誤差は小さい一方、
+訓練データが無い区間（両端）は予測誤差が大きくなっている。</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-02_01.png" alt="予測結果" /></p>
+
+<p>冒頭に述べたように、<strong>訓練データに存在していない領域の予測精度は低下してしまう</strong>ことがわかる。</p>
+
+<h2 id="内挿と外挿">内挿と外挿</h2>
+
+<p>上記で示した例は外挿、すなわち、訓練データの外側（すなわち外挿 extrapolation）の予測を行った。
+一方で、学習データの内側に穴があいてしまうこともあるかもしれない。これに対する予測は「内挿 interpolation」と言える。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># データセット作成
+</span><span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">(</span> 
+  <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span> 
+<span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">train_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">test_X</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">test_y</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">test_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># 予測モデルの構築
+</span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="n">svr</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="p">.</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">svr</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+
+<span class="c1"># テストデータに対する予測結果の描画
+</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"train dataset"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"green"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"true"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">svr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">"predicted"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">"upper right"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>この結果を見てみると、データが中抜けしている（内挿領域である） \([-1, 1]\) の領域の予測精度はそこまで悪くなく、
+一方で外挿領域である \((-\infty, -2]\) や \([2, \infty)\) では予測が大幅に間違っている。</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-02_02.png" alt="予測結果" /></p>
+
+<p>この結果は人間の感覚と合致している。訓練データの並びを見たとき、内挿区間をなめらかにつなごうとすれば自然と山を作る。
+一方外挿区間は、この訓練データの並びが \(\cos x\) から来ているのか \(ax^2 + bx + c\) から来ているのかわからないので、
+人によって異なる曲線を描くだろう。</p>
+
+<p>なんにせよ、<strong>外挿は内挿に比べて、さらに予測精度が悪化する</strong>事があるので注意したい。</p>
+
+<!-- ##### 参考文献
+- 江崎貴裕『分析者のためのデータ解釈学入門　データの本質をとらえる技術』（ソシム、2020年） -->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> タグ: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#%E4%BA%88%E6%B8%AC%E8%AA%A4%E5%B7%AE" class="page__taxonomy-item p-category" rel="tag">予測誤差</a><span class="sep">, </span>
+    
+      <a href="/tags/#%E6%95%99%E5%B8%AB%E3%81%82%E3%82%8A%E5%AD%A6%E7%BF%92" class="page__taxonomy-item p-category" rel="tag">教師あり学習</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> カテゴリー: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9-%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="page__taxonomy-item p-category" rel="tag">データサイエンス・機械学習</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新日時:</strong> <time class="dt-published" datetime="2022-02-02T00:00:00+09:00">February 2, 2022</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/202201/factor-analysis-and-principal-component-analysis/" class="pagination--pager" title="因子分析と主成分分析
+">前へ</a>
+    
+    
+      <a href="/202202/exprorer/" class="pagination--pager" title="共溶媒分子動力学 (MSMD) 法 EXPRORER
+">次へ</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">関連記事</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/202202/exprorer/" rel="permalink">共溶媒分子動力学 (MSMD) 法 EXPRORER
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-02-06T00:00:00+09:00">February 6, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/202201/factor-analysis-and-principal-component-analysis/" rel="permalink">因子分析と主成分分析
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-01-30T09:00:00+09:00">January 30, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">因子分析と主成分分析は似通った手法のように見える。
+しかし、実際には大きく異なる点がある。
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form onsubmit="return googleCustomSearchExecute();" id="cse-search-box-form-id" role="search">
+    <label class="sr-only" for="cse-search-input-box-id">
+      Enter your search term...
+    </label>
+    <input type="search" id="cse-search-input-box-id" class="search-input" tabindex="-1" placeholder="検索キーワードを入力してください..." />
+  </form>
+  <div id="results" class="results">
+    <gcse:searchresults-only></gcse:searchresults-only>
+  </div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>フォロー</strong></li>
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Keisuke Yanagisawa. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+<script>
+  (function () {
+    var cx = '80a5fa516e236c17a';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+
+  function googleCustomSearchExecute() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('searchresults-only0');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+
+  
+    $(document).ready(function () {
+      $('input#cse-search-input-box-id').on('keyup', function () {
+        googleCustomSearchExecute();
+      });
+    });
+  
+</script>
+
+
+
+
+
+
+
+  </body>
+</html>

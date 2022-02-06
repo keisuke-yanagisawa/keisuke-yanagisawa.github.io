@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-02T08:49:55+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">内挿と外挿</title><link href="https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/interpolation_and_extrapolation/" rel="alternate" type="text/html" title="内挿と外挿" /><published>2022-02-02T00:00:00+09:00</published><updated>2022-02-02T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/interpolation_and_extrapolation</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/interpolation_and_extrapolation/"><![CDATA[<p>機械学習モデルを構築する上で、
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-07T05:54:49+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">共溶媒分子動力学 (MSMD) 法 EXPRORER</title><link href="https://keisuke-yanagisawa.github.io/202202/exprorer/" rel="alternate" type="text/html" title="共溶媒分子動力学 (MSMD) 法 EXPRORER" /><published>2022-02-06T00:00:00+09:00</published><updated>2022-02-06T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/exprorer</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/exprorer/"><![CDATA[<p>2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。</p>
+
+<h2 id="研究背景">研究背景</h2>
+
+<p>共溶媒分子動力学 (mixed-solvent molecular dynamics; MSMD) 法は、
+タンパク質を溶質、水分子と共溶媒分子を溶媒とした分子動力学 (molecular dynamics; MD) 法である。
+共溶媒（プローブ分子）として、芳香環や疎水基、正負に帯電している分子などを用いることで、
+水分子では観測できないタンパク質表面のホットスポットの発見や、
+低分子結合部位の検出、低分子結合親和性の予測など、
+薬剤開発の様々なステップで活用することが出来る。</p>
+
+<p>既存の MSMD 手法である MixMD, SILCS, MDmix などは、結合親和性の評価精度改善に注力する一方、
+どのような共溶媒を用いるか、のコンセンサスが取れていない。
+また、分子構造は極めて多様であるが、その多様性に比べると余りにも少ないのが現状である。</p>
+
+<h2 id="研究成果">研究成果</h2>
+
+<p>このような問題に対して、薬剤分子に頻出する部分構造を共溶媒として切り出し、
+これに対するMSMDシミュレーションを行うことで、
+<strong>「網羅的」な共溶媒セットの構築を行う EXPRORER を開発した</strong><sup id="fnref:EXPRORER" role="doc-noteref"><a href="#fn:EXPRORER" class="footnote" rel="footnote">1</a></sup>。</p>
+
+<p>前述のように、この手法は「セットの構築」が主要な目的ではあるが、
+他方、MSMDシミュレーションのためのシミュレーション空間の構築や
+MSMDシミュレーションの実施をフリーソフトウェアのみで完結する
+仕組みを<a href="https://github.com/keisuke-yanagisawa/exprorer">github上で公開</a>している。</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:EXPRORER" role="doc-endnote">
+      <p><strong>Keisuke Yanagisawa</strong>, Yoshitaka Moriwaki, Tohru Terada, Kentaro Shimizu. “EXPRORER: Rational Cosolvent Set Construction Method for Cosolvent Molecular Dynamics Using Large-Scale Computation”, <em>Journal of Chemical Information and Modeling</em>, <strong>61</strong>: 2744-2753, 2021/06. DOI: <a href="https://doi.org/10.1021/acs.jcim.1c00134">10.1021/acs.jcim.1c00134</a> <a href="#fnref:EXPRORER" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="研究成果" /><category term="共溶媒分子動力学法" /><category term="分子動力学法" /><summary type="html"><![CDATA[2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。]]></summary></entry><entry><title type="html">内挿と外挿</title><link href="https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation/" rel="alternate" type="text/html" title="内挿と外挿" /><published>2022-02-02T00:00:00+09:00</published><updated>2022-02-02T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation/"><![CDATA[<p>機械学習モデルを構築する上で、
 本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、
 その部分の予測精度は落ちてしまう。これについて少し触れてみたい。</p>
 
@@ -78,7 +110,7 @@
 <p>なんにせよ、<strong>外挿は内挿に比べて、さらに予測精度が悪化する</strong>事があるので注意したい。</p>
 
 <!-- ##### 参考文献
-- 江崎貴裕『分析者のためのデータ解釈学入門　データの本質をとらえる技術』（ソシム、2020年） -->]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="データサイエンス・機械学習" /><category term="教師あり学習" /><category term="予測誤差" /><summary type="html"><![CDATA[機械学習モデルを構築する上で、 本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、 その部分の予測精度は落ちてしまう。これについて少し触れてみたい。]]></summary></entry><entry><title type="html">因子分析と主成分分析</title><link href="https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/factor-analysis-and-principal-component-analysis/" rel="alternate" type="text/html" title="因子分析と主成分分析" /><published>2022-01-30T09:00:00+09:00</published><updated>2022-01-30T09:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/factor-analysis-and-principal-component-analysis</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92/factor-analysis-and-principal-component-analysis/"><![CDATA[<p>因子分析と主成分分析は似通った手法のように見える。
+- 江崎貴裕『分析者のためのデータ解釈学入門　データの本質をとらえる技術』（ソシム、2020年） -->]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="データサイエンス・機械学習" /><category term="教師あり学習" /><category term="予測誤差" /><summary type="html"><![CDATA[機械学習モデルを構築する上で、 本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、 その部分の予測精度は落ちてしまう。これについて少し触れてみたい。]]></summary></entry><entry><title type="html">因子分析と主成分分析</title><link href="https://keisuke-yanagisawa.github.io/202201/factor-analysis-and-principal-component-analysis/" rel="alternate" type="text/html" title="因子分析と主成分分析" /><published>2022-01-30T09:00:00+09:00</published><updated>2022-01-30T09:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202201/factor-analysis-and-principal-component-analysis</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202201/factor-analysis-and-principal-component-analysis/"><![CDATA[<p>因子分析と主成分分析は似通った手法のように見える。
 しかし、実際には大きく異なる点がある。</p>
 
 <ul>
