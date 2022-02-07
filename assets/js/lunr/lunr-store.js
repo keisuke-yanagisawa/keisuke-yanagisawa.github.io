@@ -11,9 +11,9 @@ var store = [{
         "url": "/202202/interpolation_and_extrapolation/",
         "teaser": null
       },{
-        "title": "共溶媒分子動力学 (MSMD) 法 EXPRORER",
-        "excerpt":"2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。 研究背景 共溶媒分子動力学 (mixed-solvent molecular dynamics; MSMD) 法は、 タンパク質を溶質、水分子と共溶媒分子を溶媒とした分子動力学 (molecular dynamics; MD) 法である。 共溶媒（プローブ分子）として、芳香環や疎水基、正負に帯電している分子などを用いることで、 水分子では観測できないタンパク質表面のホットスポットの発見や、 低分子結合部位の検出、低分子結合親和性の予測など、 薬剤開発の様々なステップで活用することが出来る。 既存の MSMD 手法である MixMD, SILCS, MDmix などは、結合親和性の評価精度改善に注力する一方、 どのような共溶媒を用いるか、のコンセンサスが取れていない。 また、分子構造は極めて多様であるが、その多様性に比べると余りにも少ないのが現状である。 研究成果 このような問題に対して、薬剤分子に頻出する部分構造を共溶媒として切り出し、 これに対するMSMDシミュレーションを行うことで、 「網羅的」な共溶媒セットの構築を行う EXPRORER を開発した1。 前述のように、この手法は「セットの構築」が主要な目的ではあるが、 他方、MSMDシミュレーションのためのシミュレーション空間の構築や MSMDシミュレーションの実施をフリーソフトウェアのみで完結する 仕組みをgithub上で公開している。 Keisuke Yanagisawa, Yoshitaka Moriwaki, Tohru Terada, Kentaro...","categories": ["研究成果"],
-        "tags": ["共溶媒分子動力学法","分子動力学法"],
-        "url": "/202202/exprorer/",
+        "title": "共溶媒分子動力学 (MSMD) 法における共溶媒セットの構築手法 EXPRORER",
+        "excerpt":"2021年6月に Journal of Chemical Information and Modeling 誌に掲載された、 EXPRORER (EXtended PRObes set construction by REpresentative Retrieval) の話。 研究背景 共溶媒分子動力学 (mixed-solvent molecular dynamics; MSMD) 法は、 タンパク質を溶質、水分子と共溶媒分子を溶媒とした分子動力学 (molecular dynamics; MD) 法である。 共溶媒（プローブ分子）として、芳香環や疎水基、正負に帯電している分子などを用いることで、 水分子では観測できないタンパク質表面のホットスポットの発見や、 低分子結合部位の検出、低分子結合親和性の予測など、 薬剤開発の様々なステップで活用することが出来る。 既存の MSMD 手法である MixMD, SILCS, MDmix などは、結合親和性の評価精度改善に注力する一方、 どのような共溶媒を用いるか、のコンセンサスが取れていない。 また、分子構造は極めて多様であるが、その多様性に比べると余りにも少ないのが現状である。 研究成果 このような問題に対して、薬剤分子に頻出する部分構造を共溶媒として切り出し、 これに対するMSMDシミュレーションを行うことで、 「網羅的」な共溶媒セットの構築を行う EXPRORER を開発した1。 前述のように、この手法は「セットの構築」が主要な目的ではあるが、 他方、MSMDシミュレーションのためのシミュレーション空間の構築や...","categories": ["研究成果"],
+        "tags": ["共溶媒分子動力学法","分子動力学法","EXPRORER"],
+        "url": "/research/exprorer",
         "teaser": null
       }]

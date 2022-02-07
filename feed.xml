@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-07T05:54:49+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">共溶媒分子動力学 (MSMD) 法 EXPRORER</title><link href="https://keisuke-yanagisawa.github.io/202202/exprorer/" rel="alternate" type="text/html" title="共溶媒分子動力学 (MSMD) 法 EXPRORER" /><published>2022-02-06T00:00:00+09:00</published><updated>2022-02-06T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/exprorer</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/exprorer/"><![CDATA[<p>2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-07T22:15:46+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">共溶媒分子動力学 (MSMD) 法における共溶媒セットの構築手法 EXPRORER</title><link href="https://keisuke-yanagisawa.github.io/research/exprorer" rel="alternate" type="text/html" title="共溶媒分子動力学 (MSMD) 法における共溶媒セットの構築手法 EXPRORER" /><published>2022-02-06T00:00:00+09:00</published><updated>2022-02-06T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/research/exprorer</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/research/exprorer"><![CDATA[<p>2021年6月に <em>Journal of Chemical Information and Modeling</em> 誌に掲載された、
+EXPRORER (EXtended PRObes set construction by REpresentative Retrieval) の話。</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-06_01.png" alt="EXPRORER" /></p>
 
 <h2 id="研究背景">研究背景</h2>
 
@@ -24,13 +27,17 @@
 MSMDシミュレーションの実施をフリーソフトウェアのみで完結する
 仕組みを<a href="https://github.com/keisuke-yanagisawa/exprorer">github上で公開</a>している。</p>
 
+<h2 id="雑談">（雑談）</h2>
+
+<p>…作者本人もEXPRORERの立ち位置が、「MSMDシミュレーションツールそのもの」なのか迷う時があるが、
+この手法はあくまで<strong>「共溶媒セットの構築」のための手法</strong>であることに注意したい。</p>
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:EXPRORER" role="doc-endnote">
       <p><strong>Keisuke Yanagisawa</strong>, Yoshitaka Moriwaki, Tohru Terada, Kentaro Shimizu. “EXPRORER: Rational Cosolvent Set Construction Method for Cosolvent Molecular Dynamics Using Large-Scale Computation”, <em>Journal of Chemical Information and Modeling</em>, <strong>61</strong>: 2744-2753, 2021/06. DOI: <a href="https://doi.org/10.1021/acs.jcim.1c00134">10.1021/acs.jcim.1c00134</a> <a href="#fnref:EXPRORER" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
-</div>]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="研究成果" /><category term="共溶媒分子動力学法" /><category term="分子動力学法" /><summary type="html"><![CDATA[2021年6月に論文に掲載された、EXPRORER (EXtendedPRObes set construction by REpresentative Retrieval) の話。]]></summary></entry><entry><title type="html">内挿と外挿</title><link href="https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation/" rel="alternate" type="text/html" title="内挿と外挿" /><published>2022-02-02T00:00:00+09:00</published><updated>2022-02-02T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation/"><![CDATA[<p>機械学習モデルを構築する上で、
+</div>]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="研究成果" /><category term="共溶媒分子動力学法" /><category term="分子動力学法" /><category term="EXPRORER" /><summary type="html"><![CDATA[2021年6月に Journal of Chemical Information and Modeling 誌に掲載された、 EXPRORER (EXtended PRObes set construction by REpresentative Retrieval) の話。]]></summary></entry><entry><title type="html">内挿と外挿</title><link href="https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation/" rel="alternate" type="text/html" title="内挿と外挿" /><published>2022-02-02T00:00:00+09:00</published><updated>2022-02-02T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/interpolation_and_extrapolation/"><![CDATA[<p>機械学習モデルを構築する上で、
 本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、
 その部分の予測精度は落ちてしまう。これについて少し触れてみたい。</p>
 
