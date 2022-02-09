@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-07T22:31:10+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">共溶媒分子動力学 (MSMD) 法における共溶媒セットの構築手法 EXPRORER</title><link href="https://keisuke-yanagisawa.github.io/research/exprorer" rel="alternate" type="text/html" title="共溶媒分子動力学 (MSMD) 法における共溶媒セットの構築手法 EXPRORER" /><published>2022-02-06T00:00:00+09:00</published><updated>2022-02-06T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/research/exprorer</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/research/exprorer"><![CDATA[<p>2021年6月に <em>Journal of Chemical Information and Modeling</em> 誌に掲載された、
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-10T05:44:05+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">不均衡なデータ</title><link href="https://keisuke-yanagisawa.github.io/202202/imbalanced-data/" rel="alternate" type="text/html" title="不均衡なデータ" /><published>2022-02-09T00:00:00+09:00</published><updated>2022-02-09T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/imbalanced-data</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/imbalanced-data/"><![CDATA[<p>Bioinformaticsの分野をやっていると、<strong>不均衡なデータ</strong>によく出くわすものである。
+特に、正例 positive が少なく、負例 negative が多いケースが多い。
+このような状態だと、何も考えずに構築したモデルは、いかなるデータが来ようとも負例として予測してしまうことすらある。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># 不均衡データ（1対50）を作成
+</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">centers</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">].</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"negative"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">].</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"positive"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-09-imbalanced-data-01.png" alt="データの散布図" /></p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="c1"># 予測モデルの構築
+# （説明のためにgammaを下げて問題を誘発している）
+</span><span class="n">svc</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">svc</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">svc</span><span class="p">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+</code></pre></div></div>
+
+<p>これを行うと、<code class="language-plaintext highlighter-rouge">[3, -1]</code> は<strong>負例である</strong>、という予測結果が出てくる。
+しかし、これを先ほど示した図に載せるとどこになるだろうか。
+以下のようになり、<strong>明らかに正例であるべき場所</strong>である。</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-09-imbalanced-data-02.png" alt="不均衡データの学習" /></p>
+
+<p>これは意図的に変数 \(\gamma\) を下げることで（モデルの複雑度を下げて）誘発しているが、単なる正解率に基づくハイパーパラメータ探索は<strong>いつのまにか</strong>この問題に入りこんでしまう事がある。注意しなければならない。</p>
+
+<h5 id="関連参考文献順不同">関連参考文献（順不同）</h5>
+<ul>
+  <li>Alice Zheng, Amanda Casari 著、株式会社ホクソエム 訳『機械学習のための特徴量エンジニアリング』（オライリージャパン、2019年）
+    <ul>
+      <li>不均衡データに対して、ダウンサンプリングを行うことで不均衡を是正する方法を4.2.1節で説明している。</li>
+    </ul>
+  </li>
+  <li>中山浩太郎 監修、塚本邦尊、山田典一、大澤文孝 著『東京大学のデータサイエンティスト育成講座』（マイナビ出版、2019年）
+    <ul>
+      <li>不均衡データに対する予測モデルの評価において、正解率を使うのではなくROC曲線のAUC (Area Under the Curve) を使うことを10-3-2-4節で述べている。</li>
+    </ul>
+  </li>
+  <li>門脇大輔、阪田隆司、保坂桂佑、平松雄司 著『Kaggleで勝つデータ分析の技術』（技術評論社、2019年）
+    <ul>
+      <li>99.4%が負例であったKaggleのコンペについて2.6.5節で触れている。ここではROC曲線ではなくPR曲線のAUCを使う話をしている。</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="データサイエンス・機械学習" /><category term="教師あり学習" /><category term="データセット" /><summary type="html"><![CDATA[Bioinformaticsの分野をやっていると、不均衡なデータによく出くわすものである。 特に、正例 positive が少なく、負例 negative が多いケースが多い。 このような状態だと、何も考えずに構築したモデルは、いかなるデータが来ようとも負例として予測してしまうことすらある。]]></summary></entry><entry><title type="html">共溶媒分子動力学 (MSMD) 法における共溶媒セットの構築手法 EXPRORER</title><link href="https://keisuke-yanagisawa.github.io/research/exprorer" rel="alternate" type="text/html" title="共溶媒分子動力学 (MSMD) 法における共溶媒セットの構築手法 EXPRORER" /><published>2022-02-06T00:00:00+09:00</published><updated>2022-02-06T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/research/exprorer</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/research/exprorer"><![CDATA[<p>2021年6月に <em>Journal of Chemical Information and Modeling</em> 誌に掲載された、
 EXPRORER (EXtended PRObes set construction by REpresentative Retrieval) の話。</p>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-06_01.png" alt="EXPRORER" /></p>

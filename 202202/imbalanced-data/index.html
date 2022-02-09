@@ -9,28 +9,32 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>柳澤 渓甫 | Keisuke Yanagisawa</title>
-<meta name="description" content="An assistant professor in Tokyo Tech.">
+<!-- begin _includes/seo.html --><title>            不均衡なデータ - 柳澤 渓甫      Keisuke Yanagisawa      </title>
+<meta name="description" content="Bioinformaticsの分野をやっていると、不均衡なデータによく出くわすものである。 特に、正例 positive が少なく、負例 negative が多いケースが多い。 このような状態だと、何も考えずに構築したモデルは、いかなるデータが来ようとも負例として予測してしまうことすらある。">
 
 
   <meta name="author" content="Keisuke Yanagisawa">
   
+  <meta property="article:author" content="Keisuke Yanagisawa">
+  
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:site_name" content="柳澤 渓甫 | Keisuke Yanagisawa">
-<meta property="og:title" content="            柳澤 渓甫      Keisuke Yanagisawa      ">
-<meta property="og:url" content="https://keisuke-yanagisawa.github.io/categories/">
+<meta property="og:title" content="不均衡なデータ">
+<meta property="og:url" content="https://keisuke-yanagisawa.github.io/202202/imbalanced-data/">
 
 
-  <meta property="og:description" content="An assistant professor in Tokyo Tech.">
-
-
-
+  <meta property="og:description" content="Bioinformaticsの分野をやっていると、不均衡なデータによく出くわすものである。 特に、正例 positive が少なく、負例 negative が多いケースが多い。 このような状態だと、何も考えずに構築したモデルは、いかなるデータが来ようとも負例として予測してしまうことすらある。">
 
 
 
+
+
+
+
+  <meta property="article:published_time" content="2022-02-09T00:00:00+09:00">
 
 
 
@@ -41,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://keisuke-yanagisawa.github.io/categories/">
+<link rel="canonical" href="https://keisuke-yanagisawa.github.io/202202/imbalanced-data/">
 
 
 
@@ -98,7 +102,7 @@
 
   </head>
 
-  <body class="layout--categories">
+  <body class="layout--single">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -272,16 +276,34 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    
-    
+    <meta itemprop="headline" content="不均衡なデータ">
+    <meta itemprop="description" content="Bioinformaticsの分野をやっていると、不均衡なデータによく出くわすものである。特に、正例 positive が少なく、負例 negative が多いケースが多い。このような状態だと、何も考えずに構築したモデルは、いかなるデータが来ようとも負例として予測してしまうことすらある。">
+    <meta itemprop="datePublished" content="2022-02-09T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://keisuke-yanagisawa.github.io/202202/imbalanced-data/" class="u-url" itemprop="url">不均衡なデータ
+</a>
+          </h1>
           
-          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-02-09T00:00:00+09:00">February 9, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
 
 
         </header>
@@ -290,6 +312,12 @@
       <section class="page__content e-content" itemprop="text">
         
           <aside class="sidebar__right ">
+            
+              <nav class="toc">
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目次</h4></header>
+                <ul class="toc__menu"><li><a href="#関連参考文献順不同">関連参考文献（順不同）</a></li></ul>
+
+              </nav>
             
             
             <h3> 
@@ -433,63 +461,140 @@
             
           </aside>
         
+        <p>Bioinformaticsの分野をやっていると、<strong>不均衡なデータ</strong>によく出くわすものである。
+特に、正例 positive が少なく、負例 negative が多いケースが多い。
+このような状態だと、何も考えずに構築したモデルは、いかなるデータが来ようとも負例として予測してしまうことすらある。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># 不均衡データ（1対50）を作成
+</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">centers</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">].</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"negative"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">].</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"positive"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-09-imbalanced-data-01.png" alt="データの散布図" /></p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="c1"># 予測モデルの構築
+# （説明のためにgammaを下げて問題を誘発している）
+</span><span class="n">svc</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">svc</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">svc</span><span class="p">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+</code></pre></div></div>
+
+<p>これを行うと、<code class="language-plaintext highlighter-rouge">[3, -1]</code> は<strong>負例である</strong>、という予測結果が出てくる。
+しかし、これを先ほど示した図に載せるとどこになるだろうか。
+以下のようになり、<strong>明らかに正例であるべき場所</strong>である。</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-09-imbalanced-data-02.png" alt="不均衡データの学習" /></p>
+
+<p>これは意図的に変数 \(\gamma\) を下げることで（モデルの複雑度を下げて）誘発しているが、単なる正解率に基づくハイパーパラメータ探索は<strong>いつのまにか</strong>この問題に入りこんでしまう事がある。注意しなければならない。</p>
+
+<h5 id="関連参考文献順不同">関連参考文献（順不同）</h5>
+<ul>
+  <li>Alice Zheng, Amanda Casari 著、株式会社ホクソエム 訳『機械学習のための特徴量エンジニアリング』（オライリージャパン、2019年）
+    <ul>
+      <li>不均衡データに対して、ダウンサンプリングを行うことで不均衡を是正する方法を4.2.1節で説明している。</li>
+    </ul>
+  </li>
+  <li>中山浩太郎 監修、塚本邦尊、山田典一、大澤文孝 著『東京大学のデータサイエンティスト育成講座』（マイナビ出版、2019年）
+    <ul>
+      <li>不均衡データに対する予測モデルの評価において、正解率を使うのではなくROC曲線のAUC (Area Under the Curve) を使うことを10-3-2-4節で述べている。</li>
+    </ul>
+  </li>
+  <li>門脇大輔、阪田隆司、保坂桂佑、平松雄司 著『Kaggleで勝つデータ分析の技術』（技術評論社、2019年）
+    <ul>
+      <li>99.4%が負例であったKaggleのコンペについて2.6.5節で触れている。ここではROC曲線ではなくPR曲線のAUCを使う話をしている。</li>
+    </ul>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> タグ: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#%E3%83%87%E3%83%BC%E3%82%BF%E3%82%BB%E3%83%83%E3%83%88" class="page__taxonomy-item p-category" rel="tag">データセット</a><span class="sep">, </span>
+    
+      <a href="/tags/#%E6%95%99%E5%B8%AB%E3%81%82%E3%82%8A%E5%AD%A6%E7%BF%92" class="page__taxonomy-item p-category" rel="tag">教師あり学習</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> カテゴリー: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9-%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="page__taxonomy-item p-category" rel="tag">データサイエンス・機械学習</a>
+    
+    </span>
+  </p>
+
+
         
 
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新日時:</strong> <time class="dt-published" datetime="2022-02-09T00:00:00+09:00">February 9, 2022</time></p>
 
+      </footer>
 
+      
 
-<!-- <ul class="taxonomy__index">
-  
-    
       
-        <li>
-          <a href="#データサイエンス-機械学習">
-            <strong>データサイエンス・機械学習</strong> <span class="taxonomy__count">3</span>
-          </a>
-        </li>
-      
+  <nav class="pagination">
     
-      
+      <a href="/research/exprorer" class="pagination--pager" title="共溶媒分子動力学 (MSMD) 法における共溶媒セットの構築手法 EXPRORER
+">前へ</a>
     
-  
     
-      
+      <a href="#" class="pagination--pager disabled">次へ</a>
     
-      
-    
-  
-    
-      
-    
-      
-        <li>
-          <a href="#研究成果">
-            <strong>研究成果</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
-      
-    
-  
-</ul> -->
+  </nav>
 
+    </div>
 
+    
+  </article>
 
   
-    
-      <section id="データサイエンス-機械学習" class="taxonomy__section">
-        <h2 class="archive__subtitle">データサイエンス・機械学習</h2>
-        <div class="entries-list">
+  
+    <div class="page__related">
+      <h2 class="page__related-title">関連記事</h2>
+      <div class="grid__wrapper">
+        
           
-            
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/202202/imbalanced-data/" rel="permalink">不均衡なデータ
+        <a href="/research/exprorer" rel="permalink">共溶媒分子動力学 (MSMD) 法における共溶媒セットの構築手法 EXPRORER
 </a>
       
     </h2>
@@ -501,7 +606,7 @@
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2022-02-09T00:00:00+09:00">February 9, 2022</time>
+        <time datetime="2022-02-06T00:00:00+09:00">February 6, 2022</time>
       </span>
     
 
@@ -511,20 +616,19 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Bioinformaticsの分野をやっていると、不均衡なデータによく出くわすものである。
-特に、正例 positive が少なく、負例 negative が多いケースが多い。
-このような状態だと、何も考えずに構築したモデルは、いかなるデータが来ようとも負例として予測してしまうことすらある。
+    <p class="archive__item-excerpt" itemprop="description">2021年6月に Journal of Chemical Information and Modeling 誌に掲載された、
+EXPRORER (EXtended PRObes set construction by REpresentative Retrieval) の話。
 </p>
-    <img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-09-imbalanced-data-01.png" style="max-height:150px;"/>
+    <img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-06_01.png" style="max-height:150px;"/>
   </article>
 </div>
 
+        
           
-            
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -559,12 +663,12 @@
   </article>
 </div>
 
+        
           
-            
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -598,95 +702,9 @@
   </article>
 </div>
 
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-  
-
-  
-    
-  
-    
-  
-
-  
-    
-  
-    
-      <section id="研究成果" class="taxonomy__section">
-        <h2 class="archive__subtitle">研究成果</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/research/exprorer" rel="permalink">共溶媒分子動力学 (MSMD) 法における共溶媒セットの構築手法 EXPRORER
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2022-02-06T00:00:00+09:00">February 6, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">2021年6月に Journal of Chemical Information and Modeling 誌に掲載された、
-EXPRORER (EXtended PRObes set construction by REpresentative Retrieval) の話。
-</p>
-    <img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-06_01.png" style="max-height:150px;"/>
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-
-
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-
-
-        
-
-      </footer>
-
-      
-
-      
+      </div>
     </div>
-
-    
-  </article>
-
   
   
 </div>

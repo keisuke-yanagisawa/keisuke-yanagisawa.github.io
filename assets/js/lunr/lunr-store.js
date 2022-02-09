@@ -16,4 +16,10 @@ var store = [{
         "tags": ["共溶媒分子動力学法","分子動力学法","EXPRORER"],
         "url": "/research/exprorer",
         "teaser": null
+      },{
+        "title": "不均衡なデータ",
+        "excerpt":"Bioinformaticsの分野をやっていると、不均衡なデータによく出くわすものである。 特に、正例 positive が少なく、負例 negative が多いケースが多い。 このような状態だと、何も考えずに構築したモデルは、いかなるデータが来ようとも負例として予測してしまうことすらある。 from sklearn.datasets import make_blobs import matplotlib.pyplot as plt # 不均衡データ（1対50）を作成 X, y = make_blobs(n_samples=[500,10], centers=None, random_state=0) plt.scatter(*X[y==0].T, label=\"negative\") plt.scatter(*X[y==1].T, label=\"positive\") plt.legend() plt.show() from sklearn.svm import SVC # 予測モデルの構築 # （説明のためにgammaを下げて問題を誘発している） svc = SVC(gamma=0.01) svc.fit(X, y) svc.predict([[3,-1]]) これを行うと、[3, -1] は負例である、という予測結果が出てくる。 しかし、これを先ほど示した図に載せるとどこになるだろうか。 以下のようになり、明らかに正例であるべき場所である。 これは意図的に変数 \\(\\gamma\\)...","categories": ["データサイエンス・機械学習"],
+        "tags": ["教師あり学習","データセット"],
+        "url": "/202202/imbalanced-data/",
+        "teaser": null
       }]
