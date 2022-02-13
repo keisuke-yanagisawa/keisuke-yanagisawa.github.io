@@ -1,4 +1,203 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-10T05:44:05+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">不均衡なデータ</title><link href="https://keisuke-yanagisawa.github.io/202202/imbalanced-data/" rel="alternate" type="text/html" title="不均衡なデータ" /><published>2022-02-09T00:00:00+09:00</published><updated>2022-02-09T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/imbalanced-data</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/imbalanced-data/"><![CDATA[<p>Bioinformaticsの分野をやっていると、<strong>不均衡なデータ</strong>によく出くわすものである。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-14T04:47:11+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">検証誤差と汎化誤差</title><link href="https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error/" rel="alternate" type="text/html" title="検証誤差と汎化誤差" /><published>2022-02-13T00:00:00+09:00</published><updated>2022-02-13T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error/"><![CDATA[<p>機械学習では、train-valid-test分割 <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> という方法が良く用いられる。</p>
+
+<!-- 訓練データとテストデータを分けるのは良くわかる（我々は良く「カンニング」と表現するが、これから予測したい対象を使って予測モデルを構築したらうまく予測できるのはほぼ自明である）。しかし、検証データを用いる必要性はちょっとわからないかもしれない。
+この分割が何故必要なのか、考えてみようと思う。
+
+**memo**
+* 検証データでgeneralization errorは算出できない、テストデータを使わねばならない、という話を入れる
+  * この際、通常は「train-valid 分割である」と述べて、注釈として、一般的にはtrain-test分割を言うが、この記事では複数のモデルから1つを選ぶ、ということを大前提に記述するためtrain-valid分割とする、という話を記述する必要がある。 -->
+
+<h2 id="イメージを持つ代表選抜と本番での実力">イメージを持つ：代表選抜と本番での実力</h2>
+
+<p>機械学習の議論をする前に、ちょっとイメージを持っておこう。</p>
+
+<p>********</p>
+
+<p>100m走の選手選抜を考えてみよう。とある高校で、以下のような実力伯仲な5人の100m走者がいるとする。彼らは調子によって <strong>\(\pm0.5\) 秒のタイムのぶれ</strong>がある。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>走者</th>
+      <th style="text-align: right">平均タイム</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>山田</td>
+      <td style="text-align: right">11.20 秒</td>
+    </tr>
+    <tr>
+      <td>佐藤</td>
+      <td style="text-align: right">11.21 秒</td>
+    </tr>
+    <tr>
+      <td>田中</td>
+      <td style="text-align: right">11.17 秒</td>
+    </tr>
+    <tr>
+      <td>橋本</td>
+      <td style="text-align: right">11.13 秒</td>
+    </tr>
+    <tr>
+      <td>加藤</td>
+      <td style="text-align: right">11.15 秒</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>この5名から高校の代表選手を1名決めるために、タイム計測を行うことを考えてみよう。</p>
+
+<p>********</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 毎回同じ結果が得られるように固定
+</span>
+<span class="c1"># 表の情報を記入
+</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s">"山田"</span><span class="p">,</span> <span class="s">"佐藤"</span><span class="p">,</span> <span class="s">"田中"</span><span class="p">,</span> <span class="s">"橋本"</span><span class="p">,</span> <span class="s">"加藤"</span><span class="p">]</span>
+<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mf">11.20</span><span class="p">,</span> <span class="mf">11.21</span><span class="p">,</span> <span class="mf">11.17</span><span class="p">,</span> <span class="mf">11.13</span><span class="p">,</span> <span class="mf">11.15</span><span class="p">])</span>
+
+<span class="c1"># +-0.5秒のぶれの設定（一様分布を仮定）
+</span><span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span> 
+
+<span class="n">time</span> <span class="o">=</span> <span class="n">ave_time</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1"># 小数点以下3桁までにする
+</span><span class="k">print</span><span class="p">(</span><span class="s">"今回のタイム計測の記録"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>その結果、加藤くんが11.074秒で最も早く、代表選手として選ばれた。</p>
+
+<p>さて、翌週に地区大会があったとしよう。ここで加藤くんはどのような結果を出すだろうか？ <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup></p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ave_time</span> <span class="o">=</span> <span class="mf">11.15</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">ave_time</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"地区大会での加藤くんの記録"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>これを実行してみると、代表選手として選ばれた時のタイム（11.074秒）に比べて悪いタイム（11.199秒）となってしまった。これは偶然だろうか？「たまたま調子が悪かっただけなのでは？」という気もする。</p>
+
+<p>しかし、地区大会は一発勝負だ。調子が悪かったのかもしれなくとも、2度以上試すことはできない。そこで、100この世界線があり、それぞれの世界線で加藤くんが地区大会で走ったと考えて <sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> 、そのタイムの平均を取ってみよう。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ave_time</span> <span class="o">=</span> <span class="mf">11.15</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">ave_time</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">ave_time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"地区大会での加藤くんの記録の平均"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ave_time</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>結果は平均11.123秒となり、依然代表選手として選ばれた時のタイム（11.074秒）と比べると遅い。
+よくよく考えると、これはアタリマエの話である。100回、1000回と考えれば、加藤くんの記録の平均は11.150秒に収束するはずだ。この11.150秒という記録は、11.074秒に比べれば遅い。</p>
+
+<p>大会に向けての調整をしない、という仮定を置いて考えているので現実世界とは異なる部分もあるが、<strong>選考の際に実力を十分に発揮できた人が選抜されやすい</strong>、ということが分かったと思う。</p>
+
+<h2 id="機械学習と100m走">機械学習と100m走</h2>
+
+<p>なぜこのような100m走の話をしたのだろうか。これは、機械学習のモデル選択と全く同じ状況だからである。</p>
+
+<p>手元に5つの機械学習手法 + ハイパーパラメータの組があるとしよう。 <strong>本当は汎化誤差を知ることは不可能</strong>であり、全知全能な「天の声」視点に立っていると考えてほしいので、<strong>わざとカッコ書きにしている</strong>。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>機械学習手法 + ハイパーパラメータ</th>
+      <th style="text-align: right">汎化誤差 (RMSE)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DecisionTree(max_depth=20)</code></td>
+      <td style="text-align: right">(2.958)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DecisionTree(max_depth=5)</code></td>
+      <td style="text-align: right">(2.921)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">RandomForest(n_estimators=100)</code></td>
+      <td style="text-align: right">(2.863)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">RandomForest(n_estimators=200)</code></td>
+      <td style="text-align: right">(2.857)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">RandomForest(n_estimators=500)</code></td>
+      <td style="text-align: right">(2.854)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>それぞれのモデルは、性能評価に用いるデータセットの中身によって、 <strong>\(\pm0.2\) のRMSEのぶれが存在する</strong>としよう。</p>
+
+<p>検証データで行いたいのは、この5つのモデルから、汎化誤差が最も良さそうなモデルを1つ選択することである。やってみよう。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 毎回同じ結果が得られるように固定
+</span>
+<span class="c1"># 表の情報を記入
+</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s">"DT20"</span><span class="p">,</span> <span class="s">"DT5"</span><span class="p">,</span> <span class="s">"RF100"</span><span class="p">,</span> <span class="s">"RF200"</span><span class="p">,</span> <span class="s">"RF500"</span><span class="p">]</span>
+<span class="n">ave_gen_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.958</span><span class="p">,</span> <span class="mf">2.921</span><span class="p">,</span> <span class="mf">2.863</span><span class="p">,</span> <span class="mf">2.857</span><span class="p">,</span> <span class="mf">2.854</span><span class="p">])</span>
+
+<span class="c1"># +-0.2のぶれの設定（一様分布を仮定）
+</span><span class="n">noise</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span> 
+
+<span class="n">valid_err</span> <span class="o">=</span> <span class="n">ave_gen_err</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">valid_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">valid_err</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1"># 小数点以下3桁までにする
+</span><span class="k">print</span><span class="p">(</span><span class="s">"検証データを用いたときのRMSE"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">valid_err</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>この結果、<code class="language-plaintext highlighter-rouge">RandomForest(n_estimators=500)</code> が RMSE=2.823 で最も良いモデルである、と選択される。</p>
+
+<p>さて、このモデルを本番環境に適用したときの<strong>誤差の期待値（＝汎化誤差）を知りたい</strong>、と考えてみよう。<strong>モデル選択を行った際のRMSE値を使えばいいじゃないか、と思うかもしれないが、これは正しい推定値になっているのだろうか？</strong></p>
+
+<p><strong>誤差の期待値</strong>とは、先ほどの例における「地区大会における平均タイム」と同じであるから、独立した試行を十分な回数行った場合の平均性能を見てみればよい。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ave_gen_err</span> <span class="o">=</span> <span class="mf">2.854</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span> 
+<span class="n">test_err</span> <span class="o">=</span> <span class="n">ave_gen_err</span> <span class="o">+</span> <span class="n">noise</span>
+<span class="n">ave_test_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_err</span><span class="p">)</span>
+<span class="n">ave_test_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">ave_test_err</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"誤差の期待値（汎化性能の期待値）"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ave_test_err</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>この結果、 RMSE=2.843 となり、やはりモデル選択を行った際のRMSE (2.823) の方が良い値となっている。</p>
+
+<p>このように、<strong>モデル選択を行った際の誤差の値というのは、期待値よりも良くなってしまい、汎化性能を正しく推定できていない。</strong>以上のことから、モデル選択を行う検証データセットのみで汎化性能を評価することは良くなく、検証データとは別に、テストデータを準備して、<strong>テストデータをもとに汎化性能を評価する</strong>必要がある。これが、train-validではなくtrain-valid-test分割を行う必要がある原因である。</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>例えば、https://towardsdatascience.com/how-to-split-data-into-three-sets-train-validation-and-test-and-why-e50d22d3e54c に記述がある <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>ここでは、簡単のために、「加藤くんは校内選抜と地区大会で同じ能力を発揮する」と仮定している。 <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>無茶苦茶な話だが…。 <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="データサイエンス・機械学習" /><category term="教師あり学習" /><category term="予測誤差" /><summary type="html"><![CDATA[機械学習では、train-valid-test分割 1 という方法が良く用いられる。 例えば、https://towardsdatascience.com/how-to-split-data-into-three-sets-train-validation-and-test-and-why-e50d22d3e54c に記述がある &#8617;]]></summary></entry><entry><title type="html">不均衡なデータ</title><link href="https://keisuke-yanagisawa.github.io/202202/imbalanced-data/" rel="alternate" type="text/html" title="不均衡なデータ" /><published>2022-02-09T00:00:00+09:00</published><updated>2022-02-09T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/imbalanced-data</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/imbalanced-data/"><![CDATA[<p>Bioinformaticsの分野をやっていると、<strong>不均衡なデータ</strong>によく出くわすものである。
 特に、正例 positive が少なく、負例 negative が多いケースが多い。
 このような状態だと、何も考えずに構築したモデルは、いかなるデータが来ようとも負例として予測してしまうことすらある。</p>
 
