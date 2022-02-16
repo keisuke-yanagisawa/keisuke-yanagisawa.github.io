@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-14T14:31:09+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">検証誤差と汎化誤差</title><link href="https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error/" rel="alternate" type="text/html" title="検証誤差と汎化誤差" /><published>2022-02-13T00:00:00+09:00</published><updated>2022-02-13T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error/"><![CDATA[<p>機械学習では、train-valid-test分割 <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> という方法が良く用いられる。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2022-02-17T02:27:20+09:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Tokyo Tech.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">ブログを書き始めた理由</title><link href="https://keisuke-yanagisawa.github.io/202202/why-i-started-blog/" rel="alternate" type="text/html" title="ブログを書き始めた理由" /><published>2022-02-16T00:00:00+09:00</published><updated>2022-02-16T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/why-i-started-blog</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/why-i-started-blog/"><![CDATA[<p>ふとした思いつきで、ブログを書けるようにした
+（そのためにホームページの見た目を全面更新することになったのだが）。</p>
+
+<p>研究者とは、企業名ではなく、個人名で勝負する仕事だ。
+この人がどういう人で、どういうことを考えているか？は、
+万が一私を雇用してくださる機関があったとしたら、求められる情報だろう。
+そのような事を考えると、はてなブログやQiitaなどでは、
+「私である」という情報が足りないと感じた。
+個人の顔と、現在のポジションとあわせて読めることが重要だろう。</p>
+
+<p>また、自身の研究論文紹介を記述する上で、英語で表現すべきことも多い。
+そのような場合に、日本のサービスである はてブロ や Qiita といったものに頼るのは
+世界の研究者のアクセスを鈍らせ、大きなマイナスになる。
+今はまだ英語のblogを立ち上げているわけではないのだが、
+自分がもっと世界に、1人でも多くに、貢献するためには
+絶対に必要だと確信している。</p>]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="その他" /><category term="読み物" /><summary type="html"><![CDATA[ふとした思いつきで、ブログを書けるようにした （そのためにホームページの見た目を全面更新することになったのだが）。]]></summary></entry><entry><title type="html">検証誤差と汎化誤差</title><link href="https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error/" rel="alternate" type="text/html" title="検証誤差と汎化誤差" /><published>2022-02-13T00:00:00+09:00</published><updated>2022-02-13T00:00:00+09:00</updated><id>https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error/"><![CDATA[<p>機械学習では、train-valid-test分割 <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> という方法が良く用いられる。</p>
 
 <p>訓練データとテストデータを分けるのは良くわかる（我々は良く「カンニング」と表現するが、これから予測したい対象を使って予測モデルを構築したらうまく予測できるのはほぼ自明である）。しかし、検証データを用いる必要性はちょっとわからないかもしれない。
 この分割が何故必要なのか、考えてみようと思う。</p>
