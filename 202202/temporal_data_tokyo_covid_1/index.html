@@ -9,28 +9,32 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>柳澤 渓甫 | Keisuke Yanagisawa</title>
-<meta name="description" content="An assistant professor in Tokyo Tech.">
+<!-- begin _includes/seo.html --><title>            東京都のCOVID-19モニタリングデータ(1) - 柳澤 渓甫      Keisuke Yanagisawa      </title>
+<meta name="description" content="画像の識別など、数か月程度で考えれば時系列を気にしなくて済むデータと比べて、時系列データは考慮すべきことが多い。 ここでは、その1つの例として、東京都の新型コロナウイルス感染症対策サイト からデータを取得し、少しばかり、実際の作業をやってみようと思う。">
 
 
   <meta name="author" content="Keisuke Yanagisawa">
   
+  <meta property="article:author" content="Keisuke Yanagisawa">
+  
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:site_name" content="柳澤 渓甫 | Keisuke Yanagisawa">
-<meta property="og:title" content="            柳澤 渓甫      Keisuke Yanagisawa      ">
-<meta property="og:url" content="https://keisuke-yanagisawa.github.io/categories/">
+<meta property="og:title" content="東京都のCOVID-19モニタリングデータ(1)">
+<meta property="og:url" content="https://keisuke-yanagisawa.github.io/202202/temporal_data_tokyo_covid_1/">
 
 
-  <meta property="og:description" content="An assistant professor in Tokyo Tech.">
-
-
-
+  <meta property="og:description" content="画像の識別など、数か月程度で考えれば時系列を気にしなくて済むデータと比べて、時系列データは考慮すべきことが多い。 ここでは、その1つの例として、東京都の新型コロナウイルス感染症対策サイト からデータを取得し、少しばかり、実際の作業をやってみようと思う。">
 
 
 
+
+
+
+
+  <meta property="article:published_time" content="2022-02-26T00:00:00+09:00">
 
 
 
@@ -41,7 +45,7 @@
   
 
 
-<link rel="canonical" href="https://keisuke-yanagisawa.github.io/categories/">
+<link rel="canonical" href="https://keisuke-yanagisawa.github.io/202202/temporal_data_tokyo_covid_1/">
 
 
 
@@ -98,7 +102,7 @@
 
   </head>
 
-  <body class="layout--categories">
+  <body class="layout--single">
     <nav class="skip-links">
   <ul>
     <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
@@ -272,16 +276,34 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    
-    
+    <meta itemprop="headline" content="東京都のCOVID-19モニタリングデータ(1)">
+    <meta itemprop="description" content="画像の識別など、数か月程度で考えれば時系列を気にしなくて済むデータと比べて、時系列データは考慮すべきことが多い。ここでは、その1つの例として、東京都の新型コロナウイルス感染症対策サイトからデータを取得し、少しばかり、実際の作業をやってみようと思う。">
+    <meta itemprop="datePublished" content="2022-02-26T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://keisuke-yanagisawa.github.io/202202/temporal_data_tokyo_covid_1/" class="u-url" itemprop="url">東京都のCOVID-19モニタリングデータ(1)
+</a>
+          </h1>
           
-          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-02-26T00:00:00+09:00">February 26, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
 
 
         </header>
@@ -290,6 +312,12 @@
       <section class="page__content e-content" itemprop="text">
         
           <aside class="sidebar__right ">
+            
+              <nav class="toc">
+                <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目次</h4></header>
+                <ul class="toc__menu"><li><a href="#何をするか決める">何をするか決める</a></li><li><a href="#データを取得する">データを取得する</a></li></ul>
+
+              </nav>
             
             
             <h3> 
@@ -529,91 +557,254 @@
             
           </aside>
         
+        <p>画像の識別など、数か月程度で考えれば時系列を気にしなくて済むデータと比べて、時系列データは考慮すべきことが多い。
+ここでは、その1つの例として、<a href="https://stopcovid19.metro.tokyo.lg.jp/monitoring/">東京都の新型コロナウイルス感染症対策サイト</a>
+からデータを取得し、少しばかり、実際の作業をやってみようと思う。</p>
+
+<h2 id="何をするか決める">何をするか決める</h2>
+
+<p>まず、ここで何をやるかを決めておこう。
+今回は、 <strong>東京都の翌日の新規陽性者数を予測する</strong> ことをやってみる<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>。</p>
+
+<h2 id="データを取得する">データを取得する</h2>
+
+<p>ホームページにアクセスすると、さまざまなモニタリング項目が表示され、
+その左下に小さく オープンデータを入手 というリンクが存在している。
+ここでは、 <strong>モニタリング項目(1) 新規陽性者数</strong> を対象に作業を行なう。
+当該のリンクをクリックすると、<a href="https://catalog.data.metro.tokyo.lg.jp/dataset/t000010d0000000068">このページ</a>に遷移する。</p>
+
+<p>ここから <code class="language-plaintext highlighter-rouge">130001_tokyo_covid19_patients.csv</code> 取得する。</p>
+
+<p>このデータの中身をpandasで見てみよう。（Excelで開くにはサイズが大きすぎる、何故かはすぐにわかる）</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"130001_tokyo_covid19_patients.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">"No"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># Jupyterでは df.head(5) の方が綺麗に描画される
+</span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="c1"># =&gt; 962,673
+</span></code></pre></div></div>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/posts/2022/img/2022-02-26_01.png" alt="データの中身の一例" /></p>
+
+<p>このデータを見ると、日々の件数ではなく、それぞれの陽性者の情報が記載されていることがわかる。
+2022年2月25日現在、東京都の陽性者数の累計は95万人を超えているので、
+おのずからこのcsvファイルも95万行以上のデータを持っている。</p>
+
+<p>今回は新規陽性者数を予測したいだけなので、
+個々の人間の情報は含まずに、<strong>公表_年月日</strong> ごとに、
+何人の新規陽性者がでたのかをまとめる。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">describe</span><span class="p">())</span> <span class="c1"># =&gt; 全国地方公共団体コード が len(df) と同じcountになっている = NaNが存在しない
+</span>
+<span class="n">new_patients</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">"公表_年月日"</span><span class="p">).</span><span class="n">count</span><span class="p">().</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">new_patients</span><span class="p">[</span><span class="s">"新規陽性者数"</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_patients</span><span class="p">[</span><span class="s">"全国地方公共団体コード"</span><span class="p">]</span>
+<span class="n">new_patients</span> <span class="o">=</span> <span class="n">new_patients</span><span class="p">[[</span><span class="s">"公表_年月日"</span><span class="p">,</span> <span class="s">"新規陽性者数"</span><span class="p">]]</span>
+<span class="n">new_patients</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"new_patients_tokyo.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="https://keisuke-yanagisawa.github.io/assets/posts/2022/img/2022-02-26_02.png" alt="new_patients" /></p>
+
+<p>とりあえず、データは準備できた。
+<a href="https://keisuke-yanagisawa.github.io/assets/posts/2022/data/2022-02-26_new_patients_tokyo.csv">ここで作成したデータを添付しておく</a>。</p>
+
+<p>次回は、このデータの性質を考えて、どのような学習を組みたてるかを考えていこう。</p>
+
+<!-- ## データの性質を考える
+
+さて、これから **東京都の翌日の新規陽性者数を予測する** ことを行なっていくのだが、
+予測する上で重要と思われる要素を考えてみよう。
+
+- **曜日・祝日**：新規陽性者数のグラフを見ると、明らかに7日周期の波が存在している。また、祝日が挟まると不規則な挙動を示していることがわかる。
+- **最近の**新規陽性者数：新規陽性者数は5人から突然10,000人になることはあり得ない。最近（例えば、ここ1,2週間）の新規陽性者数に影響される^[2]。
+- 新規陽性者数の**増加率**：1人が複数人に感染を広げる、という構造になっている。例えば1人が平均2人に感染させるのであれば、100人いたら平均200人に感染させるはずである。この時、人数の変化を見るよりも、人数変化の「割合」を見ることが重要そうである。
+
+[2]:逆に、遠い昔（数か月前など）の新規陽性者数は使い物にならない可能性が高い。
+
+### 目的変数
+
+特に、**増加率**が重要である、という事実は、予測モデルの**目的変数（予測する値）を何にするか**に影響する。
+
+1. 新規陽性者数
+2. 新規陽性者数**の対数値**
+3. 新規陽性者数の1週間前比
+
+様々考えられるが、今回は **3. 新規陽性者数の1週間前比** を目的変数としよう^[3]。
+
+[3]:最近の1日の新規陽性者数が0人ということは考えられないため、単に比を取ることにする。0人を考慮に含める場合には分母分子にそれぞれ1を足すと良い。
+
+### 説明変数
+
+一方、説明変数はどうだろうか。最初に列挙したうちの **曜日・祝日** および **最近の新規陽性者数** が重要そうである。
+ただ、祝日を取得するのは面倒なため、ここでは最近2週間の新規陽性者数の1週間前比（目的変数にあわせておく）とその日の曜日を説明変数としよう。
+あわせて、予測したい翌日の曜日も説明変数に加えておく^[4]。
+
+[4]:予測したい日の情報は説明変数に加えないことが原則なのだが、**翌日の曜日は容易に推定できる**ので追加している。曜日が不規則変化するとは思えない。
+
+
+## データセットを作成する
+
+それではようやく、教師あり学習に近づいていこう。
+前節で決めた説明変数および目的変数に従って、データセットを作成する。
+
+今回は、2021年8月1日以降を目的変数とするデータセットを作成することにする。
+
+
+```py
+import numpy as np
+import pandas as pd
+
+new_patients = pd.read_csv("new_patients_tokyo.csv")
+new_patients["公表_年月日"] = pd.to_datetime(new_patients["公表_年月日"])
+new_patients["曜日"] = new_patients["公表_年月日"].dt.dayofweek
+new_patients.index = new_patients["公表_年月日"].view(int)//1000000000//86400 # nano sec. => day
+
+date_from = np.datetime64("2021-08-01").astype(int) # convert to sec. (not nano sec.)
+date_to = new_patients.index.max()
+# print(date_from, date_to) => (18840, 19048)
+
+new_patients.loc[date_from-14:date_to, "新規陽性者数_1週間前比"] = \
+  new_patients.loc[date_from-14:date_to,"新規陽性者数"].to_numpy() / new_patients.loc[date_from-14-7:date_to-7,"新規陽性者数"].to_numpy()
+# to_numpy() is needed because avoid index-based element division
+
+
+dataset = []
+for i in range(date_from, date_to+1):
+  datapoint = [i]
+  for j in range(15):
+    row = new_patients.loc[i-j]
+    datapoint.append(row["新規陽性者数_1週間前比"])
+    # day of week should be one-hot encoded
+    onehot = np.eye(7)[row["曜日"]]
+    datapoint.extend(onehot)
+  dataset.append(datapoint)
+
+columns = ["date"]
+for j in range(15):
+  columns.extend([
+    f"{j}_ratio",
+    f"{j}_mon",
+    f"{j}_tue",
+    f"{j}_wed",
+    f"{j}_thu",
+    f"{j}_fri",
+    f"{j}_sat",
+    f"{j}_sun",
+  ])
+
+df_dataset = pd.DataFrame(dataset, columns=columns)
+df_dataset.to_csv("dataset.csv", index=None)
+```
+
+この `dataset.csv` も[ここに置いておく](https://keisuke-yanagisawa.github.io/assets/posts/2022/data/2022-02-26_dataset.csv)。
+
+## 時系列的な訓練と予測
+
+最後に予測を行なうのだが、経時変化により、徐々にデータが集まるのが時系列データの仕組みである。
+このため、例えば2021年9月1日の予測を行なう際には2021年8月31日の30件程度のデータしか訓練に使えず、
+一方で2022年2月1日の予測を行なう際には180件程度のデータを訓練に利用することができる。
+
+ここでは、以下のように訓練、検証、テストデータを分割することで、各々のステップで最良のハイパーパラメータを決定することにしよう。
+
+1. 予測したい日付 `d` を1つ定め、これをテストデータとする（例えば、2021年10月1日）。
+2. `d-7` から `d-1` の7日間を検証データとする。
+3. `d-8` 以前のデータを全て訓練データとする。
+
+データは2021年8月1日からしか準備していないので、`d` は2021年9月1日以降のみに限ることにする。
+
+モデル自体はRidge回帰を用いることにし、 $$\alpha = {2^{-20}, 2^{-19}, ..., 2^8, 2^9}$$ を
+最適化対象ハイパーパラメータとして、1日経過する毎にハイパーパラメータ探索を行なうことにする^[5]。
+
+
+
+[5]:ハイパーパラメータ探索をどのレベルで行なうか？は検討の余地がある。すなわち、毎回ハイパーパラメータ探索を行なうと計算時間が膨大になってしまう場合には、平均的に良い予測モデルを構築できるハイパーパラメータを1つ決定し、それを今後の予測モデル構築に応用し続ける必要がある。一方、毎回ハイパーパラメータ探索を行なっても訓練に要する時間が限定的なのであれば、毎回より良いハイパーパラメータを追い求め続けるのが良いだろう。
+ -->
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>本来は<strong>解析の目的</strong>があって、その目的に沿い、かつ予測が可能と思われる対象を決めるというステップを踏む必要がある。 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> タグ: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#%E6%95%99%E5%B8%AB%E3%81%82%E3%82%8A%E5%AD%A6%E7%BF%92" class="page__taxonomy-item p-category" rel="tag">教師あり学習</a><span class="sep">, </span>
+    
+      <a href="/tags/#%E6%99%82%E7%B3%BB%E5%88%97%E3%83%87%E3%83%BC%E3%82%BF" class="page__taxonomy-item p-category" rel="tag">時系列データ</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> カテゴリー: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%E3%83%87%E3%83%BC%E3%82%BF%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9-%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92" class="page__taxonomy-item p-category" rel="tag">データサイエンス・機械学習</a>
+    
+    </span>
+  </p>
+
+
         
 
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新日時:</strong> <time class="dt-published" datetime="2022-02-26T00:00:00+09:00">February 26, 2022</time></p>
 
+      </footer>
 
+      
 
-<!-- <ul class="taxonomy__index">
-  
-    
       
-        <li>
-          <a href="#データサイエンス-機械学習">
-            <strong>データサイエンス・機械学習</strong> <span class="taxonomy__count">5</span>
-          </a>
-        </li>
-      
+  <nav class="pagination">
     
-      
+      <a href="/202202/why-i-started-blog/" class="pagination--pager" title="ブログを書き始めた理由
+">前へ</a>
     
-      
     
-  
+      <a href="#" class="pagination--pager disabled">次へ</a>
     
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-    
-      
-    
-  
-    
-      
-    
-      
-        <li>
-          <a href="#研究成果">
-            <strong>研究成果</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
-      
-    
-      
-        <li>
-          <a href="#その他">
-            <strong>その他</strong> <span class="taxonomy__count">1</span>
-          </a>
-        </li>
-      
-    
-  
-</ul> -->
+  </nav>
 
+    </div>
 
+    
+  </article>
 
   
-    
-      <section id="データサイエンス-機械学習" class="taxonomy__section">
-        <h2 class="archive__subtitle">データサイエンス・機械学習</h2>
-        <div class="entries-list">
+  
+    <div class="page__related">
+      <h2 class="page__related-title">関連記事</h2>
+      <div class="grid__wrapper">
+        
           
-            
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/202202/temporal_data_tokyo_covid_1/" rel="permalink">東京都のCOVID-19モニタリングデータ(1)
+        <a href="/202202/why-i-started-blog/" rel="permalink">ブログを書き始めた理由
 </a>
       
     </h2>
@@ -625,7 +816,7 @@
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2022-02-26T00:00:00+09:00">February 26, 2022</time>
+        <time datetime="2022-02-16T00:00:00+09:00">February 16, 2022</time>
       </span>
     
 
@@ -635,20 +826,19 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">画像の識別など、数か月程度で考えれば時系列を気にしなくて済むデータと比べて、時系列データは考慮すべきことが多い。
-ここでは、その1つの例として、東京都の新型コロナウイルス感染症対策サイト
-からデータを取得し、少しばかり、実際の作業をやってみようと思う。
+    <p class="archive__item-excerpt" itemprop="description">ふとした思いつきで、ブログを書けるようにした
+（そのためにホームページの見た目を全面更新することになったのだが）。
 </p>
     
   </article>
 </div>
 
+        
           
-            
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -685,12 +875,12 @@
   </article>
 </div>
 
+        
           
-            
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -725,133 +915,12 @@
   </article>
 </div>
 
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/202202/interpolation_and_extrapolation/" rel="permalink">内挿と外挿
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2022-02-02T00:00:00+09:00">February 2, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">機械学習モデルを構築する上で、
-本来データが存在するはずなのにサンプリングできていない（データを取得できていない）空間があると、
-その部分の予測精度は落ちてしまう。これについて少し触れてみたい。
-</p>
-    <img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-02_01.png" style="max-height:150px;"/>
-  </article>
-</div>
-
           
-            
 
 
 
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/202201/factor-analysis-and-principal-component-analysis/" rel="permalink">因子分析と主成分分析
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2022-01-30T09:00:00+09:00">January 30, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">因子分析と主成分分析は似通った手法のように見える。
-しかし、実際には大きく異なる点がある。
-</p>
-    
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-  
-    
-  
-
-  
-    
-  
-    
-  
-    
-  
-
-  
-    
-  
-    
-  
-    
-  
-
-  
-    
-  
-    
-  
-    
-  
-
-  
-    
-  
-    
-      <section id="研究成果" class="taxonomy__section">
-        <h2 class="archive__subtitle">研究成果</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -885,83 +954,9 @@ EXPRORER (EXtended PRObes set construction by REpresentative Retrieval) の話�
   </article>
 </div>
 
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-    
-      <section id="その他" class="taxonomy__section">
-        <h2 class="archive__subtitle">その他</h2>
-        <div class="entries-list">
-          
-            
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/202202/why-i-started-blog/" rel="permalink">ブログを書き始めた理由
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
         
-        <time datetime="2022-02-16T00:00:00+09:00">February 16, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">ふとした思いつきで、ブログを書けるようにした
-（そのためにホームページの見た目を全面更新することになったのだが）。
-</p>
-    
-  </article>
-</div>
-
-          
-        </div>
-        <a href="#page-title" class="back-to-top">Back to Top &uarr;</a>
-      </section>
-    
-  
-
-
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-
-
-        
-
-      </footer>
-
-      
-
-      
+      </div>
     </div>
-
-    
-  </article>
-
   
   
 </div>
