@@ -293,7 +293,7 @@
             
               <nav class="toc">
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目次</h4></header>
-                <ul class="toc__menu"><li><a href="#査読付き学術論文誌">査読付き学術論文誌</a></li><li><a href="#査読付き国際会議">査読付き国際会議</a></li><li><a href="#国際会議査読無">国際会議（査読無）</a><ul><li><a href="#口頭発表">口頭発表</a></li><li><a href="#ポスター発表">ポスター発表</a></li></ul></li><li><a href="#国内会議査読無">国内会議（査読無）</a><ul><li><a href="#口頭発表-1">口頭発表</a></li><li><a href="#ポスター発表-1">ポスター発表</a></li></ul></li><li><a href="#特許">特許</a></li><li><a href="#研究資金">研究資金</a></li><li><a href="#計算資源等">計算資源等</a></li><li><a href="#表彰">表彰</a></li><li><a href="#その他">その他</a></li><li><a href="#学位論文">学位論文</a></li></ul>
+                <ul class="toc__menu"><li><a href="#査読付き学術論文誌">査読付き学術論文誌</a></li><li><a href="#査読付き国際会議">査読付き国際会議</a></li><li><a href="#国際会議査読無">国際会議（査読無）</a><ul><li><a href="#口頭発表">口頭発表</a></li><li><a href="#ポスター発表">ポスター発表</a></li></ul></li><li><a href="#国内会議査読無">国内会議（査読無）</a><ul><li><a href="#口頭発表-1">口頭発表</a></li><li><a href="#ポスター発表-1">ポスター発表</a></li></ul></li><li><a href="#著書">著書</a></li><li><a href="#特許">特許</a></li><li><a href="#研究資金">研究資金</a></li><li><a href="#計算資源等">計算資源等</a></li><li><a href="#表彰">表彰</a></li><li><a href="#その他">その他</a></li><li><a href="#学位論文">学位論文</a></li></ul>
 
               </nav>
             
@@ -2337,24 +2337,28 @@
       content : "[F-"counter(number)"]";
       counter-increment : number;
   }
-  ol > li.p::before{
+  ol > li.b::before{
       content : "[G-"counter(number)"]";
       counter-increment : number;
   }
-  ol > li.g::before{
+  ol > li.p::before{
       content : "[H-"counter(number)"]";
       counter-increment : number;
   }
-  ol > li.gr::before{
+  ol > li.g::before{
       content : "[I-"counter(number)"]";
       counter-increment : number;
   }
-  ol > li.a::before{
+  ol > li.gr::before{
       content : "[J-"counter(number)"]";
       counter-increment : number;
   }
-  ol > li.o::before{
+  ol > li.a::before{
       content : "[K-"counter(number)"]";
+      counter-increment : number;
+  }
+  ol > li.o::before{
+      content : "[L-"counter(number)"]";
       counter-increment : number;
   }
   anchor{
@@ -2459,6 +2463,12 @@
   <li class="dc-pp"><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Shogo D. Suzuki, Masahito Ohue, Takashi Ishida, Yutaka Akiyama. “ESPRESSO: An ultrafast compound pre-screening method based on compound segmentation”, <em>Informatics in Biology, Medicine and Pharmacology 2016 (IIBMP2016)</em>, P65, 2016/09/29-10/01.</li>
   <li class="dc-pp"><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Masahito Ohue, Takashi Ishida, Yutaka Akiyama; “Fast pre-filtering for virtual screening based on ligand decomposition”, <em>第21回 創剤フォーラム若手研究会</em>, P-6, 2015/11/28.</li>
   <li class="dc-pp"><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Masahito Ohue, Takashi Ishida, Yutaka Akiyama. “Fast pre-filtering for virtual screening based on compound decomposition”, <em>Informatics in Biology, Medicine and Pharmacology 2015 (IIBMP2015)</em>, 2015/10/29-31.</li>
+</ol>
+
+<h1 id="著書">著書</h1>
+
+<ol>
+  <li class="b">金森 敬文 監訳, データサイエンスと機械学習 理論からPythonによる実装まで, 東京化学同人, 2022  - 第8章「決定木とアンサンブル法」担当</li>
 </ol>
 
 <h1 id="特許">特許</h1>

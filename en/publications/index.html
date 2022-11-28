@@ -282,7 +282,7 @@
             
               <nav class="toc">
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-                <ul class="toc__menu"><li><a href="#peer-reviewed-journal-papers">Peer-reviewed Journal Papers</a></li><li><a href="#peer-reviewed-international-conferences">Peer-reviewed International Conferences</a></li><li><a href="#international-conferences-without-peer-review">International Conferences (without peer review)</a><ul><li><a href="#oral-presentation">Oral Presentation</a></li><li><a href="#poster-presentation">Poster Presentation</a></li></ul></li><li><a href="#domestic-conferences-without-peer-review">Domestic Conferences (without peer review)</a><ul><li><a href="#oral-presentation-1">Oral Presentation</a></li><li><a href="#poster-presentation-1">Poster Presentation</a></li></ul></li><li><a href="#patents">Patents</a></li><li><a href="#grants">Grants</a></li><li><a href="#computation-resources-etc">Computation resources, etc.</a></li><li><a href="#awards">Awards</a></li><li><a href="#others">Others</a></li><li><a href="#theses">Theses</a></li></ul>
+                <ul class="toc__menu"><li><a href="#peer-reviewed-journal-papers">Peer-reviewed Journal Papers</a></li><li><a href="#peer-reviewed-international-conferences">Peer-reviewed International Conferences</a></li><li><a href="#international-conferences-without-peer-review">International Conferences (without peer review)</a><ul><li><a href="#oral-presentation">Oral Presentation</a></li><li><a href="#poster-presentation">Poster Presentation</a></li></ul></li><li><a href="#domestic-conferences-without-peer-review">Domestic Conferences (without peer review)</a><ul><li><a href="#oral-presentation-1">Oral Presentation</a></li><li><a href="#poster-presentation-1">Poster Presentation</a></li></ul></li><li><a href="#books">Books</a></li><li><a href="#patents">Patents</a></li><li><a href="#grants">Grants</a></li><li><a href="#computation-resources-etc">Computation resources, etc.</a></li><li><a href="#awards">Awards</a></li><li><a href="#others">Others</a></li><li><a href="#theses">Theses</a></li></ul>
 
               </nav>
             
@@ -2326,24 +2326,28 @@
       content : "[F-"counter(number)"]";
       counter-increment : number;
   }
-  ol > li.p::before{
+  ol > li.b::before{
       content : "[G-"counter(number)"]";
       counter-increment : number;
   }
-  ol > li.g::before{
+  ol > li.p::before{
       content : "[H-"counter(number)"]";
       counter-increment : number;
   }
-  ol > li.gr::before{
+  ol > li.g::before{
       content : "[I-"counter(number)"]";
       counter-increment : number;
   }
-  ol > li.a::before{
+  ol > li.gr::before{
       content : "[J-"counter(number)"]";
       counter-increment : number;
   }
-  ol > li.o::before{
+  ol > li.a::before{
       content : "[K-"counter(number)"]";
+      counter-increment : number;
+  }
+  ol > li.o::before{
+      content : "[L-"counter(number)"]";
       counter-increment : number;
   }
   anchor{
@@ -2448,6 +2452,12 @@
   <li class="dc-pp"><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Shogo D. Suzuki, Masahito Ohue, Takashi Ishida, Yutaka Akiyama. “ESPRESSO: An ultrafast compound pre-screening method based on compound segmentation”, <em>Informatics in Biology, Medicine and Pharmacology 2016 (IIBMP2016)</em>, P65, 2016/09/29-10/01.</li>
   <li class="dc-pp"><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Masahito Ohue, Takashi Ishida, Yutaka Akiyama; “Fast pre-filtering for virtual screening based on ligand decomposition”, <em>第21回 創剤フォーラム若手研究会</em>, P-6, 2015/11/28.</li>
   <li class="dc-pp"><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Masahito Ohue, Takashi Ishida, Yutaka Akiyama. “Fast pre-filtering for virtual screening based on compound decomposition”, <em>Informatics in Biology, Medicine and Pharmacology 2015 (IIBMP2015)</em>, 2015/10/29-31.</li>
+</ol>
+
+<h1 id="books">Books</h1>
+
+<ol>
+  <li class="b">金森 敬文 監訳, データサイエンスと機械学習 理論からPythonによる実装まで, 東京化学同人, 2022  - Japanese translation of: Kroese DP, et al., Data Science and Machine Learning: Mathematical and Statistical Methods, CRC Press, 2019.</li>
 </ol>
 
 <h1 id="patents">Patents</h1>
