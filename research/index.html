@@ -80,9 +80,9 @@
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
 <link rel="stylesheet" href="/assets/css/user_define.css">
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"/></noscript>
 
 <!-- for MathJax -->
@@ -249,6 +249,10 @@
           
         
           
+            <li><a href="https://speakerdeck.com/keisukeyanagisawa" rel="nofollow noopener noreferrer me"><i class="fa-brands fa-speaker-deck" aria-hidden="true"></i><span class="label">Speaker Deck</span></a></li>
+          
+        
+          
             <li><a href="mailto:yanagisawa@c.titech.ac.jp" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
           
         
@@ -293,7 +297,7 @@
             
               <nav class="toc">
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目次</h4></header>
-                <ul class="toc__menu"><li><a href="#共溶媒分子動力学法の高性能化-201904-">共溶媒分子動力学法の高性能化 (2019/04-)</a></li><li><a href="#フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発-201404-201903">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発 (2014/04-2019/03)</a></li><li><a href="#半教師付き学習を用いた薬物クリアランス経路予測-201304-201508">半教師付き学習を用いた薬物クリアランス経路予測 (2013/04-2015/08)</a></li></ul>
+                <ul class="toc__menu"><li><a href="#共溶媒分子動力学法に関する手法-201904-">共溶媒分子動力学法に関する手法 (2019/04-)</a><ul><li><a href="#共溶媒分子セットの構築-exprorer">共溶媒分子セットの構築 (EXPRORER)</a></li><li><a href="#共溶媒の相互作用プロファイルの設計-inverse-msmd">共溶媒の相互作用プロファイルの設計 (Inverse MSMD)</a></li><li><a href="#アミノ酸を共溶媒としたmsmd-aap-msmd">アミノ酸を共溶媒としたMSMD (AAp-MSMD)</a></li></ul></li><li><a href="#フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発-201404-201903">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発 (2014/04-2019/03)</a></li><li><a href="#半教師付き学習を用いた薬物クリアランス経路予測-201304-201508">半教師付き学習を用いた薬物クリアランス経路予測 (2013/04-2015/08)</a></li></ul>
 
               </nav>
             
@@ -301,13 +305,26 @@
             
           </aside>
         
-        <h3 id="共溶媒分子動力学法の高性能化-201904-">共溶媒分子動力学法の高性能化 (2019/04-)</h3>
+        <h3 id="共溶媒分子動力学法に関する手法-201904-">共溶媒分子動力学法に関する手法 (2019/04-)</h3>
 
 <p>共溶媒分子動力学 (mixed-solvent molecular dynamics; MSMD) 法は、
-タンパク質を溶質、水分子と共溶媒分子を溶媒とした分子動力学 (molecular dynamics; MD) 法です。</p>
+タンパク質を溶質、水分子と共溶媒分子を溶媒とした分子動力学 (molecular dynamics; MD) 法です。
+共溶媒分子がタンパク質表面のどこに、どの程度存在したか？という情報を基にホットスポット検出や結合親和性評価を行ったり
+共溶媒分子によってタンパク質構造の変化が誘発されることを利用したcryptic結合部位（隠された結合部位）発見などに活用されています。</p>
 
-<p>MSMD法に用いる共溶媒セットの構築手法 EXPRORER の提案などを行っています。
-詳細は<a href="https://keisuke-yanagisawa.github.io/research/exprorer">こちら</a>をご参照ください。</p>
+<p>このMSMD法について、様々な提案を行ってきています。</p>
+
+<h4 id="共溶媒分子セットの構築-exprorer">共溶媒分子セットの構築 (EXPRORER)</h4>
+
+<p>詳細は<a href="https://keisuke-yanagisawa.github.io/research/exprorer">こちら</a>をご参照ください。</p>
+
+<h4 id="共溶媒の相互作用プロファイルの設計-inverse-msmd">共溶媒の相互作用プロファイルの設計 (Inverse MSMD)</h4>
+
+<p>現在記事作成中です。</p>
+
+<h4 id="アミノ酸を共溶媒としたmsmd-aap-msmd">アミノ酸を共溶媒としたMSMD (AAp-MSMD)</h4>
+
+<p>現在記事作成中です。</p>
 
 <hr />
 
@@ -402,7 +419,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2023 Keisuke Yanagisawa. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2024 Keisuke Yanagisawa. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
