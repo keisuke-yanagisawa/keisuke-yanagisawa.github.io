@@ -286,7 +286,7 @@
             
               <nav class="toc">
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-                <ul class="toc__menu"><li><a href="#compound-pre-screening-before-structure-based-virtual-screening">compound pre-screening before structure-based virtual screening</a></li></ul>
+                <ul class="toc__menu"><li><a href="#mixed-solvent-molecular-dynamics-msmd-201904-">Mixed-Solvent Molecular Dynamics (MSMD) (2019/04-)</a><ul><li><a href="#constructing-residue-interaction-profile-of-probes-inverse-msmd">Constructing residue interaction profile of probes (Inverse MSMD)</a></li><li><a href="#msmd-using-amino-acids-as-co-solvents-aap-msmd">MSMD Using Amino Acids as Co-Solvents (AAp-MSMD)</a></li><li><a href="#construction-of-co-solvent-molecule-sets-exprorer">Construction of Co-Solvent Molecule Sets (EXPRORER)</a></li></ul></li><li><a href="#development-of-structure-based-virtual-screening-methods-focused-on-compound-fragments-20144-">Development of Structure-Based Virtual Screening Methods Focused on Compound Fragments (2014/4-)</a><ul><li><a href="#development-of-the-protein-compound-docking-calculation-tool-restretto">Development of the Protein-Compound Docking Calculation Tool REstretto</a></li><li><a href="#docking-calculations-using-quantum-annealers">Docking Calculations Using Quantum Annealers</a></li><li><a href="#development-of-a-fast-compound-pre-screening-method-based-on-compound-decomposition">Development of a Fast Compound Pre-Screening Method Based on Compound Decomposition</a></li></ul></li><li><a href="#prediction-of-drug-clearance-pathways-using-semi-supervised-learning-201304-201508">Prediction of Drug Clearance Pathways Using Semi-Supervised Learning (2013/04-2015/08)</a></li></ul>
 
               </nav>
             
@@ -294,16 +294,88 @@
             
           </aside>
         
-        <h3 id="compound-pre-screening-before-structure-based-virtual-screening">compound pre-screening before structure-based virtual screening</h3>
-<p>In order to reduce computational cost of structure-based virtual screening (virtual screening based on protein tertiary structure), pre-screening of compound database is common methodology.
-We develop an ultrafast structure-based pre-screening method based on compound decomposition, named <a href="http://www.bi.cs.titech.ac.jp/spresso/"><strong>Spresso</strong></a>.</p>
+        <h3 id="mixed-solvent-molecular-dynamics-msmd-201904-">Mixed-Solvent Molecular Dynamics (MSMD) (2019/04-)</h3>
+
+<p>The Mixed-Solvent Molecular Dynamics (MSMD) method uses molecular dynamics (MD) with a protein as the solute and water molecules and probe (co-solvent) molecules. Based on information about where and to what extent co-solvent molecules exist on the protein surface, it is utilized for hotspot detection, binding affinity prediction, and the cryptic binding sites detection induced by structural changes in the protein due to probe molecules.</p>
+
+<h4 id="constructing-residue-interaction-profile-of-probes-inverse-msmd">Constructing residue interaction profile of probes (Inverse MSMD)</h4>
+
+<p>Typically, MSMD maps the probability of the probe around the protein. In contrast, we have developed inverse MSMD to estimate where and what kind of residues of the protein are likely to appear around the probe.</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/en/assets/img/research/inverseMSMD.png" alt="inverse MSMD" class="align-center middle-img" /></p>
+
+<p>Additionally, by applying this profile to the protein surface, we are developing a quantitative inverse MSMD method to estimate binding strengths.</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/en/assets/img/research/quantitativeinverseMSMD.png" alt="quantitative inverse MSMD" class="align-center middle-img" /></p>
+
+<ul>
+  <li><strong>Keisuke Yanagisawa</strong>, Ryunosuke Yoshino, Genki Kudo, Takatsugu Hirokawa. “Inverse Mixed-Solvent Molecular Dynamics for Visualization of the Residue Interaction Profile of Molecular Probes”, <em>International Journal of Molecular Sciences</em>, <strong>23</strong>: 4749, 2022/04. DOI: <a href="https://www.mdpi.com/1422-0067/23/9/4749">10.3390/ijms23094749</a></li>
+</ul>
+
+<h4 id="msmd-using-amino-acids-as-co-solvents-aap-msmd">MSMD Using Amino Acids as Co-Solvents (AAp-MSMD)</h4>
+
+<p>By using amino acids as probes, this method predicts protein-protein interaction surfaces, peptide binding sites, and changes in binding affinity due to residue changes.</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/en/assets/img/research/AAp-MSMD.jpeg" alt="AAp-MSMD" class="align-center middle-img" /></p>
+
+<ul>
+  <li>Genki Kudo†, <strong>Keisuke Yanagisawa</strong>†‡, Ryunosuke Yoshino‡, Takatsugu Hirokawa. “AAp-MSMD: Amino Acid Preference Mapping on Protein-Protein Interaction Surfaces Using Mixed-Solvent Molecular Dynamics”, <em>Journal of Chemical Information and Modeling</em>, <strong>63</strong>: 7768-7777, 2023/12. DOI: <a href="https://doi.org/10.1021/acs.jcim.3c01677">10.1021/acs.jcim.3c01677</a></li>
+</ul>
+
+<h4 id="construction-of-co-solvent-molecule-sets-exprorer">Construction of Co-Solvent Molecule Sets (EXPRORER)</h4>
+
+<p>Many studies perform MSMD, but the probes used vary depending on the research target. We have constructed a probe set that can cover frequently occurring substructures in drug molecules by enumerating over 100 frequent structures by dividing drug molecules into substructures and performing MSMD for all of them.</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/en/assets/img/research/exprorer.jpg" alt="EXPRORER" class="align-center middle-img" /></p>
+
+<ul>
+  <li><strong>Keisuke Yanagisawa</strong>, Yoshitaka Moriwaki, Tohru Terada, Kentaro Shimizu. “EXPRORER: Rational Cosolvent Set Construction Method for Cosolvent Molecular Dynamics Using Large-Scale Computation”, <em>Journal of Chemical Information and Modeling</em>, <strong>61</strong>: 2744-2753, 2021/06. DOI: <a href="https://doi.org/10.1021/acs.jcim.1c00134">10.1021/acs.jcim.1c00134</a></li>
+</ul>
+
+<h3 id="development-of-structure-based-virtual-screening-methods-focused-on-compound-fragments-20144-">Development of Structure-Based Virtual Screening Methods Focused on Compound Fragments (2014/4-)</h3>
+
+<p>Structure-based virtual screening (SBVS) uses the 3D structure of target proteins in drug development to select promising compounds from a large set of compounds. This method is widely recognized, but there is room for performance improvement in terms of computation time and accuracy.</p>
+
+<p>We focus on fragments, which are substructures of compounds, knowing that about 28 million compounds can be represented by about 260,000 fragments, aiming to speed up calculations by utilizing fragment commonality among compounds.</p>
+
+<h4 id="development-of-the-protein-compound-docking-calculation-tool-restretto">Development of the Protein-Compound Docking Calculation Tool REstretto</h4>
+
+<p>We are developing REstretto, a protein-compound docking calculation tool that utilizes fragment commonality. This method aims to achieve high-speed docking calculations by formulating them as a QUBO (quadratic unconstrained boolean optimization) problem.</p>
+
+<ul>
+  <li><strong>Keisuke Yanagisawa</strong>†, Takuya Fujie, Kazuki Takabatake, Yutaka Akiyama†. “QUBO Problem Formulation of Fragment-Based Protein-Ligand Flexible Docking”, <em>Entropy</em>, <strong>26</strong>: 397, 2024/04. DOI: <a href="https://doi.org/10.3390/e26050397">10.3390/e26050397</a></li>
+</ul>
+
+<h4 id="docking-calculations-using-quantum-annealers">Docking Calculations Using Quantum Annealers</h4>
+<p>A quantum annealer is a type of quantum computer that is believed to be capable of rapidly solving specific types of combinatorial optimization problems. Therefore, we have formulated docking calculations as QUBO (quadratic unconstrained boolean optimization) problems. While there are many areas for improvement before it becomes practical, it has the potential to achieve a speed performance completely different from conventional methods, making it a subject of our research.</p>
+
+<ul>
+  <li><strong>Keisuke Yanagisawa</strong>†, Takuya Fujie, Kazuki Takabatake, Yutaka Akiyama†. “QUBO Problem Formulation of Fragment-Based Protein-Ligand Flexible Docking”, <em>Entropy</em>, <strong>26</strong>: 397, 2024/04. DOI: <a href="https://doi.org/10.3390/e26050397">10.3390/e26050397</a></li>
+</ul>
+
+<h4 id="development-of-a-fast-compound-pre-screening-method-based-on-compound-decomposition">Development of a Fast Compound Pre-Screening Method Based on Compound Decomposition</h4>
+
+<p>Evaluating large compound sets (sometimes over hundreds of millions) one by one is computationally difficult, so pre-screening to reduce the compound set is often performed. We are developing Spresso, a pre-screening method that evaluates compounds rapidly based on the 3D structure of the protein.</p>
 
 <p><img src="https://keisuke-yanagisawa.github.io/en/assets/img/research/spresso.png" alt="Spresso" class="align-center middle-img" /></p>
 
 <ul>
-  <li><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Shogo D. Suzuki, Masahito Ohue, Takashi Ishida, Yutaka Akiyama: “Spresso: An ultrafast compound pre-screening method based on compound decomposition”, <em>Bioinformatics</em>, 33: 3836-3843, 2017/12
-<a href="https://academic.oup.com/bioinformatics/article-lookup/doi/10.1093/bioinformatics/btx178">[open access]</a></li>
-  <li><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Shogo D. Suzuki, Masahito Ohue, Takashi Ishida, Yutaka Akiyama: “ESPRESSO: An ultrafast compound pre-screening method based on compound decomposition”, <em>The 27th International Conference on Genome Informatics (GIW 2016)</em>, 2016/10 (Full Paper, Oral Presentation)</li>
+  <li><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Shogo D. Suzuki, Masahito Ohue, Takashi Ishida, Yutaka Akiyama: “Spresso: An ultrafast compound pre-screening method based on compound decomposition”, <em>Bioinformatics</em>, 33: 3836-3843, 2017/12</li>
+  <li><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Shogo D. Suzuki, Masahito Ohue, Takashi Ishida, Yutaka Akiyama: “ESPRESSO: An ultrafast compound pre-screening method based on compound decomposition”, <em>The 27th International Conference on Genome Informatics (GIW 2016)</em>, 7 pages, 2016/10</li>
+</ul>
+
+<h3 id="prediction-of-drug-clearance-pathways-using-semi-supervised-learning-201304-201508">Prediction of Drug Clearance Pathways Using Semi-Supervised Learning (2013/04-2015/08)</h3>
+
+<p>By calculating molecular weight (MW), partition coefficient (logD), and plasma protein unbound fraction (fup) of drug compounds, we predict the metabolic and excretion pathways (clearance pathways) in the human body.</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/en/assets/img/research/clearance.png" alt="Clearance" class="align-center middle-img" /></p>
+
+<p>This prediction problem is characterized by the high cost of labeling (clearance experiments), with a large amount of unlabeled compound structures available. Therefore, semi-supervised learning, which can use unlabeled data, is considered suitable for prediction.</p>
+
+<p><img src="https://keisuke-yanagisawa.github.io/en/assets/img/research/SL_SSL.png" alt="SL_SSL" class="align-center middle-img" /></p>
+
+<ul>
+  <li><strong>Keisuke Yanagisawa</strong>, Takashi Ishida, Yutaka Akiyama: “Drug clearance pathway prediction based on semi-supervised learning”, <em>IPSJ Transactions on Bioinformatics</em>, 8: 21-27, 2015/08</li>
 </ul>
 
         
