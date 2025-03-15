@@ -297,7 +297,7 @@
             
               <nav class="toc">
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目次</h4></header>
-                <ul class="toc__menu"><li><a href="#共溶媒分子動力学法-201904-">共溶媒分子動力学法 (2019/04-)</a><ul><li><a href="#共溶媒の相互作用プロファイルの設計-inverse-msmd">共溶媒の相互作用プロファイルの設計 (Inverse MSMD)</a></li><li><a href="#アミノ酸を共溶媒としたmsmd-aap-msmd">アミノ酸を共溶媒としたMSMD (AAp-MSMD)</a></li><li><a href="#共溶媒分子セットの構築-exprorer">共溶媒分子セットの構築 (EXPRORER)</a></li></ul></li></ul></li><li><a href="#化合物フラグメントに着目した構造ベースバーチャルスクリーニング手法の開発-20144-">化合物フラグメントに着目した構造ベースバーチャルスクリーニング手法の開発 (2014/4-)</a><ul><li><a href="#タンパク質化合物ドッキング計算ツール-restretto-の開発">タンパク質化合物ドッキング計算ツール REstretto の開発</a></li><li><a href="#量子アニーラを用いたドッキング計算">量子アニーラを用いたドッキング計算</a></li><li><a href="#フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発</a></li></ul></li></ul></li><li><a href="#半教師付き学習を用いた薬物クリアランス経路予測-201304-201508">半教師付き学習を用いた薬物クリアランス経路予測 (2013/04-2015/08)</a></li></ul>
+                <ul class="toc__menu"><li><a href="#量子アニーラを用いたドッキング計算-202304-">量子アニーラを用いたドッキング計算 (2023/04-)</a></li><li><a href="#共溶媒分子動力学法-201904-">共溶媒分子動力学法 (2019/04-)</a><ul><li><a href="#共溶媒の相互作用プロファイルの設計-inverse-msmd">共溶媒の相互作用プロファイルの設計 (Inverse MSMD)</a></li><li><a href="#アミノ酸を共溶媒としたmsmd-aap-msmd">アミノ酸を共溶媒としたMSMD (AAp-MSMD)</a></li><li><a href="#共溶媒分子セットの構築-exprorer">共溶媒分子セットの構築 (EXPRORER)</a></li></ul></li></ul></li><li><a href="#化合物フラグメントに着目した構造ベースバーチャルスクリーニング手法の開発-20144-">化合物フラグメントに着目した構造ベースバーチャルスクリーニング手法の開発 (2014/4-)</a><ul><li><a href="#タンパク質化合物ドッキング計算ツール-restretto-の開発">タンパク質化合物ドッキング計算ツール REstretto の開発</a></li><li><a href="#フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発</a></li></ul></li></ul></li><li><a href="#半教師付き学習を用いた薬物クリアランス経路予測-201304-201508">半教師付き学習を用いた薬物クリアランス経路予測 (2013/04-2015/08)</a></li></ul>
 
               </nav>
             
@@ -305,7 +305,15 @@
             
           </aside>
         
-        <h2 id="共溶媒分子動力学法-201904-">共溶媒分子動力学法 (2019/04-)</h2>
+        <h2 id="量子アニーラを用いたドッキング計算-202304-">量子アニーラを用いたドッキング計算 (2023/04-)</h2>
+
+<p>量子アニーラ (quantum annealer) とは、量子コンピュータの一種であり、特定の形式の組合せ最適化問題の最適解を高速に解くことができると考えられています。そこで、<strong>ドッキング計算を QUBO (quadratic unconstrained boolean optimization) 問題として定式化</strong>しました。実用に至るまでには改善の余地が多数存在しますが、従来法とは全く異なる速度性能を得られる可能性があるため、我々は研究対象としています。</p>
+
+<ul>
+  <li><strong>Keisuke Yanagisawa</strong>†, Takuya Fujie, Kazuki Takabatake, Yutaka Akiyama†. “QUBO Problem Formulation of Fragment-Based Protein-Ligand Flexible Docking”, <em>Entropy</em>, <strong>26</strong>: 397, 2024/04. DOI: <a href="https://doi.org/10.3390/e26050397">10.3390/e26050397</a></li>
+</ul>
+
+<h2 id="共溶媒分子動力学法-201904-">共溶媒分子動力学法 (2019/04-)</h2>
 
 <p>共溶媒分子動力学 (mixed-solvent molecular dynamics; MSMD) 法は、
 タンパク質を溶質、水分子と共溶媒分子を溶媒とした分子動力学 (molecular dynamics; MD) 法です。
@@ -363,14 +371,6 @@
 
 <ul>
   <li><strong>Keisuke Yanagisawa</strong>, Rikuto Kubota, Yasushi Yoshikawa, Masahito Ohue, Yutaka Akiyama. “Effective protein-ligand docking strategy via fragment reuse and a proof-of-concept implementation”, <em>ACS Omega</em>, <strong>7</strong>: 30265-30274, 2022/08. DOI: <a href="https://pubs.acs.org/doi/full/10.1021/acsomega.2c03470">10.1021/acsomega.2c03470</a></li>
-</ul>
-
-<h4 id="量子アニーラを用いたドッキング計算">量子アニーラを用いたドッキング計算</h4>
-
-<p>量子アニーラ (quantum annealer) とは、量子コンピュータの一種であり、特定の形式の組合せ最適化問題の最適解を高速に解くことができると考えられています。そこで、<strong>ドッキング計算を QUBO (quadratic unconstrained boolean optimization) 問題として定式化</strong>しました。実用に至るまでには改善の余地が多数存在しますが、従来法とは全く異なる速度性能を得られる可能性があるため、我々は研究対象としています。</p>
-
-<ul>
-  <li><strong>Keisuke Yanagisawa</strong>†, Takuya Fujie, Kazuki Takabatake, Yutaka Akiyama†. “QUBO Problem Formulation of Fragment-Based Protein-Ligand Flexible Docking”, <em>Entropy</em>, <strong>26</strong>: 397, 2024/04. DOI: <a href="https://doi.org/10.3390/e26050397">10.3390/e26050397</a></li>
 </ul>
 
 <h4 id="フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発</h4>
@@ -459,7 +459,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2024 Keisuke Yanagisawa. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2025 Keisuke Yanagisawa. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

@@ -286,7 +286,7 @@
             
               <nav class="toc">
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
-                <ul class="toc__menu"><li><a href="#mixed-solvent-molecular-dynamics-msmd-201904-">Mixed-Solvent Molecular Dynamics (MSMD) (2019/04-)</a><ul><li><a href="#constructing-residue-interaction-profile-of-probes-inverse-msmd">Constructing residue interaction profile of probes (Inverse MSMD)</a></li><li><a href="#msmd-using-amino-acids-as-co-solvents-aap-msmd">MSMD Using Amino Acids as Co-Solvents (AAp-MSMD)</a></li><li><a href="#construction-of-co-solvent-molecule-sets-exprorer">Construction of Co-Solvent Molecule Sets (EXPRORER)</a></li></ul></li><li><a href="#development-of-structure-based-virtual-screening-methods-focused-on-compound-fragments-20144-">Development of Structure-Based Virtual Screening Methods Focused on Compound Fragments (2014/4-)</a><ul><li><a href="#development-of-the-protein-compound-docking-calculation-tool-restretto">Development of the Protein-Compound Docking Calculation Tool REstretto</a></li><li><a href="#docking-calculations-using-quantum-annealers">Docking Calculations Using Quantum Annealers</a></li><li><a href="#development-of-a-fast-compound-pre-screening-method-based-on-compound-decomposition">Development of a Fast Compound Pre-Screening Method Based on Compound Decomposition</a></li></ul></li><li><a href="#prediction-of-drug-clearance-pathways-using-semi-supervised-learning-201304-201508">Prediction of Drug Clearance Pathways Using Semi-Supervised Learning (2013/04-2015/08)</a></li></ul>
+                <ul class="toc__menu"><li><a href="#docking-calculations-using-quantum-annealers-202304-">Docking Calculations Using Quantum Annealers (2023/04-)</a></li><li><a href="#mixed-solvent-molecular-dynamics-msmd-201904-">Mixed-Solvent Molecular Dynamics (MSMD) (2019/04-)</a><ul><li><a href="#constructing-residue-interaction-profile-of-probes-inverse-msmd">Constructing residue interaction profile of probes (Inverse MSMD)</a></li><li><a href="#msmd-using-amino-acids-as-co-solvents-aap-msmd">MSMD Using Amino Acids as Co-Solvents (AAp-MSMD)</a></li><li><a href="#construction-of-co-solvent-molecule-sets-exprorer">Construction of Co-Solvent Molecule Sets (EXPRORER)</a></li></ul></li><li><a href="#development-of-structure-based-virtual-screening-methods-focused-on-compound-fragments-20144-">Development of Structure-Based Virtual Screening Methods Focused on Compound Fragments (2014/4-)</a><ul><li><a href="#development-of-the-protein-compound-docking-calculation-tool-restretto">Development of the Protein-Compound Docking Calculation Tool REstretto</a></li><li><a href="#development-of-a-fast-compound-pre-screening-method-based-on-compound-decomposition">Development of a Fast Compound Pre-Screening Method Based on Compound Decomposition</a></li></ul></li><li><a href="#prediction-of-drug-clearance-pathways-using-semi-supervised-learning-201304-201508">Prediction of Drug Clearance Pathways Using Semi-Supervised Learning (2013/04-2015/08)</a></li></ul>
 
               </nav>
             
@@ -294,7 +294,14 @@
             
           </aside>
         
-        <h3 id="mixed-solvent-molecular-dynamics-msmd-201904-">Mixed-Solvent Molecular Dynamics (MSMD) (2019/04-)</h3>
+        <h3 id="docking-calculations-using-quantum-annealers-202304-">Docking Calculations Using Quantum Annealers (2023/04-)</h3>
+<p>A quantum annealer is a type of quantum computer that is believed to be capable of rapidly solving specific types of combinatorial optimization problems. Therefore, we have formulated docking calculations as QUBO (quadratic unconstrained boolean optimization) problems. While there are many areas for improvement before it becomes practical, it has the potential to achieve a speed performance completely different from conventional methods, making it a subject of our research.</p>
+
+<ul>
+  <li><strong>Keisuke Yanagisawa</strong>†, Takuya Fujie, Kazuki Takabatake, Yutaka Akiyama†. “QUBO Problem Formulation of Fragment-Based Protein-Ligand Flexible Docking”, <em>Entropy</em>, <strong>26</strong>: 397, 2024/04. DOI: <a href="https://doi.org/10.3390/e26050397">10.3390/e26050397</a></li>
+</ul>
+
+<h3 id="mixed-solvent-molecular-dynamics-msmd-201904-">Mixed-Solvent Molecular Dynamics (MSMD) (2019/04-)</h3>
 
 <p>The Mixed-Solvent Molecular Dynamics (MSMD) method uses molecular dynamics (MD) with a protein as the solute and water molecules and probe (co-solvent) molecules. Based on information about where and to what extent co-solvent molecules exist on the protein surface, it is utilized for hotspot detection, binding affinity prediction, and the cryptic binding sites detection induced by structural changes in the protein due to probe molecules.</p>
 
@@ -341,13 +348,6 @@
 <h4 id="development-of-the-protein-compound-docking-calculation-tool-restretto">Development of the Protein-Compound Docking Calculation Tool REstretto</h4>
 
 <p>We are developing REstretto, a protein-compound docking calculation tool that utilizes fragment commonality. This method aims to achieve high-speed docking calculations by formulating them as a QUBO (quadratic unconstrained boolean optimization) problem.</p>
-
-<ul>
-  <li><strong>Keisuke Yanagisawa</strong>†, Takuya Fujie, Kazuki Takabatake, Yutaka Akiyama†. “QUBO Problem Formulation of Fragment-Based Protein-Ligand Flexible Docking”, <em>Entropy</em>, <strong>26</strong>: 397, 2024/04. DOI: <a href="https://doi.org/10.3390/e26050397">10.3390/e26050397</a></li>
-</ul>
-
-<h4 id="docking-calculations-using-quantum-annealers">Docking Calculations Using Quantum Annealers</h4>
-<p>A quantum annealer is a type of quantum computer that is believed to be capable of rapidly solving specific types of combinatorial optimization problems. Therefore, we have formulated docking calculations as QUBO (quadratic unconstrained boolean optimization) problems. While there are many areas for improvement before it becomes practical, it has the potential to achieve a speed performance completely different from conventional methods, making it a subject of our research.</p>
 
 <ul>
   <li><strong>Keisuke Yanagisawa</strong>†, Takuya Fujie, Kazuki Takabatake, Yutaka Akiyama†. “QUBO Problem Formulation of Fragment-Based Protein-Ligand Flexible Docking”, <em>Entropy</em>, <strong>26</strong>: 397, 2024/04. DOI: <a href="https://doi.org/10.3390/e26050397">10.3390/e26050397</a></li>
@@ -437,7 +437,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2024 Keisuke Yanagisawa. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2025 Keisuke Yanagisawa. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
