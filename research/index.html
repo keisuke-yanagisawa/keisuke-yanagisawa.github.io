@@ -297,7 +297,7 @@
             
               <nav class="toc">
                 <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目次</h4></header>
-                <ul class="toc__menu"><li><a href="#量子アニーラを用いたドッキング計算-202304-">量子アニーラを用いたドッキング計算 (2023/04-)</a></li><li><a href="#共溶媒分子動力学法-201904-">共溶媒分子動力学法 (2019/04-)</a><ul><li><a href="#共溶媒の相互作用プロファイルの設計-inverse-msmd">共溶媒の相互作用プロファイルの設計 (Inverse MSMD)</a></li><li><a href="#アミノ酸を共溶媒としたmsmd-aap-msmd">アミノ酸を共溶媒としたMSMD (AAp-MSMD)</a></li><li><a href="#共溶媒分子セットの構築-exprorer">共溶媒分子セットの構築 (EXPRORER)</a></li></ul></li></ul></li><li><a href="#化合物フラグメントに着目した構造ベースバーチャルスクリーニング手法の開発-20144-">化合物フラグメントに着目した構造ベースバーチャルスクリーニング手法の開発 (2014/4-)</a><ul><li><a href="#タンパク質化合物ドッキング計算ツール-restretto-の開発">タンパク質化合物ドッキング計算ツール REstretto の開発</a></li><li><a href="#フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発</a></li></ul></li></ul></li><li><a href="#半教師付き学習を用いた薬物クリアランス経路予測-201304-201508">半教師付き学習を用いた薬物クリアランス経路予測 (2013/04-2015/08)</a></li></ul>
+                <ul class="toc__menu"><li><a href="#量子アニーラを用いたドッキング計算-202304-">量子アニーラを用いたドッキング計算 (2023/04-)</a></li><li><a href="#共溶媒分子動力学法-201904-">共溶媒分子動力学法 (2019/04-)</a><ul><li><a href="#共溶媒の相互作用プロファイルの設計-inverse-msmd">共溶媒の相互作用プロファイルの設計 (Inverse MSMD)</a></li><li><a href="#アミノ酸を共溶媒としたmsmd-aap-msmd">アミノ酸を共溶媒としたMSMD (AAp-MSMD)</a></li><li><a href="#共溶媒分子セットの構築-exprorer">共溶媒分子セットの構築 (EXPRORER)</a></li></ul></li><li><a href="#化合物フラグメントに着目した構造ベースバーチャルスクリーニング手法の開発-20144-">化合物フラグメントに着目した構造ベースバーチャルスクリーニング手法の開発 (2014/4-)</a><ul><li><a href="#タンパク質化合物ドッキング計算ツール-restretto-の開発">タンパク質化合物ドッキング計算ツール REstretto の開発</a></li><li><a href="#フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発</a></li></ul></li><li><a href="#半教師付き学習を用いた薬物クリアランス経路予測-201304-201508">半教師付き学習を用いた薬物クリアランス経路予測 (2013/04-2015/08)</a></li></ul>
 
               </nav>
             
@@ -307,7 +307,7 @@
         
         <h2 id="量子アニーラを用いたドッキング計算-202304-">量子アニーラを用いたドッキング計算 (2023/04-)</h2>
 
-<p>量子アニーラ (quantum annealer) とは、量子コンピュータの一種であり、特定の形式の組合せ最適化問題の最適解を高速に解くことができると考えられています。そこで、<strong>ドッキング計算を QUBO (quadratic unconstrained boolean optimization) 問題として定式化</strong>しました。実用に至るまでには改善の余地が多数存在しますが、従来法とは全く異なる速度性能を得られる可能性があるため、我々は研究対象としています。</p>
+<p>量子アニーラ (quantum annealer) とは、量子コンピュータの一種であり、特定の形式の組合せ最適化問題の局所最適解を高速に探索できると期待されている計算機です。そこで、この量子アニーラをタンパク質-リガンドのドッキング計算（タンパク質の立体構造に基づき候補化合物の結合様式と結合親和性を予測する手法）へ応用することを目指しています。そのために、<strong>ドッキング計算を量子アニーラで解ける形式に変換し、QUBO（quadratic unconstrained binary optimization）問題として定式化</strong>しました。具体的には、リガンド分子を複数のフラグメント（部分構造）に分割し、それぞれの配置をバイナリ変数で表現することで、ドッキングの探索空間をQUBOとして表現しています。</p>
 
 <ul>
   <li><strong>Keisuke Yanagisawa</strong>†, Takuya Fujie, Kazuki Takabatake, Yutaka Akiyama†. “QUBO Problem Formulation of Fragment-Based Protein-Ligand Flexible Docking”, <em>Entropy</em>, <strong>26</strong>: 397, 2024/04. DOI: <a href="https://doi.org/10.3390/e26050397">10.3390/e26050397</a></li>
@@ -322,13 +322,13 @@
 
 <p>このMSMD法について、様々な提案を行ってきています。</p>
 
-<h4 id="共溶媒の相互作用プロファイルの設計-inverse-msmd">共溶媒の相互作用プロファイルの設計 (Inverse MSMD)</h4>
+<h3 id="共溶媒の相互作用プロファイルの設計-inverse-msmd">共溶媒の相互作用プロファイルの設計 (Inverse MSMD)</h3>
 
-<p>通常、共溶媒MDはタンパク質周辺の共溶媒の存在確率をマッピングしますが、逆に、<strong>共溶媒の周辺のどこに、タンパク質のどのような残基が出現しやすいかを推定</strong>する inverse MSMD を開発しています。</p>
+<p>通常の共溶媒MDでは、タンパク質表面のどの位置に共溶媒分子が存在しやすいか（存在確率分布）をマッピングします。これに対し<strong>inverse MSMD</strong>では、<strong>共溶媒分子の周囲にどのような種類のタンパク質残基が現れやすいかという「共溶媒側から見た相互作用プロファイル」の推定</strong>を行います。</p>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/img/research/inverseMSMD.png" alt="inverse MSMD" class="align-center middle-img" /></p>
 
-<p>また、このプロファイルをタンパク質表面に当てはめることで結合の強弱を推定する定量的インバース共溶媒MD法を開発中です。</p>
+<p>さらに現在、推定したプロファイルを再びタンパク質表面上に適用することで、実際のリガンド結合の強弱を予測する<strong>定量的インバース共溶媒MD法</strong>の開発にも取り組んでいます。これにより、通常の共溶媒MDと同じことを、標的タンパク質とのMD計算を行うことなく実現することができると期待しています。</p>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/img/research/quantitativeinverseMSMD.png" alt="quantitative inverse MSMD" class="align-center middle-img" /></p>
 
@@ -336,9 +336,9 @@
   <li><strong>Keisuke Yanagisawa</strong>, Ryunosuke Yoshino, Genki Kudo, Takatsugu Hirokawa. “Inverse Mixed-Solvent Molecular Dynamics for Visualization of the Residue Interaction Profile of Molecular Probes”, <em>International Journal of Molecular Sciences</em>, <strong>23</strong>: 4749, 2022/04. DOI: <a href="https://www.mdpi.com/1422-0067/23/9/4749">10.3390/ijms23094749</a></li>
 </ul>
 
-<h4 id="アミノ酸を共溶媒としたmsmd-aap-msmd">アミノ酸を共溶媒としたMSMD (AAp-MSMD)</h4>
+<h3 id="アミノ酸を共溶媒としたmsmd-aap-msmd">アミノ酸を共溶媒としたMSMD (AAp-MSMD)</h3>
 
-<p><strong>共溶媒としてアミノ酸を用いる</strong>ことで、タンパク質間相互作用表面予測や、ペプチド結合部位予測、残基の変化による結合親和性変化推定などを行える手法です。</p>
+<p>MSMDの共溶媒としてアミノ酸分子を用いることで、タンパク質が他のタンパク質やペプチドと相互作用する際の特徴を解析できる手法を開発しました。<strong>AAp-MSMD</strong> では、20種類のアミノ酸それぞれを小さな共溶媒分子としたMSMDを実行します。この結果得られるアミノ酸残基ごとの「好みの場所」情報は、タンパク質間相互作用 (PPI) やタンパク-ペプチドの結合を予測するのに有用です。なぜなら、タンパク質表面上で特定のアミノ酸が好んで結合する場所が連なれば、そこが数アミノ酸からなるペプチドの結合サイトである可能性があるからです。また、タンパク質上のある残基を変異させた際に、周囲のアミノ酸プローブ分子の付きやすさがどう変化するかを比較することで、点突然変異が結合親和性に与える影響を定性的に評価することも可能です。</p>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/img/research/AAp-MSMD.jpeg" alt="AAp-MSMD" class="align-center middle-img" /></p>
 
@@ -346,10 +346,9 @@
   <li>Genki Kudo†, <strong>Keisuke Yanagisawa</strong>†‡, Ryunosuke Yoshino‡, Takatsugu Hirokawa. “AAp-MSMD: Amino Acid Preference Mapping on Protein-Protein Interaction Surfaces Using Mixed-Solvent Molecular Dynamics”, <em>Journal of Chemical Information and Modeling</em>, <strong>63</strong>: 7768-7777, 2023/12. DOI: <a href="https://doi.org/10.1021/acs.jcim.3c01677">10.1021/acs.jcim.3c01677</a></li>
 </ul>
 
-<h4 id="共溶媒分子セットの構築-exprorer">共溶媒分子セットの構築 (EXPRORER)</h4>
+<h3 id="共溶媒分子セットの構築-exprorer">共溶媒分子セットの構築 (EXPRORER)</h3>
 
-<p>共溶媒MDを行う研究は多数ありますが、利用する共溶媒はその研究対象に応じて様々であり、統一的な決まりがありません。
-これに対して、薬剤分子を部分構造に分割して頻出する構造を100件以上列挙し、全てについて実際に共溶媒MDを実施することで、<strong>「薬剤分子に頻出する部分構造をカバーできる」共溶媒セットの構築</strong>を行いました。この結果によると、<strong>従来法では単糖が見逃されていることが示唆</strong>されています。</p>
+<p>MSMD法では、研究の目的や対象となるタンパク質によって様々な種類の共溶媒分子が用いられてきましたが、明確な標準や指針は存在しません。そこで、創薬に用いられる多種多様な化合物群を網羅的にカバーできる共溶媒分子セットの構築を試みました。薬剤分子からフラグメントを100種類以上切り出し、大量のMSMDシミュレーションを実施し、シミュレーション結果同士の類似度を算出、クラスタリングを行うことで、<strong>「創薬化合物に典型的に含まれる部分構造」を広くカバーする共溶媒セット</strong>を提案しました。</p>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/img/research/exprorer.jpg" alt="EXPRORER" class="align-center middle-img" /></p>
 
@@ -363,9 +362,9 @@
 
 <p>我々は、<strong>化合物の部分構造であるフラグメント</strong>に着目して研究を行っています。<strong>2800万件余りの化合物は、僅か26万件程度のフラグメントで表現できる</strong>ことが知られており、化合物間のフラグメント共通性を利用した計算の高速化を目指しています。</p>
 
-<h4 id="タンパク質化合物ドッキング計算ツール-restretto-の開発">タンパク質化合物ドッキング計算ツール REstretto の開発</h4>
+<h3 id="タンパク質化合物ドッキング計算ツール-restretto-の開発">タンパク質化合物ドッキング計算ツール REstretto の開発</h3>
 
-<p>フラグメントの共通性を利用したタンパク質化合物ドッキング計算ツールとしてREstrettoを開発しています。この手法は、1万件程度の化合物に対して、<strong>AutoDock Vinaと同程度の速度・性能</strong>を示しています。<strong>化合物数が増えるに従ってさらに高速にドッキング計算を行うことが可能</strong>です。</p>
+<p>多数の化合物を対象とするドッキング計算を効率化するため、フラグメントの再利用に基づくドッキング手法として<strong>REstretto</strong>というツールを開発しました。REstrettoは、一度ドッキングしたフラグメントの情報を保存し、同じフラグメント構造を含む別の化合物のドッキングで再利用することで計算の重複を避けます。これにより、ライブラリー中に存在する類似構造の化合物群をまとめて高速に処理できます。実験的な評価では、約1万件規模の化合物集合に対し、従来広く用いられている<strong>AutoDock Vinaと同程度の計算時間とドッキング精度</strong>を達成しています。REstrettoは<a href="https://github.com/akiyamalab/restretto">オープンソースソフトウェア</a>として公開しています。</p>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/img/research/REstretto.png" alt="REstretto" class="align-center middle-img" /></p>
 
@@ -373,10 +372,10 @@
   <li><strong>Keisuke Yanagisawa</strong>, Rikuto Kubota, Yasushi Yoshikawa, Masahito Ohue, Yutaka Akiyama. “Effective protein-ligand docking strategy via fragment reuse and a proof-of-concept implementation”, <em>ACS Omega</em>, <strong>7</strong>: 30265-30274, 2022/08. DOI: <a href="https://pubs.acs.org/doi/full/10.1021/acsomega.2c03470">10.1021/acsomega.2c03470</a></li>
 </ul>
 
-<h4 id="フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発</h4>
-<p>時に数億化合物以上にもなる膨大な化合物群を1件ずつドッキングすることは、残念ながら計算量的に困難であり、化合物群をあらかじめ削減すること（プレスクリーニング）が多く行われています。これについて、<strong>タンパク質の3次元構造に基づきつつも高速に化合物を評価するプレスクリーニング手法<a href="http://www.bi.cs.titech.ac.jp/spresso/">**Spresso**</a>を開発</strong>しています。</p>
+<h3 id="フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発">フラグメント分割に基づく高速な化合物プレスクリーニング手法の開発</h3>
 
-<p><img src="https://keisuke-yanagisawa.github.io/assets/img/research/spresso.png" alt="Spresso" class="align-center middle-img" /></p>
+<p>創薬の初期段階であるバーチャルスクリーニングでは、時に数億を超えるような極めて多数の化合物を評価することも想定されます。しかし、これらを一つひとつドッキング評価するのは計算量的に非現実的であり、化合物の分子量等の物性からその数を削減することが一般的です。しかし、このフィルタリングは標的タンパク質に結合する化合物を除外してしまうことにもつながります。我々は、タンパク質の3次元構造情報を用いつつ高速に化合物をスコア評価できるプリスクリーニング法として、<strong>Spresso</strong> を開発しました。
+<img src="https://keisuke-yanagisawa.github.io/assets/img/research/spresso.png" alt="Spresso" class="align-center middle-img" /></p>
 
 <ul>
   <li><strong>Keisuke Yanagisawa</strong>, Shunta Komine, Shogo D. Suzuki, Masahito Ohue, Takashi Ishida, Yutaka Akiyama: “Spresso: An ultrafast compound pre-screening method based on compound decomposition”, <em>Bioinformatics</em>, 33: 3836-3843, 2017/12
