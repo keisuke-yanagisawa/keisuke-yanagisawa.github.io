@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2025-06-30T10:16:11+00:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Science Tokyo.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">東京都のCOVID-19モニタリングデータ(1)</title><link href="https://keisuke-yanagisawa.github.io/202202/temporal_data_tokyo_covid_1/" rel="alternate" type="text/html" title="東京都のCOVID-19モニタリングデータ(1)" /><published>2022-02-26T00:00:00+00:00</published><updated>2022-02-26T00:00:00+00:00</updated><id>https://keisuke-yanagisawa.github.io/202202/temporal_data_tokyo_covid_1</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/temporal_data_tokyo_covid_1/"><![CDATA[<p>画像の識別など、数か月程度で考えれば時系列を気にしなくて済むデータと比べて、時系列データは考慮すべきことが多い。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://keisuke-yanagisawa.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://keisuke-yanagisawa.github.io/" rel="alternate" type="text/html" hreflang="ja" /><updated>2025-10-02T12:45:28+00:00</updated><id>https://keisuke-yanagisawa.github.io/feed.xml</id><title type="html">柳澤 渓甫 | Keisuke Yanagisawa</title><subtitle>An assistant professor in Science Tokyo.</subtitle><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><entry><title type="html">東京都のCOVID-19モニタリングデータ(1)</title><link href="https://keisuke-yanagisawa.github.io/202202/temporal_data_tokyo_covid_1/" rel="alternate" type="text/html" title="東京都のCOVID-19モニタリングデータ(1)" /><published>2022-02-26T00:00:00+00:00</published><updated>2022-02-26T00:00:00+00:00</updated><id>https://keisuke-yanagisawa.github.io/202202/temporal_data_tokyo_covid_1</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/temporal_data_tokyo_covid_1/"><![CDATA[<p>画像の識別など、数か月程度で考えれば時系列を気にしなくて済むデータと比べて、時系列データは考慮すべきことが多い。
 ここでは、その1つの例として、<a href="https://stopcovid19.metro.tokyo.lg.jp/monitoring/">東京都の新型コロナウイルス感染症対策サイト</a>
 からデータを取得し、少しばかり、実際の作業をやってみようと思う。</p>
 
 <h2 id="何をするか決める">何をするか決める</h2>
 
 <p>まず、ここで何をやるかを決めておこう。
-今回は、 <strong>東京都の翌日の新規陽性者数を予測する</strong> ことをやってみる<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>。</p>
+今回は、 <strong>東京都の翌日の新規陽性者数を予測する</strong> ことをやってみる<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>。</p>
 
 <h2 id="データを取得する">データを取得する</h2>
 
@@ -18,10 +18,10 @@
 
 <p>このデータの中身をpandasで見てみよう。（Excelで開くにはサイズが大きすぎる、何故かはすぐにわかる）</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"130001_tokyo_covid19_patients.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">"No"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># Jupyterでは df.head(5) の方が綺麗に描画される
-</span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="c1"># =&gt; 962,673
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">130001_tokyo_covid19_patients.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="sh">"</span><span class="s">No</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="nf">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># Jupyterでは df.head(5) の方が綺麗に描画される
+</span><span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="c1"># =&gt; 962,673
 </span></code></pre></div></div>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/posts/2022/img/2022-02-26_01.png" alt="データの中身の一例" /></p>
@@ -34,12 +34,12 @@
 個々の人間の情報は含まずに、<strong>公表_年月日</strong> ごとに、
 何人の新規陽性者がでたのかをまとめる。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">describe</span><span class="p">())</span> <span class="c1"># =&gt; 全国地方公共団体コード が len(df) と同じcountになっている = NaNが存在しない
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="nf">describe</span><span class="p">())</span> <span class="c1"># =&gt; 全国地方公共団体コード が len(df) と同じcountになっている = NaNが存在しない
 </span>
-<span class="n">new_patients</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">"公表_年月日"</span><span class="p">).</span><span class="n">count</span><span class="p">().</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">new_patients</span><span class="p">[</span><span class="s">"新規陽性者数"</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_patients</span><span class="p">[</span><span class="s">"全国地方公共団体コード"</span><span class="p">]</span>
-<span class="n">new_patients</span> <span class="o">=</span> <span class="n">new_patients</span><span class="p">[[</span><span class="s">"公表_年月日"</span><span class="p">,</span> <span class="s">"新規陽性者数"</span><span class="p">]]</span>
-<span class="n">new_patients</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"new_patients_tokyo.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">new_patients</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="nf">groupby</span><span class="p">(</span><span class="sh">"</span><span class="s">公表_年月日</span><span class="sh">"</span><span class="p">).</span><span class="nf">count</span><span class="p">().</span><span class="nf">reset_index</span><span class="p">()</span>
+<span class="n">new_patients</span><span class="p">[</span><span class="sh">"</span><span class="s">新規陽性者数</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_patients</span><span class="p">[</span><span class="sh">"</span><span class="s">全国地方公共団体コード</span><span class="sh">"</span><span class="p">]</span>
+<span class="n">new_patients</span> <span class="o">=</span> <span class="n">new_patients</span><span class="p">[[</span><span class="sh">"</span><span class="s">公表_年月日</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">新規陽性者数</span><span class="sh">"</span><span class="p">]]</span>
+<span class="n">new_patients</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">new_patients_tokyo.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/posts/2022/img/2022-02-26_02.png" alt="new_patients" /></p>
@@ -160,7 +160,7 @@ df_dataset.to_csv("dataset.csv", index=None)
  -->
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
+    <li id="fn:1">
       <p>本来は<strong>解析の目的</strong>があって、その目的に沿い、かつ予測が可能と思われる対象を決めるというステップを踏む必要がある。 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
@@ -179,7 +179,7 @@ df_dataset.to_csv("dataset.csv", index=None)
 世界の研究者のアクセスを鈍らせ、大きなマイナスになる。
 今はまだ英語のblogを立ち上げているわけではないのだが、
 自分がもっと世界に、1人でも多くに、貢献するためには
-絶対に必要だと確信している。</p>]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="その他" /><category term="読み物" /><summary type="html"><![CDATA[ふとした思いつきで、ブログを書けるようにした （そのためにホームページの見た目を全面更新することになったのだが）。]]></summary></entry><entry><title type="html">検証誤差と汎化誤差</title><link href="https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error/" rel="alternate" type="text/html" title="検証誤差と汎化誤差" /><published>2022-02-13T00:00:00+00:00</published><updated>2022-02-13T00:00:00+00:00</updated><id>https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error/"><![CDATA[<p>機械学習では、train-valid-test分割 <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> という方法が良く用いられる。</p>
+絶対に必要だと確信している。</p>]]></content><author><name>Keisuke Yanagisawa</name><email>yanagisawa@c.titech.ac.jp</email></author><category term="その他" /><category term="読み物" /><summary type="html"><![CDATA[ふとした思いつきで、ブログを書けるようにした （そのためにホームページの見た目を全面更新することになったのだが）。]]></summary></entry><entry><title type="html">検証誤差と汎化誤差</title><link href="https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error/" rel="alternate" type="text/html" title="検証誤差と汎化誤差" /><published>2022-02-13T00:00:00+00:00</published><updated>2022-02-13T00:00:00+00:00</updated><id>https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error</id><content type="html" xml:base="https://keisuke-yanagisawa.github.io/202202/validation_and_generalization_error/"><![CDATA[<p>機械学習では、train-valid-test分割 <sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> という方法が良く用いられる。</p>
 
 <p>訓練データとテストデータを分けるのは良くわかる（我々は良く「カンニング」と表現するが、これから予測したい対象を使って予測モデルを構築したらうまく予測できるのはほぼ自明である）。しかし、検証データを用いる必要性はちょっとわからないかもしれない。
 この分割が何故必要なのか、考えてみようと思う。</p>
@@ -227,54 +227,54 @@ df_dataset.to_csv("dataset.csv", index=None)
 
 <p>********</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 毎回同じ結果が得られるように固定
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 毎回同じ結果が得られるように固定
 </span>
 <span class="c1"># 表の情報を記入
-</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s">"山田"</span><span class="p">,</span> <span class="s">"佐藤"</span><span class="p">,</span> <span class="s">"田中"</span><span class="p">,</span> <span class="s">"橋本"</span><span class="p">,</span> <span class="s">"加藤"</span><span class="p">]</span>
-<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mf">11.20</span><span class="p">,</span> <span class="mf">11.21</span><span class="p">,</span> <span class="mf">11.17</span><span class="p">,</span> <span class="mf">11.13</span><span class="p">,</span> <span class="mf">11.15</span><span class="p">])</span>
+</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">山田</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">佐藤</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">田中</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">橋本</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">加藤</span><span class="sh">"</span><span class="p">]</span>
+<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mf">11.20</span><span class="p">,</span> <span class="mf">11.21</span><span class="p">,</span> <span class="mf">11.17</span><span class="p">,</span> <span class="mf">11.13</span><span class="p">,</span> <span class="mf">11.15</span><span class="p">])</span>
 
 <span class="c1"># +-0.5秒のぶれの設定（一様分布を仮定）
-</span><span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span> 
+</span><span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span> 
 
 <span class="n">time</span> <span class="o">=</span> <span class="n">ave_time</span> <span class="o">+</span> <span class="n">noise</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1"># 小数点以下3桁までにする
-</span><span class="k">print</span><span class="p">(</span><span class="s">"今回のタイム計測の記録"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1"># 小数点以下3桁までにする
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">今回のタイム計測の記録</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>その結果、加藤くんが11.074秒で最も早く、代表選手として選ばれた。</p>
 
-<p>さて、翌週に地区大会があったとしよう。ここで加藤くんはどのような結果を出すだろうか？ <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup></p>
+<p>さて、翌週に地区大会があったとしよう。ここで加藤くんはどのような結果を出すだろうか？ <sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup></p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">ave_time</span> <span class="o">=</span> <span class="mf">11.15</span>
-<span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random_sample</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">ave_time</span> <span class="o">+</span> <span class="n">noise</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"地区大会での加藤くんの記録"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">地区大会での加藤くんの記録</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>これを実行してみると、代表選手として選ばれた時のタイム（11.074秒）に比べて悪いタイム（11.199秒）となってしまった。これは偶然だろうか？「たまたま調子が悪かっただけなのでは？」という気もする。</p>
 
-<p>しかし、地区大会は一発勝負だ。調子が悪かったのかもしれなくとも、2度以上試すことはできない。そこで、100この世界線があり、それぞれの世界線で加藤くんが地区大会で走ったと考えて <sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> 、そのタイムの平均を取ってみよう。</p>
+<p>しかし、地区大会は一発勝負だ。調子が悪かったのかもしれなくとも、2度以上試すことはできない。そこで、100この世界線があり、それぞれの世界線で加藤くんが地区大会で走ったと考えて <sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> 、そのタイムの平均を取ってみよう。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">ave_time</span> <span class="o">=</span> <span class="mf">11.15</span>
-<span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">ave_time</span> <span class="o">+</span> <span class="n">noise</span>
-<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 
-<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">ave_time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">ave_time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">"地区大会での加藤くんの記録の平均"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">ave_time</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">地区大会での加藤くんの記録の平均</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ave_time</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>結果は平均11.123秒となり、依然代表選手として選ばれた時のタイム（11.074秒）と比べると遅い。
@@ -323,21 +323,21 @@ df_dataset.to_csv("dataset.csv", index=None)
 
 <p>検証データで行いたいのは、この5つのモデルから、汎化誤差が最も良さそうなモデルを1つ選択することである。やってみよう。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 毎回同じ結果が得られるように固定
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 毎回同じ結果が得られるように固定
 </span>
 <span class="c1"># 表の情報を記入
-</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s">"DT20"</span><span class="p">,</span> <span class="s">"DT5"</span><span class="p">,</span> <span class="s">"RF100"</span><span class="p">,</span> <span class="s">"RF200"</span><span class="p">,</span> <span class="s">"RF500"</span><span class="p">]</span>
-<span class="n">ave_gen_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.958</span><span class="p">,</span> <span class="mf">2.921</span><span class="p">,</span> <span class="mf">2.863</span><span class="p">,</span> <span class="mf">2.857</span><span class="p">,</span> <span class="mf">2.854</span><span class="p">])</span>
+</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">DT20</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">DT5</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">RF100</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">RF200</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">RF500</span><span class="sh">"</span><span class="p">]</span>
+<span class="n">ave_gen_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mf">2.958</span><span class="p">,</span> <span class="mf">2.921</span><span class="p">,</span> <span class="mf">2.863</span><span class="p">,</span> <span class="mf">2.857</span><span class="p">,</span> <span class="mf">2.854</span><span class="p">])</span>
 
 <span class="c1"># +-0.2のぶれの設定（一様分布を仮定）
-</span><span class="n">noise</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span> 
+</span><span class="n">noise</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span> 
 
 <span class="n">valid_err</span> <span class="o">=</span> <span class="n">ave_gen_err</span> <span class="o">+</span> <span class="n">noise</span>
-<span class="n">valid_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">valid_err</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1"># 小数点以下3桁までにする
-</span><span class="k">print</span><span class="p">(</span><span class="s">"検証データを用いたときのRMSE"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">valid_err</span><span class="p">)</span>
+<span class="n">valid_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">valid_err</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1"># 小数点以下3桁までにする
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">検証データを用いたときのRMSE</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">valid_err</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>この結果、<code class="language-plaintext highlighter-rouge">RandomForest(n_estimators=500)</code> が RMSE=2.823 で最も良いモデルである、と選択される。</p>
@@ -346,17 +346,17 @@ df_dataset.to_csv("dataset.csv", index=None)
 
 <p><strong>誤差の期待値</strong>とは、先ほどの例における「地区大会における平均タイム」と同じであるから、独立した試行を十分な回数行った場合の平均性能を見てみればよい。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">ave_gen_err</span> <span class="o">=</span> <span class="mf">2.854</span>
-<span class="n">noise</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span> 
+<span class="n">noise</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span> 
 <span class="n">test_err</span> <span class="o">=</span> <span class="n">ave_gen_err</span> <span class="o">+</span> <span class="n">noise</span>
-<span class="n">ave_test_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_err</span><span class="p">)</span>
-<span class="n">ave_test_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">ave_test_err</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ave_test_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">test_err</span><span class="p">)</span>
+<span class="n">ave_test_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">ave_test_err</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">"誤差の期待値（汎化性能の期待値）"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">ave_test_err</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">誤差の期待値（汎化性能の期待値）</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ave_test_err</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>この結果、 RMSE=2.843 となり、やはりモデル選択を行った際のRMSE (2.823) の方が良い値となっている。</p>
@@ -364,13 +364,13 @@ df_dataset.to_csv("dataset.csv", index=None)
 <p>このように、<strong>モデル選択を行った際の誤差の値というのは、期待値よりも良くなってしまい、汎化性能を正しく推定できていない。</strong>以上のことから、モデル選択を行う検証データセットのみで汎化性能を評価することは良くなく、検証データとは別に、テストデータを準備して、<strong>テストデータをもとに汎化性能を評価する</strong>必要がある。これが、train-validではなくtrain-valid-test分割を行う必要がある原因である。</p>
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
+    <li id="fn:1">
       <p>例えば、https://towardsdatascience.com/how-to-split-data-into-three-sets-train-validation-and-test-and-why-e50d22d3e54c に記述がある <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2" role="doc-endnote">
+    <li id="fn:2">
       <p>ここでは、簡単のために、「加藤くんは校内選抜と地区大会で同じ能力を発揮する」と仮定している。 <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3" role="doc-endnote">
+    <li id="fn:3">
       <p>無茶苦茶な話だが…。 <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
@@ -378,27 +378,27 @@ df_dataset.to_csv("dataset.csv", index=None)
 特に、正例 positive が少なく、負例 negative が多いケースが多い。
 このような状態だと、何も考えずに構築したモデルは、いかなるデータが来ようとも負例として予測してしまうことすらある。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="c1"># 不均衡データ（1対50）を作成
-</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">centers</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">].</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"negative"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">].</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"positive"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">centers</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">].</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">negative</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">].</span><span class="n">T</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">positive</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/img/posts/202202/2022-02-09-imbalanced-data-01.png" alt="データの散布図" /></p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
 
 <span class="c1"># 予測モデルの構築
 # （説明のためにgammaを下げて問題を誘発している）
-</span><span class="n">svc</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="n">svc</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span><span class="n">svc</span> <span class="o">=</span> <span class="nc">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">svc</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-<span class="n">svc</span><span class="p">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">svc</span><span class="p">.</span><span class="nf">predict</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
 </code></pre></div></div>
 
 <p>これを行うと、<code class="language-plaintext highlighter-rouge">[3, -1]</code> は<strong>負例である</strong>、という予測結果が出てくる。
@@ -448,7 +448,7 @@ EXPRORER (EXtended PRObes set construction by REpresentative Retrieval) の話�
 
 <p>このような問題に対して、薬剤分子に頻出する部分構造を共溶媒として切り出し、
 これに対するMSMDシミュレーションを行うことで、
-<strong>「網羅的」な共溶媒セットの構築を行う EXPRORER を開発した</strong><sup id="fnref:EXPRORER" role="doc-noteref"><a href="#fn:EXPRORER" class="footnote" rel="footnote">1</a></sup>。</p>
+<strong>「網羅的」な共溶媒セットの構築を行う EXPRORER を開発した</strong><sup id="fnref:EXPRORER"><a href="#fn:EXPRORER" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>。</p>
 
 <p>前述のように、この手法は「セットの構築」が主要な目的ではあるが、
 他方、MSMDシミュレーションのためのシミュレーション空間の構築や
@@ -461,7 +461,7 @@ MSMDシミュレーションの実施をフリーソフトウェアのみで完�
 この手法はあくまで<strong>「共溶媒セットの構築」のための手法</strong>であることに注意したい。</p>
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:EXPRORER" role="doc-endnote">
+    <li id="fn:EXPRORER">
       <p><strong>Keisuke Yanagisawa</strong>, Yoshitaka Moriwaki, Tohru Terada, Kentaro Shimizu. “EXPRORER: Rational Cosolvent Set Construction Method for Cosolvent Molecular Dynamics Using Large-Scale Computation”, <em>Journal of Chemical Information and Modeling</em>, <strong>61</strong>: 2744-2753, 2021/06. DOI: <a href="https://doi.org/10.1021/acs.jcim.1c00134">10.1021/acs.jcim.1c00134</a> <a href="#fnref:EXPRORER" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
@@ -474,26 +474,26 @@ MSMDシミュレーションの実施をフリーソフトウェアのみで完�
 <p>とりあえず実験してみよう。ここでは、\(x\) が \([-5,5]\) の範囲における \(\cos x\) を使ってモデルを構築し、
 \(x\) が \([-10,10]\) の範囲の予測を行ってみている。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="c1"># データセット作成
-</span><span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
-<span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">train_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">test_X</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
-<span class="n">test_y</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">test_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+</span><span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">train_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">test_X</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">test_y</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">test_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># 予測モデルの構築
-</span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
-<span class="n">svr</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">()</span>
-<span class="n">svr</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+</span><span class="kn">from</span> <span class="n">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="n">svr</span> <span class="o">=</span> <span class="nc">SVR</span><span class="p">()</span>
+<span class="n">svr</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
 
 <span class="c1"># テストデータに対する予測結果の描画
-</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"train dataset"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"green"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"true"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">svr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">"predicted"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">"lower right"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">train dataset</span><span class="sh">"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">green</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">true</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">svr</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">predicted</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="sh">"</span><span class="s">lower right</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>以下に示したような図が作成されたはずだ。
@@ -509,28 +509,28 @@ MSMDシミュレーションの実施をフリーソフトウェアのみで完�
 <p>上記で示した例は外挿、すなわち、訓練データの外側（すなわち外挿 extrapolation）の予測を行った。
 一方で、学習データの内側に穴があいてしまうこともあるかもしれない。これに対する予測は「内挿 interpolation」と言える。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="c1"># データセット作成
-</span><span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">(</span> 
-  <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span> 
+</span><span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">(</span> 
+  <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)]</span> 
 <span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
-<span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">train_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">test_X</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
-<span class="n">test_y</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">test_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">train_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">test_X</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)[:,</span> <span class="n">np</span><span class="p">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">test_y</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">test_X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># 予測モデルの構築
-</span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
-<span class="n">svr</span> <span class="o">=</span> <span class="n">SVR</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="p">.</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">svr</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+</span><span class="kn">from</span> <span class="n">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="n">svr</span> <span class="o">=</span> <span class="nc">SVR</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="p">.</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">svr</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
 
 <span class="c1"># テストデータに対する予測結果の描画
-</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"train dataset"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"green"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">"true"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">svr</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">"predicted"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">"upper right"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">train dataset</span><span class="sh">"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">green</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">test_y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">true</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">test_X</span><span class="p">,</span> <span class="n">svr</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">predicted</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="sh">"</span><span class="s">upper right</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>この結果を見てみると、データが中抜けしている（内挿領域である） \([-1, 1]\) の領域の予測精度はそこまで悪くなく、

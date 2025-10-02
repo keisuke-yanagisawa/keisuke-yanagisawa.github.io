@@ -561,7 +561,7 @@
             
           </aside>
         
-        <p>機械学習では、train-valid-test分割 <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> という方法が良く用いられる。</p>
+        <p>機械学習では、train-valid-test分割 <sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> という方法が良く用いられる。</p>
 
 <p>訓練データとテストデータを分けるのは良くわかる（我々は良く「カンニング」と表現するが、これから予測したい対象を使って予測モデルを構築したらうまく予測できるのはほぼ自明である）。しかし、検証データを用いる必要性はちょっとわからないかもしれない。
 この分割が何故必要なのか、考えてみようと思う。</p>
@@ -609,54 +609,54 @@
 
 <p>********</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 毎回同じ結果が得られるように固定
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 毎回同じ結果が得られるように固定
 </span>
 <span class="c1"># 表の情報を記入
-</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s">"山田"</span><span class="p">,</span> <span class="s">"佐藤"</span><span class="p">,</span> <span class="s">"田中"</span><span class="p">,</span> <span class="s">"橋本"</span><span class="p">,</span> <span class="s">"加藤"</span><span class="p">]</span>
-<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mf">11.20</span><span class="p">,</span> <span class="mf">11.21</span><span class="p">,</span> <span class="mf">11.17</span><span class="p">,</span> <span class="mf">11.13</span><span class="p">,</span> <span class="mf">11.15</span><span class="p">])</span>
+</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">山田</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">佐藤</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">田中</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">橋本</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">加藤</span><span class="sh">"</span><span class="p">]</span>
+<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mf">11.20</span><span class="p">,</span> <span class="mf">11.21</span><span class="p">,</span> <span class="mf">11.17</span><span class="p">,</span> <span class="mf">11.13</span><span class="p">,</span> <span class="mf">11.15</span><span class="p">])</span>
 
 <span class="c1"># +-0.5秒のぶれの設定（一様分布を仮定）
-</span><span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span> 
+</span><span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span> 
 
 <span class="n">time</span> <span class="o">=</span> <span class="n">ave_time</span> <span class="o">+</span> <span class="n">noise</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1"># 小数点以下3桁までにする
-</span><span class="k">print</span><span class="p">(</span><span class="s">"今回のタイム計測の記録"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1"># 小数点以下3桁までにする
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">今回のタイム計測の記録</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>その結果、加藤くんが11.074秒で最も早く、代表選手として選ばれた。</p>
 
-<p>さて、翌週に地区大会があったとしよう。ここで加藤くんはどのような結果を出すだろうか？ <sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup></p>
+<p>さて、翌週に地区大会があったとしよう。ここで加藤くんはどのような結果を出すだろうか？ <sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup></p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">ave_time</span> <span class="o">=</span> <span class="mf">11.15</span>
-<span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random_sample</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">ave_time</span> <span class="o">+</span> <span class="n">noise</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"地区大会での加藤くんの記録"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">地区大会での加藤くんの記録</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>これを実行してみると、代表選手として選ばれた時のタイム（11.074秒）に比べて悪いタイム（11.199秒）となってしまった。これは偶然だろうか？「たまたま調子が悪かっただけなのでは？」という気もする。</p>
 
-<p>しかし、地区大会は一発勝負だ。調子が悪かったのかもしれなくとも、2度以上試すことはできない。そこで、100この世界線があり、それぞれの世界線で加藤くんが地区大会で走ったと考えて <sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> 、そのタイムの平均を取ってみよう。</p>
+<p>しかし、地区大会は一発勝負だ。調子が悪かったのかもしれなくとも、2度以上試すことはできない。そこで、100この世界線があり、それぞれの世界線で加藤くんが地区大会で走ったと考えて <sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> 、そのタイムの平均を取ってみよう。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">ave_time</span> <span class="o">=</span> <span class="mf">11.15</span>
-<span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">ave_time</span> <span class="o">+</span> <span class="n">noise</span>
-<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
 
-<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">ave_time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ave_time</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">ave_time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">"地区大会での加藤くんの記録の平均"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">ave_time</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">地区大会での加藤くんの記録の平均</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ave_time</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>結果は平均11.123秒となり、依然代表選手として選ばれた時のタイム（11.074秒）と比べると遅い。
@@ -705,21 +705,21 @@
 
 <p>検証データで行いたいのは、この5つのモデルから、汎化誤差が最も良さそうなモデルを1つ選択することである。やってみよう。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 毎回同じ結果が得られるように固定
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># 毎回同じ結果が得られるように固定
 </span>
 <span class="c1"># 表の情報を記入
-</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="s">"DT20"</span><span class="p">,</span> <span class="s">"DT5"</span><span class="p">,</span> <span class="s">"RF100"</span><span class="p">,</span> <span class="s">"RF200"</span><span class="p">,</span> <span class="s">"RF500"</span><span class="p">]</span>
-<span class="n">ave_gen_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.958</span><span class="p">,</span> <span class="mf">2.921</span><span class="p">,</span> <span class="mf">2.863</span><span class="p">,</span> <span class="mf">2.857</span><span class="p">,</span> <span class="mf">2.854</span><span class="p">])</span>
+</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">DT20</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">DT5</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">RF100</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">RF200</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">RF500</span><span class="sh">"</span><span class="p">]</span>
+<span class="n">ave_gen_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mf">2.958</span><span class="p">,</span> <span class="mf">2.921</span><span class="p">,</span> <span class="mf">2.863</span><span class="p">,</span> <span class="mf">2.857</span><span class="p">,</span> <span class="mf">2.854</span><span class="p">])</span>
 
 <span class="c1"># +-0.2のぶれの設定（一様分布を仮定）
-</span><span class="n">noise</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span> 
+</span><span class="n">noise</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random_sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span> 
 
 <span class="n">valid_err</span> <span class="o">=</span> <span class="n">ave_gen_err</span> <span class="o">+</span> <span class="n">noise</span>
-<span class="n">valid_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">valid_err</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1"># 小数点以下3桁までにする
-</span><span class="k">print</span><span class="p">(</span><span class="s">"検証データを用いたときのRMSE"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">valid_err</span><span class="p">)</span>
+<span class="n">valid_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">valid_err</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>        <span class="c1"># 小数点以下3桁までにする
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">検証データを用いたときのRMSE</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">valid_err</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>この結果、<code class="language-plaintext highlighter-rouge">RandomForest(n_estimators=500)</code> が RMSE=2.823 で最も良いモデルである、と選択される。</p>
@@ -728,17 +728,17 @@
 
 <p><strong>誤差の期待値</strong>とは、先ほどの例における「地区大会における平均タイム」と同じであるから、独立した試行を十分な回数行った場合の平均性能を見てみればよい。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">ave_gen_err</span> <span class="o">=</span> <span class="mf">2.854</span>
-<span class="n">noise</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span> 
+<span class="n">noise</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">random_sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span> 
 <span class="n">test_err</span> <span class="o">=</span> <span class="n">ave_gen_err</span> <span class="o">+</span> <span class="n">noise</span>
-<span class="n">ave_test_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">test_err</span><span class="p">)</span>
-<span class="n">ave_test_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">round</span><span class="p">(</span><span class="n">ave_test_err</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ave_test_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">test_err</span><span class="p">)</span>
+<span class="n">ave_test_err</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="n">ave_test_err</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">"誤差の期待値（汎化性能の期待値）"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">ave_test_err</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">誤差の期待値（汎化性能の期待値）</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">ave_test_err</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>この結果、 RMSE=2.843 となり、やはりモデル選択を行った際のRMSE (2.823) の方が良い値となっている。</p>
@@ -746,13 +746,13 @@
 <p>このように、<strong>モデル選択を行った際の誤差の値というのは、期待値よりも良くなってしまい、汎化性能を正しく推定できていない。</strong>以上のことから、モデル選択を行う検証データセットのみで汎化性能を評価することは良くなく、検証データとは別に、テストデータを準備して、<strong>テストデータをもとに汎化性能を評価する</strong>必要がある。これが、train-validではなくtrain-valid-test分割を行う必要がある原因である。</p>
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
+    <li id="fn:1">
       <p>例えば、https://towardsdatascience.com/how-to-split-data-into-three-sets-train-validation-and-test-and-why-e50d22d3e54c に記述がある <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2" role="doc-endnote">
+    <li id="fn:2">
       <p>ここでは、簡単のために、「加藤くんは校内選抜と地区大会で同じ能力を発揮する」と仮定している。 <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3" role="doc-endnote">
+    <li id="fn:3">
       <p>無茶苦茶な話だが…。 <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>

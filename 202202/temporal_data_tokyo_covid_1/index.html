@@ -568,7 +568,7 @@
 <h2 id="何をするか決める">何をするか決める</h2>
 
 <p>まず、ここで何をやるかを決めておこう。
-今回は、 <strong>東京都の翌日の新規陽性者数を予測する</strong> ことをやってみる<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>。</p>
+今回は、 <strong>東京都の翌日の新規陽性者数を予測する</strong> ことをやってみる<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>。</p>
 
 <h2 id="データを取得する">データを取得する</h2>
 
@@ -581,10 +581,10 @@
 
 <p>このデータの中身をpandasで見てみよう。（Excelで開くにはサイズが大きすぎる、何故かはすぐにわかる）</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"130001_tokyo_covid19_patients.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">"No"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># Jupyterでは df.head(5) の方が綺麗に描画される
-</span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="c1"># =&gt; 962,673
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">130001_tokyo_covid19_patients.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="sh">"</span><span class="s">No</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="nf">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># Jupyterでは df.head(5) の方が綺麗に描画される
+</span><span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="c1"># =&gt; 962,673
 </span></code></pre></div></div>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/posts/2022/img/2022-02-26_01.png" alt="データの中身の一例" /></p>
@@ -597,12 +597,12 @@
 個々の人間の情報は含まずに、<strong>公表_年月日</strong> ごとに、
 何人の新規陽性者がでたのかをまとめる。</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">describe</span><span class="p">())</span> <span class="c1"># =&gt; 全国地方公共団体コード が len(df) と同じcountになっている = NaNが存在しない
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="nf">describe</span><span class="p">())</span> <span class="c1"># =&gt; 全国地方公共団体コード が len(df) と同じcountになっている = NaNが存在しない
 </span>
-<span class="n">new_patients</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">"公表_年月日"</span><span class="p">).</span><span class="n">count</span><span class="p">().</span><span class="n">reset_index</span><span class="p">()</span>
-<span class="n">new_patients</span><span class="p">[</span><span class="s">"新規陽性者数"</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_patients</span><span class="p">[</span><span class="s">"全国地方公共団体コード"</span><span class="p">]</span>
-<span class="n">new_patients</span> <span class="o">=</span> <span class="n">new_patients</span><span class="p">[[</span><span class="s">"公表_年月日"</span><span class="p">,</span> <span class="s">"新規陽性者数"</span><span class="p">]]</span>
-<span class="n">new_patients</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"new_patients_tokyo.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">new_patients</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="nf">groupby</span><span class="p">(</span><span class="sh">"</span><span class="s">公表_年月日</span><span class="sh">"</span><span class="p">).</span><span class="nf">count</span><span class="p">().</span><span class="nf">reset_index</span><span class="p">()</span>
+<span class="n">new_patients</span><span class="p">[</span><span class="sh">"</span><span class="s">新規陽性者数</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_patients</span><span class="p">[</span><span class="sh">"</span><span class="s">全国地方公共団体コード</span><span class="sh">"</span><span class="p">]</span>
+<span class="n">new_patients</span> <span class="o">=</span> <span class="n">new_patients</span><span class="p">[[</span><span class="sh">"</span><span class="s">公表_年月日</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">新規陽性者数</span><span class="sh">"</span><span class="p">]]</span>
+<span class="n">new_patients</span><span class="p">.</span><span class="nf">to_csv</span><span class="p">(</span><span class="sh">"</span><span class="s">new_patients_tokyo.csv</span><span class="sh">"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><img src="https://keisuke-yanagisawa.github.io/assets/posts/2022/img/2022-02-26_02.png" alt="new_patients" /></p>
@@ -723,7 +723,7 @@ df_dataset.to_csv("dataset.csv", index=None)
  -->
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
+    <li id="fn:1">
       <p>本来は<strong>解析の目的</strong>があって、その目的に沿い、かつ予測が可能と思われる対象を決めるというステップを踏む必要がある。 <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
